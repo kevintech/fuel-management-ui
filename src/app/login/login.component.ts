@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   private user: any;
   private loginForm: FormGroup;
   private submitted = false;
+  private error = false;
 
   constructor(
     private service: AuthenticationService,
@@ -33,17 +34,20 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
+      this.error = true;
       return true;
     }
 
     this.service.login().subscribe(
       data => {
         console.log('login success', data);
+        this.error = false;
         this.router.navigate(['home']);
       },
       error => {
         console.error(error);
-      })
+        this.error = true;
+      });
   }
 
 }
