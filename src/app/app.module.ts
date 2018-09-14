@@ -8,13 +8,21 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
+import { SupplyStationsComponent } from './supply-stations/supply-stations.component';
+import { EquipmentsComponent } from './equipments/equipments.component';
+import { DriversComponent } from './drivers/drivers.component';
+import { EquipmentsNewComponent } from './equipments-new/equipments-new.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    SupplyStationsComponent,
+    EquipmentsComponent,
+    DriversComponent,
+    EquipmentsNewComponent
   ],
   imports: [
     BrowserModule,
