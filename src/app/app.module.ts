@@ -4,22 +4,32 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 /**
+ * Routes
+ */
+import { AppRoutingModule } from './routes/app-routing.module'
+
+/**
  * Components
  */
-import { AppComponent } from './app.component'
-import { LoginComponent } from './login/login.component'
-import { AppRoutingModule } from './/app-routing.module'
-import { HomeComponent } from './home/home.component'
-import { HeaderComponent } from './header/header.component'
-import { SupplyStationsComponent } from './supply-stations/supply-stations.component'
-import { EquipmentsComponent } from './equipments/equipments.component'
-import { DriversComponent } from './drivers/drivers.component'
-import { EquipmentsNewComponent } from './equipments-new/equipments-new.component'
+import { AppComponent } from './components/main/app.component'
+import { LoginComponent } from './components/login/login.component'
+import { HomeComponent } from './components/home/home.component'
+import { HeaderComponent } from './components/header/header.component'
+import { SupplyStationsComponent } from './components/supply-stations/supply-stations.component'
+import { EquipmentsComponent } from './components/equipments/equipments.component'
+import { DriversComponent } from './components/drivers/drivers.component'
+import { EquipmentsNewComponent } from './components/equipments-new/equipments-new.component'
 
 /**
  * Services
  */
 import { AuthenticationService } from './services/authentication/authentication.service'
+import { UserService } from './services/user/user.service'
+
+/**
+ * Guards
+ */
+import { AuthGuard } from './guards/auth.guard'
 
 /**
  * App configuration
@@ -55,7 +65,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
     AngularFireAuthModule
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    UserService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
