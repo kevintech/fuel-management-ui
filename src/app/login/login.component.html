@@ -6,11 +6,11 @@
     <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Bienvenido, por favor ingrese sus datos</h1>
     <label for="email" class="sr-only">Correo electrónico</label>
-    <input type="email" id="email" formControlName="email" class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Correo electrónico" required autofocus>
+    <input type="email" id="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+      placeholder="Correo electrónico" required autofocus>
     <label for="password" class="sr-only">Contraseña</label>
-    <input type="password" id="password" formControlName="password" class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Contraseña" required>
+    <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+      placeholder="Contraseña" required>
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Mantener sesión
