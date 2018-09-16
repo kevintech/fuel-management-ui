@@ -9,27 +9,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private user: any
   private loginForm: FormGroup
   private submitted = false
   private error = false
 
   constructor(
-    private service: AuthenticationService,
+    private authService: AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router) { }
-
-  get f() {
-    return this.loginForm.controls
-  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     })
-    
-    this.service.login().subscribe(user => this.user = user)
+  }
+
+  get f() {
+    return this.loginForm.controls
   }
 
   onSubmit() {
@@ -39,13 +36,18 @@ export class LoginComponent implements OnInit {
       return true
     }
 
-    this.service.login().subscribe(
-      data => {
+    const userData = {
+      email: this.f.email.value,
+      password: this.f.password.value
+    }
+
+    this.authService.login(userData)
+      .then(data => {
         console.log('login success', data)
         this.error = false
         this.router.navigate(['home'])
-      },
-      error => {
+      })
+      .catch(error => {
         console.error(error)
         this.error = true
       })

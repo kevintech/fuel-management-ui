@@ -11,11 +11,6 @@
     <label for="password" class="sr-only">Contraseña</label>
     <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
       placeholder="Contraseña" required>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Mantener sesión
-      </label>
-    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
   </form>
