@@ -43,12 +43,10 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(userData)
       .then(data => {
-        console.log('login success', data)
         this.error = false
         this.router.navigate(['home'])
       })
       .catch(error => {
-        console.error(error)
         this.error = true
       })
   }

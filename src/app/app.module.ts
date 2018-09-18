@@ -34,7 +34,7 @@ import { AuthGuard } from './guards/auth.guard'
 /**
  * App configuration
  */
-import { AppConfig } from './app-config/app.config'
+import { AppConfig } from './config/app.config'
 
 /**
  * Dependencies
