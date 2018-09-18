@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { EquipmentService } from '../../services/equipment/equipment.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Equipment } from '../../models/equipment/equipment.model';
+import { Component, OnInit } from '@angular/core'
+import { EquipmentService } from '../../services/equipment/equipment.service'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { Equipment } from '../../models/equipment/equipment.model'
 
 @Component({
   selector: 'app-equipments-new',
@@ -33,18 +33,21 @@ export class EquipmentsNewComponent implements OnInit {
   }
 
   onSubmit() {
-    const driverData : Equipment = {
-      license: this.f.license.value,
-      name: this.f.name.value,
-      lastname: this.f.lastname.value,
-      birthdate: this.f.birthdate.value,
-      phone: this.f.phone.value
+    const driverData: Equipment = {
+      code: this.f.license.value,
+      plate: this.f.license.value,
+      description: this.f.name.value,
+      brand: this.f.lastname.value,
+      year: this.f.birthdate.value,
+      model: this.f.phone.value,
+      serial: this.f.phone.value,
+      state: true
     }
 
     this.equipmentService.save(driverData)
       .then(response => {
         this.router.navigate(['settings/equipments'])
-      });
+      })
   }
 
 }

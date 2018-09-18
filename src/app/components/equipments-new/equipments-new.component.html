@@ -6,10 +6,10 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h4>Registrar equipo</h4>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <a href="/settings/equipments" class="btn btn-outline-danger">Cancelar</a>
+          <a routerLink="/settings/equipments" class="btn btn-outline-danger">Cancelar</a>
         </div>
       </div>
-      <form class="needs-validation" novalidate>
+      <form class="needs-validation" [formGroup]="equipmentForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="id">Código</label>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="serial">Número de Serie</label>
+          <label for="serial">Número de serie</label>
           <input type="text" class="form-control" id="serial" placeholder="">
           <div class="invalid-feedback">
             Ingrese un número de serie válido

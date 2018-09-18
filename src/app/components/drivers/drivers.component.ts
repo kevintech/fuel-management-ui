@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DriverService } from '../../services/driver/driver.service';
-import { Driver } from '../../models/driver/driver.model';
+import { Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs'
+import { DriverService } from '../../services/driver/driver.service'
+import { Driver } from '../../models/driver/driver.model'
 
 @Component({
   selector: 'app-drivers',
@@ -9,12 +9,12 @@ import { Driver } from '../../models/driver/driver.model';
   styleUrls: ['./drivers.component.css']
 })
 export class DriversComponent implements OnInit {
-  public driverItems: Observable<Driver[]>;
+  public driverItems: Observable<Driver[]>
 
   constructor(private driverService: DriverService) { }
 
   ngOnInit() {
-    this.driverItems = this.driverService.getAll();
+    this.driverItems = this.driverService.getAll()
   }
 
 }

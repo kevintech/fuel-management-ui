@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { DriverService } from '../../services/driver/driver.service';
+import { DriverService } from '../../services/driver/driver.service'
 import { Driver } from '../../models/driver/driver.model'
 
 @Component({
@@ -43,7 +43,6 @@ export class DriversNewComponent implements OnInit {
     this.driverService.save(driverData)
       .then(response => {
         this.router.navigate(['settings/drivers'])
-      });
+      })
   }
-
 }

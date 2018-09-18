@@ -1,7 +1,10 @@
 export class Equipment {
-    license: string;
-    name: string;
-    lastname: string;
-    birthdate: string;
-    phone: string;
+  plate: string
+  code: string
+  description: string
+  brand: string
+  year: number
+  model: string
+  serial: string
+  state: boolean
 }
