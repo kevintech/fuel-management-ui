@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { Router,ActivatedRoute } from '@angular/router'
 import { AuthenticationService } from '../../services/authentication/authentication.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
@@ -12,16 +12,31 @@ export class LoginComponent implements OnInit {
   private loginForm: FormGroup
   private submitted = false
   private error = false
+  private returnUrl: string
 
   constructor(
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
+    })
+
+    this.logout()
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
+  }
+
+  logout(): void {
+    this.authService.logout()
+    .then(data => {
+      console.log('logout success')
+    })
+    .catch(error => {
+      console.log('logout error')
     })
   }
 
@@ -44,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(userData)
       .then(data => {
         this.error = false
-        this.router.navigate(['home'])
+        this.router.navigate([this.returnUrl])
       })
       .catch(error => {
         this.error = true
