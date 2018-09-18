@@ -20,14 +20,14 @@ import { AuthGuard } from '../guards/auth.guard'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'settings/drivers', component: DriversComponent },
-  { path: 'settings/drivers/new', component: DriversNewComponent },
-  { path: 'settings/equipments', component: EquipmentsComponent },
-  { path: 'settings/equipments/new', component: EquipmentsNewComponent },
-  { path: 'settings/stations', component: SupplyStationsComponent },
-  { path: 'settings/stations/new', component: SupplyStationsNewComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'settings/drivers', component: DriversComponent, canActivate: [AuthGuard]  },
+  { path: 'settings/drivers/new', component: DriversNewComponent, canActivate: [AuthGuard]  },
+  { path: 'settings/equipments', component: EquipmentsComponent, canActivate: [AuthGuard]  },
+  { path: 'settings/equipments/new', component: EquipmentsNewComponent, canActivate: [AuthGuard]  },
+  { path: 'settings/stations', component: SupplyStationsComponent, canActivate: [AuthGuard]  },
+  { path: 'settings/stations/new', component: SupplyStationsNewComponent, canActivate: [AuthGuard]  },
+  { path: '**', redirectTo: 'home' }
 ]
 
 @NgModule({

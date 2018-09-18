@@ -12,8 +12,8 @@ export class AuthenticationService {
   login(request) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(request.email, request.password)
-        .then(res => {
-          resolve(res)
+        .then(response => {
+          resolve(response)
         })
         .catch(error => {
           reject(error)
