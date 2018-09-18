@@ -10,7 +10,7 @@ import { Driver } from '../../models/driver/driver.model'
   styleUrls: ['./drivers-new.component.css']
 })
 export class DriversNewComponent implements OnInit {
-  private driverForm: FormGroup
+  driverForm: FormGroup
   
   constructor(
     private driverService: DriverService,

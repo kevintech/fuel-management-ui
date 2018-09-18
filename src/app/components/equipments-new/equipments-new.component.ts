@@ -10,7 +10,7 @@ import { Equipment } from '../../models/equipment/equipment.model'
   styleUrls: ['./equipments-new.component.css']
 })
 export class EquipmentsNewComponent implements OnInit {
-  private equipmentForm: FormGroup
+  equipmentForm: FormGroup
 
   constructor(
     private equipmentService: EquipmentService,
