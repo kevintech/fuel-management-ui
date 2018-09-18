@@ -12,13 +12,15 @@ import { AppRoutingModule } from './routes/app-routing.module'
  * Components
  */
 import { AppComponent } from './components/main/app.component'
-import { LoginComponent } from './components/login/login.component'
-import { HomeComponent } from './components/home/home.component'
-import { HeaderComponent } from './components/header/header.component'
-import { SupplyStationsComponent } from './components/supply-stations/supply-stations.component'
-import { EquipmentsComponent } from './components/equipments/equipments.component'
 import { DriversComponent } from './components/drivers/drivers.component'
+import { DriversNewComponent } from './components/drivers-new/drivers-new.component'
+import { EquipmentsComponent } from './components/equipments/equipments.component'
 import { EquipmentsNewComponent } from './components/equipments-new/equipments-new.component'
+import { HeaderComponent } from './components/header/header.component'
+import { HomeComponent } from './components/home/home.component'
+import { LoginComponent } from './components/login/login.component'
+import { SupplyStationsComponent } from './components/supply-stations/supply-stations.component'
+import { SupplyStationsNewComponent } from './components/supply-stations-new/supply-stations-new.component'
 
 /**
  * Services
@@ -52,7 +54,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
     SupplyStationsComponent,
     EquipmentsComponent,
     DriversComponent,
-    EquipmentsNewComponent
+    EquipmentsNewComponent,
+    SupplyStationsNewComponent,
+    DriversNewComponent
   ],
   imports: [
     BrowserModule,
