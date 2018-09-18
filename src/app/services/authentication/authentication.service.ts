@@ -1,16 +1,34 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { AUTH } from './authentication-mock';
-import { User } from '../../models/user/user.model';
+import { Injectable } from "@angular/core"
+import { AngularFireAuth } from 'angularfire2/auth'
+import * as firebase from 'firebase/app'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(
+    public afAuth: AngularFireAuth
+  ) { }
 
-  login(): Observable<User> {
-    return of(AUTH);
+  login(request) {
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(request.email, request.password)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  }
+
+  logout() {
+    return new Promise((resolve, reject) => {
+      if (firebase.auth().currentUser) {
+        this.afAuth.auth.signOut()
+        resolve()
+      } else {
+        reject()
+      }
+    })
   }
 }

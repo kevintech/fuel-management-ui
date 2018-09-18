@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h4>Registrar estación de abastecimiento</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <a href="/settings/stations" class="btn btn-outline-danger">Cancelar</a>
+        </div>
+      </div>
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="id">Código</label>
+            <input type="text" class="form-control" id="id" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              El código es requerido
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="phone">Número de Teléfono</label>
+            <input type="text" class="form-control" id="phone" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Ingrese el número de teléfono
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="description">Descripción</label>
+          <input type="text" class="form-control" id="description" placeholder="" required>
+          <div class="invalid-feedback">
+            Ingrese una descripción válida
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Dirección</label>
+          <input type="text" class="form-control" id="address" placeholder="">
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="status">Estado</label>
+            <select class="custom-select d-block w-100" id="status" required>
+              <option>Activo</option>
+              <option>Inactivo</option>
+            </select>
+            <div class="invalid-feedback">
+              Por favor, seleccione un estado válido
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
