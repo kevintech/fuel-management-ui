@@ -26,6 +26,7 @@ import { SupplyStationsNewComponent } from './components/supply-stations-new/sup
  * Services
  */
 import { AuthenticationService } from './services/authentication/authentication.service'
+import { DriverService } from './services/driver/driver.service'
 import { UserService } from './services/user/user.service'
 
 /**
@@ -70,6 +71,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
   ],
   providers: [
     AuthenticationService,
+    DriverService,
     UserService,
     AuthGuard
   ],
