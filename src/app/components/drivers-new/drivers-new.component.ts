@@ -33,7 +33,6 @@ export class DriversNewComponent implements OnInit {
 
   onSubmit() {
     const driverData : Driver = {
-      id: 1,
       license: this.f.license.value,
       name: this.f.name.value,
       lastname: this.f.lastname.value,
