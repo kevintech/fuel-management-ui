@@ -9,18 +9,18 @@
           <a href="/settings/stations" class="btn btn-outline-danger">Cancelar</a>
         </div>
       </div>
-      <form class="needs-validation" novalidate>
+      <form class="needs-validation" [formGroup]="stationForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="id">Código</label>
-            <input type="text" class="form-control" id="id" placeholder="" value="" required>
+            <label for="code">Código</label>
+            <input type="text" class="form-control" id="code" formControlName="code" placeholder="" value="" required>
             <div class="invalid-feedback">
               El código es requerido
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="phone">Número de Teléfono</label>
-            <input type="text" class="form-control" id="phone" placeholder="" value="" required>
+            <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="" value="" required>
             <div class="invalid-feedback">
               Ingrese el número de teléfono
             </div>
@@ -29,7 +29,7 @@
 
         <div class="mb-3">
           <label for="description">Descripción</label>
-          <input type="text" class="form-control" id="description" placeholder="" required>
+          <input type="text" class="form-control" id="description" formControlName="description" placeholder="" required>
           <div class="invalid-feedback">
             Ingrese una descripción válida
           </div>
@@ -37,7 +37,7 @@
 
         <div class="mb-3">
           <label for="address">Dirección</label>
-          <input type="text" class="form-control" id="address" placeholder="">
+          <input type="text" class="form-control" id="address" formControlName="address" placeholder="">
         </div>
 
         <div class="row">
