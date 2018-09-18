@@ -13,14 +13,14 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="id">Código</label>
-            <input type="text" class="form-control" id="id" placeholder="" value="" required>
+            <input type="text" class="form-control" id="id" formControlName="code" placeholder="" value="" required>
             <div class="invalid-feedback">
               El código es requerido
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="plate">Placa</label>
-            <input type="text" class="form-control" id="plate" placeholder="" value="" required>
+            <input type="text" class="form-control" id="plate" formControlName="plate" placeholder="" value="" required>
             <div class="invalid-feedback">
               Ingrese el número de placa correctamente
             </div>
@@ -29,7 +29,7 @@
 
         <div class="mb-3">
           <label for="make">Marca</label>
-          <input type="text" class="form-control" id="make" placeholder="">
+          <input type="text" class="form-control" id="make" formControlName="brand" placeholder="">
           <div class="invalid-feedback">
             Ingrese la marca del vehículo
           </div>
@@ -37,7 +37,7 @@
 
         <div class="mb-3">
           <label for="model">Modelo</label>
-          <input type="text" class="form-control" id="model" placeholder="">
+          <input type="text" class="form-control" id="model" formControlName="model" placeholder="">
           <div class="invalid-feedback">
             Ingrese el modelo del vehículo
           </div>
@@ -45,28 +45,37 @@
 
         <div class="mb-3">
           <label for="description">Descripción</label>
-          <input type="text" class="form-control" id="description" placeholder="" required>
+          <input type="text" class="form-control" id="description" formControlName="description" placeholder="" required>
         </div>
 
-        <div class="mb-3">
-          <label for="serial">Número de serie</label>
-          <input type="text" class="form-control" id="serial" placeholder="">
-          <div class="invalid-feedback">
-            Ingrese un número de serie válido
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="serial">Número de serie</label>
+            <input type="text" class="form-control" id="serial" formControlName="serial" placeholder="">
+            <div class="invalid-feedback">
+              Ingrese un número de serie válido
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="year">Año</label>
+            <input type="text" class="form-control" id="year" formControlName="year" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Ingrese el año del vehículo
+            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="company">Empresa</label>
-            <input type="text" class="form-control" id="company" placeholder="" required>
+            <input type="text" class="form-control" id="company" formControlName="company" placeholder="" required>
             <div class="invalid-feedback">
               Ingrese el nombre de la empresa
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="status">Estado</label>
-            <select class="custom-select d-block w-100" id="status" required>
+            <select class="custom-select d-block w-100" id="status" formControlName="status" required>
               <option>Activo</option>
               <option>Inactivo</option>
             </select>

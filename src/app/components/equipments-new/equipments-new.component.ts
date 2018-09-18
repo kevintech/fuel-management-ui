@@ -3,6 +3,8 @@ import { EquipmentService } from '../../services/equipment/equipment.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Equipment } from '../../models/equipment/equipment.model'
+import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
   selector: 'app-equipments-new',
@@ -15,16 +17,22 @@ export class EquipmentsNewComponent implements OnInit {
   constructor(
     private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private notifierService: NotifierService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
     this.equipmentForm = this.formBuilder.group({
-      license: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      birthdate: ['', [Validators.required]],
-      phone: ['', [Validators.required]]
+      code: ['', [Validators.required]],
+      plate: ['', [Validators.required]],
+      brand: ['', [Validators.required]],
+      model: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      serial: ['', [Validators.required]],
+      year: ['', [Validators.required]],
+      company: ['', [Validators.required]],
+      status: ['', [Validators.required]]
     })
   }
 
@@ -33,21 +41,39 @@ export class EquipmentsNewComponent implements OnInit {
   }
 
   onSubmit() {
-    const driverData: Equipment = {
-      code: this.f.license.value,
-      plate: this.f.license.value,
-      description: this.f.name.value,
-      brand: this.f.lastname.value,
-      year: this.f.birthdate.value,
-      model: this.f.phone.value,
-      serial: this.f.phone.value,
-      state: true
+
+    if (this.equipmentForm.invalid) {
+      return
     }
 
-    this.equipmentService.save(driverData)
+    this.spinner.show()
+
+    const equipmentData: Equipment = {
+      code: this.f.code.value,
+      plate: this.f.plate.value,
+      brand: this.f.brand.value,
+      model: this.f.model.value,
+      description: this.f.description.value,
+      serial: this.f.serial.value,
+      year: this.f.year.value,
+      company: this.f.company.value,
+      status: this.f.status.value,
+    }
+
+    this.equipmentService.save(equipmentData)
       .then(response => {
+        this.spinner.hide()
+        this.showAlert('success', 'Equipo registrado con éxito')
         this.router.navigate(['settings/equipments'])
+      })
+      .catch(error => {
+        this.spinner.show()
+        this.showAlert('error', error)
       })
   }
 
+  showAlert(type: string, message: string): void {
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
+  }
 }
