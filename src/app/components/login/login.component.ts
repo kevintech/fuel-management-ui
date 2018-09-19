@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router,ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { AuthenticationService } from '../../services/authentication/authentication.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
@@ -9,10 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private loginForm: FormGroup
-  private submitted = false
-  private error = false
-  private returnUrl: string
+  loginForm: FormGroup
+  submitted = false
+  error = false
+  returnUrl: string
 
   constructor(
     private authService: AuthenticationService,
@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
 
   logout(): void {
     this.authService.logout()
-    .then(data => {
-      console.log('logout success')
-    })
-    .catch(error => {
-      console.log('logout error')
-    })
+      .then(data => {
+        console.log('logout success')
+      })
+      .catch(error => {
+        console.log('logout error')
+      })
   }
 
   get f() {
