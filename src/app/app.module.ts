@@ -47,6 +47,8 @@ import { AppConfig } from './config/app.config'
 import { AngularFireModule } from 'angularfire2'
 import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { AngularFireAuthModule } from 'angularfire2/auth'
+import { NotifierModule } from 'angular-notifier'
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 @NgModule({
   declarations: [
@@ -69,7 +71,19 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
     AppRoutingModule,
     AngularFireModule.initializeApp(AppConfig.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxSpinnerModule,
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'left'
+        }
+      },
+      behaviour: {
+        autoHide: 3000,
+        showDismissButton: false
+      }
+    }),
   ],
   providers: [
     AuthenticationService,
