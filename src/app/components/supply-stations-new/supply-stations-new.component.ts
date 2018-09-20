@@ -11,6 +11,8 @@ import { SupplyStation } from '../../models/supply-station/supply-station.model'
 })
 export class SupplyStationsNewComponent implements OnInit {
   private stationForm: FormGroup;
+  private error = false;
+  private submitted = false;
 
   constructor(
     private stationService: SupplyStationService,
@@ -22,8 +24,9 @@ export class SupplyStationsNewComponent implements OnInit {
     this.stationForm = this.formBuilder.group({
       code: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      phone: ['', [Validators.required]]
+      address: ['', []],
+      phone: ['', [Validators.required]],
+      status: ['', [Validators.required]]
     });
   }
 
@@ -32,6 +35,12 @@ export class SupplyStationsNewComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.stationForm.invalid) {
+      this.submitted = true
+      this.error = true
+      return true
+    }
+
     const stationData: SupplyStation = {
       code: this.f.code.value,
       description: this.f.description.value,
