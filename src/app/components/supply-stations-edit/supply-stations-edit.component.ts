@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SupplyStationService } from '../../services/supply-station/supply-station.service';
@@ -20,7 +20,8 @@ export class SupplyStationsEditComponent implements OnInit {
   constructor(
     private stationService: SupplyStationService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,7 +36,7 @@ export class SupplyStationsEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.loadData();
-    })
+    });
   }
 
   get f() {
@@ -45,9 +46,33 @@ export class SupplyStationsEditComponent implements OnInit {
   private loadData() {
     this.station = this.stationService.get(this.id);
     this.station.subscribe(data => {
-      console.log(data);
       this.stationForm.setValue({...data, status: 1});
     });
+  }
+
+  onSubmit() {
+    if (this.stationForm.invalid) {
+      this.submitted = true;
+      this.error = true;
+      return true;
+    }
+
+    const stationData: SupplyStation = {
+      code: this.f.code.value,
+      description: this.f.description.value,
+      address: this.f.address.value,
+      phone: this.f.phone.value,
+      status: this.f.status.value
+    };
+
+    this.stationService.update(this.id, stationData)
+      .then(response => {
+        this.router.navigate(['settings/stations']);
+      });
+  }
+
+  onDelete() {
+    this.stationService.delete(this.id);
   }
 
 }

@@ -36,16 +36,17 @@ export class SupplyStationsNewComponent implements OnInit {
 
   onSubmit() {
     if (this.stationForm.invalid) {
-      this.submitted = true
-      this.error = true
-      return true
+      this.submitted = true;
+      this.error = true;
+      return true;
     }
 
     const stationData: SupplyStation = {
       code: this.f.code.value,
       description: this.f.description.value,
       address: this.f.address.value,
-      phone: this.f.phone.value
+      phone: this.f.phone.value,
+      status: this.f.status.value
     };
 
     this.stationService.save(stationData)

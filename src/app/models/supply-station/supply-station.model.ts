@@ -3,4 +3,5 @@ export interface SupplyStation {
     description: string;
     address: string;
     phone: string;
+    status: boolean;
 }

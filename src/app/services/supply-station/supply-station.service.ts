@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class SupplyStationService {
   private itemsCollection: AngularFirestoreCollection<SupplyStation>;
-  private itemDoc: AngularFirestoreDocument<SupplyStation>;
+  private itemDocument: AngularFirestoreDocument<SupplyStation>;
 
   constructor(private afs: AngularFirestore) {
     this.itemsCollection = afs.collection<SupplyStation>('stations');
@@ -25,11 +25,21 @@ export class SupplyStationService {
   }
 
   public get(key: string) {
-    this.itemDoc = this.afs.doc<SupplyStation>(`stations/${key}`);
-    return this.itemDoc.valueChanges();
+    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    return this.itemDocument.valueChanges();
   }
 
   public save(station: SupplyStation) {
     return this.itemsCollection.add(station);
+  }
+
+  public update(key: string, station: SupplyStation) {
+    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    return this.itemDocument.update(station);
+  }
+
+  public delete(key: string) {
+    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    return this.itemDocument.delete();
   }
 }
