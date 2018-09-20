@@ -51,7 +51,7 @@ export class EquipmentsNewComponent implements OnInit {
 
     this.spinner.show()
 
-    const equipmentData: Equipment = {
+    const equipmentData = {
       code: this.f.code.value,
       plate: this.f.plate.value,
       brand: this.f.brand.value,

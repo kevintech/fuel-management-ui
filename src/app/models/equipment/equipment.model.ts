@@ -1,4 +1,5 @@
 export class Equipment {
+  id: String
   code: string
   plate: string
   description: string
