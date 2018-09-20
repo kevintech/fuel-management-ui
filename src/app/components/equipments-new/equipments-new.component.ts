@@ -13,6 +13,8 @@ import { NgxSpinnerService } from 'ngx-spinner'
 })
 export class EquipmentsNewComponent implements OnInit {
   equipmentForm: FormGroup
+  error = false
+  submitted = false
 
   constructor(
     private equipmentService: EquipmentService,
@@ -41,9 +43,10 @@ export class EquipmentsNewComponent implements OnInit {
   }
 
   onSubmit() {
-
     if (this.equipmentForm.invalid) {
-      return
+      this.submitted = true
+      this.error = true
+      return true
     }
 
     this.spinner.show()

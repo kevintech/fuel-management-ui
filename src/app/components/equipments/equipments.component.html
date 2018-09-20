@@ -21,6 +21,7 @@
             <th scope="col">Año</th>
             <th scope="col">Serie</th>
             <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +37,8 @@
             <td>
               <span class="badge badge-success" *ngIf="equipment.status == 'Activo'">{{ equipment.status }}</span>
               <span class="badge badge-danger" *ngIf="equipment.status == 'Inactivo'">{{ equipment.status }}</span>
+            </td>
+            <td>
             </td>
           </tr>
         </tbody>
