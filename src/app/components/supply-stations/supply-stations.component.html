@@ -21,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let station of stationItems | async; index as i">
+          <tr *ngFor="let station of stationItems | async; index as i" [routerLink]="['/settings/stations/',station.id]">
             <th scope="row">{{i+1}}</th>
             <td>{{station.code}}</td>
             <td>{{station.description}}</td>

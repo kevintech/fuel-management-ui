@@ -21,6 +21,7 @@ import { HomeComponent } from './components/home/home.component'
 import { LoginComponent } from './components/login/login.component'
 import { SupplyStationsComponent } from './components/supply-stations/supply-stations.component'
 import { SupplyStationsNewComponent } from './components/supply-stations-new/supply-stations-new.component'
+import { SupplyStationsEditComponent } from './components/supply-stations-edit/supply-stations-edit.component'
 
 /**
  * Services
@@ -61,7 +62,8 @@ import { NgxSpinnerModule } from 'ngx-spinner'
     DriversComponent,
     EquipmentsNewComponent,
     SupplyStationsNewComponent,
-    DriversNewComponent
+    DriversNewComponent,
+    SupplyStationsEditComponent
   ],
   imports: [
     BrowserModule,
