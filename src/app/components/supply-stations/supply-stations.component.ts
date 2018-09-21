@@ -16,5 +16,4 @@ export class SupplyStationsComponent implements OnInit {
   ngOnInit() {
     this.stationItems = this.stationService.getAll();
   }
-
 }

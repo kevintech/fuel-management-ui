@@ -34,7 +34,8 @@ export class EquipmentService {
   }
 
   public getOne(id: String) {
-    return this.itemDocument = this.afs.doc<Equipment>(`${AppConfig.collections.equipment}/${id}`)
+    this.itemDocument = this.afs.doc<Equipment>(`${AppConfig.collections.equipment}/${id}`)
+    return this.itemDocument.valueChanges();
   }
 
   public update(id: String, equipment) {

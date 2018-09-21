@@ -7,11 +7,11 @@ import { NotifierService } from 'angular-notifier'
 import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
-  selector: 'app-equipments-new',
-  templateUrl: './equipments-new.component.html',
-  styleUrls: ['./equipments-new.component.css']
+  selector: 'app-equipments-edit',
+  templateUrl: './equipment-edit.component.html',
+  styleUrls: ['./equipment-edit.component.css']
 })
-export class EquipmentUpdateComponent implements OnInit {
+export class EquipmentEditComponent implements OnInit {
   equipmentForm: FormGroup
   error = false
   submitted = false

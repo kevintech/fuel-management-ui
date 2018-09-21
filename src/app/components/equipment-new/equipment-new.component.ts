@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner'
   templateUrl: './equipment-new.component.html',
   styleUrls: ['./equipment-new.component.css']
 })
-export class EquipmentsNewComponent implements OnInit {
+export class EquipmentNewComponent implements OnInit {
   equipmentForm: FormGroup
   error = false
   submitted = false

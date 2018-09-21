@@ -15,7 +15,8 @@ import { AppComponent } from './components/main/app.component'
 import { DriversComponent } from './components/drivers/drivers.component'
 import { DriversNewComponent } from './components/drivers-new/drivers-new.component'
 import { EquipmentsComponent } from './components/equipments/equipments.component'
-import { EquipmentsNewComponent } from './components/equipment-new/equipment-new.component'
+import { EquipmentNewComponent } from './components/equipment-new/equipment-new.component'
+import { EquipmentEditComponent } from './components/equipment-edit/equipment-edit.component'
 import { HeaderComponent } from './components/header/header.component'
 import { HomeComponent } from './components/home/home.component'
 import { LoginComponent } from './components/login/login.component'
@@ -62,7 +63,8 @@ import { NgxSpinnerModule } from 'ngx-spinner'
     SupplyStationsComponent,
     EquipmentsComponent,
     DriversComponent,
-    EquipmentsNewComponent,
+    EquipmentNewComponent,
+    EquipmentEditComponent,
     SupplyStationsNewComponent,
     DriversNewComponent,
     SupplyStationsEditComponent,
