@@ -52,7 +52,8 @@ import { AngularFireModule } from 'angularfire2'
 import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { NotifierModule } from 'angular-notifier'
-import { NgxSpinnerModule } from 'ngx-spinner'
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { DriversEditComponent } from './components/drivers-edit/drivers-edit.component'
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { NgxSpinnerModule } from 'ngx-spinner'
     SupplyStationsNewComponent,
     DriversNewComponent,
     SupplyStationsEditComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DriversEditComponent
   ],
   imports: [
     BrowserModule,

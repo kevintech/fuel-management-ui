@@ -74,7 +74,7 @@ export class SupplyStationsEditComponent implements OnInit {
   }
 
   onDelete() {
-    this.confirmationDialogService.confirm('Confirmacion', 'Estas seguro que deseas eliminarlo?', 'Si, eliminar')
+    this.confirmationDialogService.confirm('Confirmación', '¿Estas seguro que deseas eliminarlo?', 'Si, eliminar')
       .then((confirmed) => {
         if (confirmed) {
           this.stationService.delete(this.id)

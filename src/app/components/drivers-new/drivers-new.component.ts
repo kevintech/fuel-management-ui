@@ -11,6 +11,8 @@ import { Driver } from '../../models/driver/driver.model'
 })
 export class DriversNewComponent implements OnInit {
   driverForm: FormGroup
+  error = false;
+  submitted = false;
   
   constructor(
     private driverService: DriverService,
@@ -23,7 +25,8 @@ export class DriversNewComponent implements OnInit {
       name: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       birthdate: ['', [Validators.required]],
-      phone: ['', [Validators.required]]
+      phone: ['', []],
+      status: ['', [Validators.required]]
     })
   }
 
@@ -32,16 +35,23 @@ export class DriversNewComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.driverForm.invalid) {
+      this.submitted = true;
+      this.error = true;
+      return true;
+    }
+
     const driverData : Driver = {
       license: this.f.license.value,
       name: this.f.name.value,
       lastname: this.f.lastname.value,
       birthdate: this.f.birthdate.value,
-      phone: this.f.phone.value
+      phone: this.f.phone.value,
+      status: this.f.status.value
     }
 
     this.driverService.save(driverData)
-      .then(response => {
+      .then(() => {
         this.router.navigate(['settings/drivers'])
       })
   }

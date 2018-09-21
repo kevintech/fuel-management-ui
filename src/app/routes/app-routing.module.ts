@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router'
  */
 import { DriversComponent } from '../components/drivers/drivers.component'
 import { DriversNewComponent } from '../components/drivers-new/drivers-new.component'
+import { DriversEditComponent } from '../components/drivers-edit/drivers-edit.component'
 import { EquipmentsComponent } from '../components/equipments/equipments.component'
 import { EquipmentNewComponent } from '../components/equipment-new/equipment-new.component'
 import { EquipmentEditComponent } from '../components/equipment-edit/equipment-edit.component'
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'settings/drivers', component: DriversComponent, canActivate: [AuthGuard] },
   { path: 'settings/drivers/new', component: DriversNewComponent, canActivate: [AuthGuard] },
+  { path: 'settings/drivers/:id', component: DriversEditComponent, canActivate: [AuthGuard] },
   { path: 'settings/equipments', component: EquipmentsComponent, canActivate: [AuthGuard] },
   { path: 'settings/equipment/new', component: EquipmentNewComponent, canActivate: [AuthGuard] },
   { path: 'settings/equipment/:id', component: EquipmentEditComponent, canActivate: [AuthGuard] },
