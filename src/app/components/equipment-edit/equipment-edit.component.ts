@@ -44,8 +44,8 @@ export class EquipmentEditComponent implements OnInit {
     })
 
     this.route.params.subscribe(params => {
-      this.id = params['id'];
-      this.loadData();
+      this.id = params['id']
+      this.loadData()
     })
   }
 
@@ -54,10 +54,10 @@ export class EquipmentEditComponent implements OnInit {
   }
 
   loadData(): void {
-    this.equipment = this.equipmentService.getOne(this.id);
+    this.equipment = this.equipmentService.getOne(this.id)
     this.equipment.subscribe(data => {
-      this.equipmentForm.setValue({ ...data });
-    });
+      this.equipmentForm.setValue({ ...data })
+    })
   }
 
   onSubmit() {
@@ -69,7 +69,7 @@ export class EquipmentEditComponent implements OnInit {
 
     this.spinner.show()
 
-    const equipmentData = {
+    const equipmentData: Equipment = {
       code: this.f.code.value,
       plate: this.f.plate.value,
       brand: this.f.brand.value,
@@ -81,15 +81,37 @@ export class EquipmentEditComponent implements OnInit {
       status: this.f.status.value,
     }
 
-    this.equipmentService.save(equipmentData)
+    this.equipmentService.update(this.id, equipmentData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Equipo registrado con éxito')
+        this.showAlert('success', 'Equipo actualizado con éxito')
         this.router.navigate(['settings/equipments'])
       })
       .catch(error => {
         this.spinner.show()
         this.showAlert('error', error)
+      })
+  }
+
+  onDelete() {
+    this.confirmationDialogService.confirm('Confirmación', '¿Estás seguro que deseas eliminarlo?', 'Sí, eliminar')
+      .then(confirmed => {
+        if (confirmed) {
+          this.spinner.show()
+          this.equipmentService.delete(this.id)
+            .then(response => {
+              this.spinner.hide()
+              this.showAlert('success', 'Eliminado correctamente')
+              this.router.navigate(['settings/equipments'])
+            })
+            .catch(error => {
+              this.spinner.hide()
+              this.showAlert('error', error)
+            })
+        }
+      })
+      .catch(error => {
+        console.log('Error in dialog: ', error)
       })
   }
 
