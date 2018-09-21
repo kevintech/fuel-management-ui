@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs'
 import { EquipmentService } from '../../services/equipment/equipment.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { Equipment } from '../../models/equipment/equipment.model'
 import { NotifierService } from 'angular-notifier'
 import { NgxSpinnerService } from 'ngx-spinner'
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service'
 
 @Component({
   selector: 'app-equipments-edit',
@@ -13,6 +15,8 @@ import { NgxSpinnerService } from 'ngx-spinner'
 })
 export class EquipmentEditComponent implements OnInit {
   equipmentForm: FormGroup
+  id: String
+  equipment: Observable<Equipment>
   error = false
   submitted = false
 
@@ -20,6 +24,8 @@ export class EquipmentEditComponent implements OnInit {
     private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
+    private confirmationDialogService: ConfirmationDialogService,
     private notifierService: NotifierService,
     private spinner: NgxSpinnerService
   ) { }
@@ -36,10 +42,22 @@ export class EquipmentEditComponent implements OnInit {
       company: ['', [Validators.required]],
       status: ['', [Validators.required]]
     })
+
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.loadData();
+    })
   }
 
   get f() {
     return this.equipmentForm.controls
+  }
+
+  loadData(): void {
+    this.equipment = this.equipmentService.getOne(this.id);
+    this.equipment.subscribe(data => {
+      this.equipmentForm.setValue({ ...data });
+    });
   }
 
   onSubmit() {

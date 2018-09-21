@@ -29,7 +29,7 @@ export class EquipmentService {
       }))
   }
 
-  public save(equipment) {
+  public save(equipment: Equipment) {
     return this.itemsCollection.add(equipment)
   }
 
@@ -38,7 +38,7 @@ export class EquipmentService {
     return this.itemDocument.valueChanges();
   }
 
-  public update(id: String, equipment) {
+  public update(id: String, equipment: Equipment) {
     this.itemDocument = this.afs.doc<Equipment>(`${AppConfig.collections.equipment}/${id}`)
     return this.itemDocument.update(equipment)
   }
