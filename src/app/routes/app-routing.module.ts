@@ -12,6 +12,7 @@ import { HomeComponent } from '../components/home/home.component'
 import { LoginComponent } from '../components/login/login.component'
 import { SupplyStationsComponent } from '../components/supply-stations/supply-stations.component'
 import { SupplyStationsNewComponent } from '../components/supply-stations-new/supply-stations-new.component'
+import { SupplyStationsEditComponent } from '../components/supply-stations-edit/supply-stations-edit.component'
 
 /**
  * Guards
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'settings/equipments/new', component: EquipmentsNewComponent, canActivate: [AuthGuard]  },
   { path: 'settings/stations', component: SupplyStationsComponent, canActivate: [AuthGuard]  },
   { path: 'settings/stations/new', component: SupplyStationsNewComponent, canActivate: [AuthGuard]  },
+  { path: 'settings/stations/:id', component: SupplyStationsEditComponent, canActivate: [AuthGuard]  },
   { path: '**', redirectTo: 'home' }
 ]
 
