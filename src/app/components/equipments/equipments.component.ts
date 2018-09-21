@@ -17,10 +17,6 @@ export class EquipmentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getData()
-  }
-
-  getData(): void {
     this.equipmentItems = this.equipmentService.getAll()
   }
 }
