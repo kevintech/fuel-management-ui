@@ -15,7 +15,8 @@ import { AppComponent } from './components/main/app.component'
 import { DriversComponent } from './components/drivers/drivers.component'
 import { DriversNewComponent } from './components/drivers-new/drivers-new.component'
 import { EquipmentsComponent } from './components/equipments/equipments.component'
-import { EquipmentsNewComponent } from './components/equipments-new/equipments-new.component'
+import { EquipmentNewComponent } from './components/equipment-new/equipment-new.component'
+import { EquipmentEditComponent } from './components/equipment-edit/equipment-edit.component'
 import { HeaderComponent } from './components/header/header.component'
 import { HomeComponent } from './components/home/home.component'
 import { LoginComponent } from './components/login/login.component'
@@ -63,7 +64,8 @@ import { DriversEditComponent } from './components/drivers-edit/drivers-edit.com
     SupplyStationsComponent,
     EquipmentsComponent,
     DriversComponent,
-    EquipmentsNewComponent,
+    EquipmentNewComponent,
+    EquipmentEditComponent,
     SupplyStationsNewComponent,
     DriversNewComponent,
     SupplyStationsEditComponent,
