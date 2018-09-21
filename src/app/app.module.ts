@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component'
 import { SupplyStationsComponent } from './components/supply-stations/supply-stations.component'
 import { SupplyStationsNewComponent } from './components/supply-stations-new/supply-stations-new.component'
 import { SupplyStationsEditComponent } from './components/supply-stations-edit/supply-stations-edit.component'
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component'
 
 /**
  * Services
@@ -31,6 +32,7 @@ import { DriverService } from './services/driver/driver.service'
 import { EquipmentService } from './services/equipment/equipment.service'
 import { SupplyStationService } from './services/supply-station/supply-station.service'
 import { UserService } from './services/user/user.service'
+import { ConfirmationDialogService } from './components/confirmation-dialog/confirmation-dialog.service'
 
 /**
  * Guards
@@ -63,7 +65,8 @@ import { NgxSpinnerModule } from 'ngx-spinner'
     EquipmentsNewComponent,
     SupplyStationsNewComponent,
     DriversNewComponent,
-    SupplyStationsEditComponent
+    SupplyStationsEditComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,11 @@ import { NgxSpinnerModule } from 'ngx-spinner'
     EquipmentService,
     SupplyStationService,
     UserService,
+    ConfirmationDialogService,
     AuthGuard
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   bootstrap: [AppComponent]
 })
