@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SupplyStationService } from '../../services/supply-station/supply-station.service';
 import { SupplyStation } from '../../models/supply-station/supply-station.model';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-supply-stations-edit',
@@ -20,6 +21,7 @@ export class SupplyStationsEditComponent implements OnInit {
   constructor(
     private stationService: SupplyStationService,
     private formBuilder: FormBuilder,
+    private confirmationDialogService: ConfirmationDialogService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -46,7 +48,7 @@ export class SupplyStationsEditComponent implements OnInit {
   private loadData() {
     this.station = this.stationService.get(this.id);
     this.station.subscribe(data => {
-      this.stationForm.setValue({...data, status: 1});
+      this.stationForm.setValue({ ...data });
     });
   }
 
@@ -72,7 +74,16 @@ export class SupplyStationsEditComponent implements OnInit {
   }
 
   onDelete() {
-    this.stationService.delete(this.id);
+    this.confirmationDialogService.confirm('Confirmacion', 'Estas seguro que deseas eliminarlo?', 'Si, eliminar')
+      .then((confirmed) => {
+        if (confirmed) {
+          this.stationService.delete(this.id)
+            .then(response => {
+              this.router.navigate(['settings/stations']);
+            });
+        }
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
 }
