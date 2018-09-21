@@ -13,16 +13,18 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="license">No. de licencia</label>
-            <input type="text" class="form-control" id="license" formControlName="license" placeholder="" value="" required>
+            <input type="text" class="form-control" id="license" formControlName="license" placeholder="" value="" required
+            [ngClass]="{ 'is-invalid': submitted && f.license.errors }">
             <div class="invalid-feedback">
               Ingrese el número de licencia de conducir
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="birthdate">Fecha de nacimiento</label>
-            <input type="date" class="form-control" id="birthdate" formControlName="birthdate" placeholder="" value="" required>
+            <input type="date" class="form-control" id="birthdate" formControlName="birthdate" placeholder="" value="" required
+            [ngClass]="{ 'is-invalid': submitted && f.birthdate.errors }">
             <div class="invalid-feedback">
-              Ingrese la fecha de nacimiento
+              La fecha de nacimiento es inválida
             </div>
           </div>
         </div>
@@ -30,14 +32,16 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="name">Nombres</label>
-            <input type="text" class="form-control" id="name" formControlName="name" placeholder="" value="" required>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="" value="" required
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
             <div class="invalid-feedback">
               Ingrese los nombres del piloto
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastname">Apellidos</label>
-            <input type="text" class="form-control" id="lastname" formControlName="lastname" placeholder="" value="" required>
+            <input type="text" class="form-control" id="lastname" formControlName="lastname" placeholder="" value="" required
+            [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
             <div class="invalid-feedback">
               Ingrese los apellidos del piloto
             </div>
@@ -46,15 +50,17 @@
 
         <div class="mb-3">
           <label for="phone">Número de teléfono</label>
-          <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="">
+          <input type="text" class="form-control" id="phone" formControlName="phone" placeholder=""
+          [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
         </div>
 
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="status">Estado</label>
-            <select class="custom-select d-block w-100" id="status" required>
-              <option>Activo</option>
-              <option>Inactivo</option>
+            <select class="custom-select d-block w-100" id="status" formControlName="status" required
+            [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+              <option value="1">Activo</option>
+              <option value="2">Inactivo</option>
             </select>
             <div class="invalid-feedback">
               Por favor, seleccione un estado válido
