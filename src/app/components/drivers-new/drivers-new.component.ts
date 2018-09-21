@@ -25,7 +25,7 @@ export class DriversNewComponent implements OnInit {
       name: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       birthdate: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      phone: ['', []],
       status: ['', [Validators.required]]
     })
   }

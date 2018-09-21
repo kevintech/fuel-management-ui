@@ -21,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let driver of driverItems | async; index as i">
+          <tr *ngFor="let driver of driverItems | async; index as i" [routerLink]="['/settings/drivers/',driver.id]">
             <th scope="row">{{i+1}}</th>
             <td>{{driver.license}}</td>
             <td>{{driver.name}} {{driver.lastname}}</td>
