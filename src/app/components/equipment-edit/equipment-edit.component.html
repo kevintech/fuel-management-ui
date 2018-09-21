@@ -13,54 +13,54 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="id">Código</label>
-            <input type="text" class="form-control" id="id" formControlName="code" placeholder="" value="" required>
+            <input type="text" class="form-control" id="id" formControlName="code" [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
             <div class="invalid-feedback">
-              El código es requerido
+              Ingrese el código del equipo
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="plate">Placa</label>
-            <input type="text" class="form-control" id="plate" formControlName="plate" placeholder="" value="" required>
+            <input type="text" class="form-control" id="plate" formControlName="plate" [ngClass]="{ 'is-invalid': submitted && f.plate.errors }">
             <div class="invalid-feedback">
-              Ingrese el número de placa correctamente
+              Ingrese el número de placa
             </div>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="make">Marca</label>
-          <input type="text" class="form-control" id="make" formControlName="brand" placeholder="">
+          <input type="text" class="form-control" id="make" formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f.brand.errors }">
           <div class="invalid-feedback">
-            Ingrese la marca del vehículo
+            Ingrese la marca del equipo
           </div>
         </div>
 
         <div class="mb-3">
           <label for="model">Modelo</label>
-          <input type="text" class="form-control" id="model" formControlName="model" placeholder="">
-          <div class="invalid-feedback">
-            Ingrese el modelo del vehículo
+          <input type="text" class="form-control" id="model" formControlName="model" [ngClass]="{ 'is-invalid': submitted && f.model.errors }">
+          <div class=" invalid-feedback">
+            Ingrese el modelo del equipo
           </div>
         </div>
 
         <div class="mb-3">
           <label for="description">Descripción</label>
-          <input type="text" class="form-control" id="description" formControlName="description" placeholder="" required>
+          <input type="text" class="form-control" id="description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
         </div>
 
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="serial">Número de serie</label>
-            <input type="text" class="form-control" id="serial" formControlName="serial" placeholder="">
+            <input type="text" class="form-control" id="serial" formControlName="serial" [ngClass]="{ 'is-invalid': submitted && f.serial.errors }">
             <div class="invalid-feedback">
-              Ingrese un número de serie válido
+              Ingrese un número de serie del equipo
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="year">Año</label>
-            <input type="text" class="form-control" id="year" formControlName="year" placeholder="" value="" required>
+            <input type="number" class="form-control" id="year" min="0" formControlName="year" [ngClass]="{ 'is-invalid': submitted && f.year.errors }">
             <div class="invalid-feedback">
-              Ingrese el año del vehículo
+              Ingrese el año del equipo
             </div>
           </div>
         </div>
@@ -68,14 +68,14 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="company">Empresa</label>
-            <input type="text" class="form-control" id="company" formControlName="company" placeholder="" required>
+            <input type="text" class="form-control" id="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }">
             <div class="invalid-feedback">
-              Ingrese el nombre de la empresa
+              Ingrese el nombre de la empresa a la cual pertenece el equipo
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="status">Estado</label>
-            <select class="custom-select d-block w-100" id="status" formControlName="status" required>
+            <select class="custom-select d-block w-100" id="status" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
               <option>Activo</option>
               <option>Inactivo</option>
             </select>
@@ -86,6 +86,7 @@
         </div>
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Guardar</button>
+        <button class="btn btn-danger btn-lg btn-block mb-4" type="button" (click)="onDelete()">Eliminar</button>
       </form>
     </div>
   </div>
