@@ -11,14 +11,25 @@
       </div>
       <form class="needs-validation" [formGroup]="driverForm" (ngSubmit)="onSubmit()">
         <div class="row">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="fileXlsx" formControlName="fileXlsx" 
-            (change)="onFileChange($event)" multiple="false"/>
-            <label class="custom-file-label" for="fileXlsx">Elije un archivo...</label>
+          <div class="col-md-12">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="fileXlsx" formControlName="fileXlsx" (change)="onFileChange($event)"
+                multiple="false" [ngClass]="{ 'is-invalid': submitted && f.fileXlsx.errors }" />
+              <label class="custom-file-label" for="fileXlsx">Elije un archivo...</label>
+              <div class="invalid-feedback">
+                Debe seleccionar un archivo de Excel válido para cargar
+              </div>
+            </div>
           </div>
         </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Guardar</button>
+        <ngb-alert *ngIf="loaded && (error || !data)" type="danger" [dismissible]="false">
+            <strong>Archivo inválido</strong> La información del archivo proporcionado no es válida.
+          </ngb-alert>
+        <ngb-alert *ngIf="!error && data && data.length" type="success" [dismissible]="false">
+          <strong>Archivo válido</strong> La lectura del archivo fue correcta, presione cargar para continuar.
+        </ngb-alert>
+        <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Cargar {{(data && data.length) || 0}} registros</button>
       </form>
     </div>
   </div>

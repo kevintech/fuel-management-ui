@@ -34,7 +34,6 @@ export class DriverService {
   }
 
   public saveAll(drivers: Array<Driver>) {
-    console.log(drivers);
     drivers.forEach(driver => {
       try {
         console.log(driver);

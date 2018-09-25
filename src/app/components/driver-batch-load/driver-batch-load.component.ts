@@ -15,6 +15,7 @@ export class DriverBatchLoadComponent implements OnInit {
   driverForm: FormGroup
   error = false;
   submitted = false;
+  loaded = false;
   data: Array<Driver>;
 
   constructor(
@@ -22,6 +23,10 @@ export class DriverBatchLoadComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) { }
+
+  get f() {
+    return this.driverForm.controls
+  }
 
   ngOnInit() {
     this.driverForm = this.formBuilder.group({
@@ -36,7 +41,12 @@ export class DriverBatchLoadComponent implements OnInit {
       return true;
     }
 
-    this.driverService.saveAll(this.data);
+    try {
+      this.driverService.saveAll(this.data);
+    }
+    catch(ex) {
+      this.error = true;
+    }
   }
 
   onFileChange(evt: any) {
@@ -45,6 +55,7 @@ export class DriverBatchLoadComponent implements OnInit {
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
     const reader: FileReader = new FileReader();
     reader.onload = (e: any) => {
+      this.loaded = true;
       /* read workbook */
       const bstr: string = e.target.result;
       const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
@@ -54,7 +65,7 @@ export class DriverBatchLoadComponent implements OnInit {
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
       /* save data */
-      this.data = XLSX.utils.sheet_to_json(ws, { header: DriverFileHeaders });
+      this.data = XLSX.utils.sheet_to_json<Driver>(ws, { header: DriverFileHeaders });
     };
     reader.readAsBinaryString(target.files[0]);
   }
