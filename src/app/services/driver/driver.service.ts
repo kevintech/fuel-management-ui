@@ -37,7 +37,7 @@ export class DriverService {
     drivers.forEach(driver => {
       try {
         console.log(driver);
-        //this.itemsCollection.add(driver);
+        this.itemsCollection.add(driver);
       }
       catch(ex) {
         throw new Error("El proceso fue interrumpido");
