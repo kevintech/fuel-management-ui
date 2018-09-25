@@ -53,7 +53,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { NotifierModule } from 'angular-notifier'
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { DriversEditComponent } from './components/drivers-edit/drivers-edit.component'
+import { DriversEditComponent } from './components/drivers-edit/drivers-edit.component';
+import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-batch-load.component'
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { DriversEditComponent } from './components/drivers-edit/drivers-edit.com
     DriversNewComponent,
     SupplyStationsEditComponent,
     ConfirmationDialogComponent,
-    DriversEditComponent
+    DriversEditComponent,
+    DriverBatchLoadComponent
   ],
   imports: [
     BrowserModule,

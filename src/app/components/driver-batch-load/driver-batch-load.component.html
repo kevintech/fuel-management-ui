@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h4>Registrar información de piloto</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <a routerLink="/settings/drivers" class="btn btn-outline-danger">Cancelar</a>
+        </div>
+      </div>
+      <form class="needs-validation" [formGroup]="driverForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="fileXlsx" formControlName="fileXlsx" 
+            (change)="onFileChange($event)" multiple="false"/>
+            <label class="custom-file-label" for="fileXlsx">Elije un archivo...</label>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>

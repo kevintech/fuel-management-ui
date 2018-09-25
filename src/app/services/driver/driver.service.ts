@@ -33,6 +33,21 @@ export class DriverService {
     return this.itemsCollection.add(driver);
   }
 
+  public saveAll(drivers: Array<Driver>) {
+    console.log(drivers);
+    drivers.forEach(driver => {
+      try {
+        console.log(driver);
+        //this.itemsCollection.add(driver);
+      }
+      catch(ex) {
+        throw new Error("El proceso fue interrumpido");
+      }
+    });
+
+    return true;
+  }
+
   public update(key: string, station: Driver) {
     this.itemDocument = this.afs.doc<Driver>(`driver/${key}`);
     return this.itemDocument.update(station);
