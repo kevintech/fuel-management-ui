@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { DriverService } from '../../services/driver/driver.service'
-import { Driver } from '../../models/driver/driver.model'
+import { Driver } from '../../models/driver/driver.model'
+import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
   selector: 'app-drivers-new',
@@ -13,11 +15,14 @@ export class DriversNewComponent implements OnInit {
   driverForm: FormGroup
   error = false;
   submitted = false;
-  
+
   constructor(
     private driverService: DriverService,
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private notifierService: NotifierService,
+    private spinner: NgxSpinnerService
+  ) { }
 
   ngOnInit() {
     this.driverForm = this.formBuilder.group({
@@ -41,7 +46,9 @@ export class DriversNewComponent implements OnInit {
       return true;
     }
 
-    const driverData : Driver = {
+    this.spinner.show()
+
+    const driverData: Driver = {
       license: this.f.license.value,
       name: this.f.name.value,
       lastname: this.f.lastname.value,
@@ -51,8 +58,19 @@ export class DriversNewComponent implements OnInit {
     }
 
     this.driverService.save(driverData)
-      .then(() => {
+      .then(response => {
+        this.spinner.hide()
+        this.showAlert('success', 'Piloto registrado con éxito')
         this.router.navigate(['settings/drivers'])
       })
+      .catch(error => {
+        this.spinner.show()
+        this.showAlert('error', error)
+      })
+  }
+
+  showAlert(type: string, message: string): void {
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
   }
 }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SupplyStationService } from '../../services/supply-station/supply-station.service';
-import { SupplyStation } from '../../models/supply-station/supply-station.model';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { SupplyStationService } from '../../services/supply-station/supply-station.service'
+import { SupplyStation } from '../../models/supply-station/supply-station.model'
+import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
   selector: 'app-supply-stations-new',
@@ -10,14 +12,16 @@ import { SupplyStation } from '../../models/supply-station/supply-station.model'
   styleUrls: ['./supply-stations-new.component.css']
 })
 export class SupplyStationsNewComponent implements OnInit {
-  private stationForm: FormGroup;
-  private error = false;
-  private submitted = false;
+  private stationForm: FormGroup
+  private error = false
+  private submitted = false
 
   constructor(
     private stationService: SupplyStationService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private notifierService: NotifierService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -27,19 +31,21 @@ export class SupplyStationsNewComponent implements OnInit {
       address: ['', []],
       phone: ['', [Validators.required]],
       status: ['', [Validators.required]]
-    });
+    })
   }
 
   get f() {
-    return this.stationForm.controls;
+    return this.stationForm.controls
   }
 
   onSubmit() {
     if (this.stationForm.invalid) {
-      this.submitted = true;
-      this.error = true;
-      return true;
+      this.submitted = true
+      this.error = true
+      return true
     }
+
+    this.spinner.show()
 
     const stationData: SupplyStation = {
       code: this.f.code.value,
@@ -47,12 +53,22 @@ export class SupplyStationsNewComponent implements OnInit {
       address: this.f.address.value,
       phone: this.f.phone.value,
       status: this.f.status.value
-    };
+    }
 
     this.stationService.save(stationData)
       .then(response => {
-        this.router.navigate(['settings/stations']);
-      });
+        this.spinner.hide()
+        this.showAlert('success', 'Estación de servicio registrada con éxito')
+        this.router.navigate(['settings/stations'])
+      })
+      .catch(error => {
+        this.spinner.hide()
+        this.showAlert('error', error)
+      })
   }
 
+  showAlert(type: string, message: string): void {
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
+  }
 }
