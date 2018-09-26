@@ -70,7 +70,7 @@ export class EquipmentNewComponent implements OnInit {
         this.router.navigate(['settings/equipments'])
       })
       .catch(error => {
-        this.spinner.show()
+        this.spinner.hide()
         this.showAlert('error', error)
       })
   }
