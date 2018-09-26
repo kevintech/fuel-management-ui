@@ -5,6 +5,8 @@ import * as XLSX from 'xlsx';
 import { Driver } from '../../models/driver/driver.model';
 import { DriverFileHeaders } from './driver-file-headers';
 import { DriverService } from '../../services/driver/driver.service';
+import { NotifierService } from 'angular-notifier';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-driver-batch-load',
@@ -21,7 +23,9 @@ export class DriverBatchLoadComponent implements OnInit {
   constructor(
     private driverService: DriverService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private notifierService: NotifierService,
+    private spinner: NgxSpinnerService
   ) { }
 
   get f() {
@@ -35,18 +39,23 @@ export class DriverBatchLoadComponent implements OnInit {
   }
 
   onSubmit() {
+    this.spinner.show();
     if (this.driverForm.invalid || !this.data) {
       this.submitted = true;
       this.error = true;
       return true;
     }
 
-    try {
-      this.driverService.saveAll(this.data);
-    }
-    catch(ex) {
-      this.error = true;
-    }
+    this.driverService.saveAll(this.data)
+      .then(() => {
+        this.showAlert('success', 'Pilotos cargados con éxito');
+        this.router.navigate(['settings/drivers']);
+      }, (error) => {
+        console.error(error);
+        this.showAlert('error', error);
+      }).then(() => {
+        this.spinner.hide();
+      });
   }
 
   onFileChange(evt: any) {
@@ -65,8 +74,13 @@ export class DriverBatchLoadComponent implements OnInit {
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
       /* save data */
-      this.data = XLSX.utils.sheet_to_json<Driver>(ws, { header: DriverFileHeaders });
+      this.data = XLSX.utils.sheet_to_json<Driver>(ws, { raw: false, header: DriverFileHeaders });
     };
     reader.readAsBinaryString(target.files[0]);
+  }
+
+  showAlert(type: string, message: string): void {
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Driver } from '../../models/driver/driver.model';
+import { Driver } from '../../models/driver/driver.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -34,17 +34,18 @@ export class DriverService {
   }
 
   public saveAll(drivers: Array<Driver>) {
-    drivers.forEach(driver => {
-      try {
-        console.log(driver);
-        this.itemsCollection.add(driver);
-      }
-      catch(ex) {
-        throw new Error("El proceso fue interrumpido");
-      }
+    return new Promise((resolve, reject) => {
+      drivers.forEach(driver => {
+        try {
+          this.itemsCollection.add(driver);
+        }
+        catch (ex) {
+          console.error(ex);
+          throw new Error("El proceso fue interrumpido");
+        }
+      });
+      resolve();
     });
-
-    return true;
   }
 
   public update(key: string, station: Driver) {

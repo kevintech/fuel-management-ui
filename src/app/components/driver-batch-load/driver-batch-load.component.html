@@ -25,9 +25,6 @@
           </div>
         </div>
         <hr class="mb-4">
-        <ngb-alert *ngIf="loaded && (error || !data)" type="danger" [dismissible]="false">
-            <strong>Archivo inválido</strong> La información del archivo proporcionado no es válida.
-          </ngb-alert>
         <ngb-alert *ngIf="!error && data && data.length" type="success" [dismissible]="false">
           <strong>Archivo válido</strong> La lectura del archivo fue correcta, presione cargar para continuar.
         </ngb-alert>
