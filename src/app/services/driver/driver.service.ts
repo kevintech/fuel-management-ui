@@ -57,4 +57,28 @@ export class DriverService {
     this.itemDocument = this.afs.doc<Driver>(`driver/${key}`);
     return this.itemDocument.delete();
   }
+
+  public deleteAll(): Array<Promise<void>> {
+    let batchProcess = [];
+    console.log("start deleteAll");
+    // let test = this.itemsCollection.snapshotChanges().pipe(
+    //   map(actions => actions.map(a => {
+    //     console.log("action", a);
+    //     return a.payload.doc.ref;
+    //     //batchProcess.push(action.payload.doc.ref.delete());
+    //   }))
+    // );
+    // test.forEach(x => {
+    //   x.forEach(y => {
+    //     console.log(y);
+    //   })
+    // })
+
+    this.getAll().forEach(drivers => drivers.forEach(d => {
+      console.log(d.id);
+      batchProcess.push(this.delete(d.id));
+    }))
+    console.log("end deleteAll");
+    return batchProcess;
+  }
 }
