@@ -27,7 +27,10 @@
             <td>{{station.description}}</td>
             <td>{{station.address}}</td>
             <td>{{station.phone}}</td>
-            <td><span class="badge badge-success">Disponible</span></td>
+            <td>
+              <span class="badge badge-success" *ngIf="station.status == 1">Activa</span>
+              <span class="badge badge-danger" *ngIf="station.status == 2">Inactiva</span>
+            </td>
           </tr>
         </tbody>
       </table>
