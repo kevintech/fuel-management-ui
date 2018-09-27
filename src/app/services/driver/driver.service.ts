@@ -58,8 +58,7 @@ export class DriverService {
     return this.itemDocument.delete();
   }
 
-  public deleteAll(): Array<Promise<void>> {
-    let batchProcess = [];
+  public deleteAll(): Promise<void> {
     console.log("start deleteAll");
     // let test = this.itemsCollection.snapshotChanges().pipe(
     //   map(actions => actions.map(a => {
@@ -74,11 +73,26 @@ export class DriverService {
     //   })
     // })
 
-    this.getAll().forEach(drivers => drivers.forEach(d => {
-      console.log(d.id);
-      batchProcess.push(this.delete(d.id));
-    }))
-    console.log("end deleteAll");
-    return batchProcess;
+    return new Promise((resolve, reject) => {
+      this.getAllKeys()
+        .then(deleted => {
+          console.log("list of promises", deleted);
+          Promise.all(deleted).then(() => {
+            console.log("all deleted");
+            resolve();
+          });
+        });
+    });
+  }
+
+  private getAllKeys(): Promise<Array<Promise<void>>> {
+    return new Promise((resolve, reject) => {
+      let batchProcess = [];
+      this.getAll().forEach(drivers => drivers.forEach(d => {
+        console.log(d.id);
+        batchProcess.push(this.delete(d.id));
+      }));
+      resolve(batchProcess);
+    });
   }
 }
