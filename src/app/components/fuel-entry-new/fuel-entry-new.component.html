@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h4>Control de despachos</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a routerLink="/entries/fuel" class="btn btn-outline-danger">Cancelar</a>
+        </div>
+      </div>
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">No. de licencia</th>
+            <th scope="col">Nombre completo</th>
+            <th scope="col">Fecha de nacimiento</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let driver of driverItems | async; index as i" [routerLink]="['/settings/drivers/',driver.id]">
+            <th scope="row">{{i+1}}</th>
+            <td>{{driver.license}}</td>
+            <td>{{driver.name}} {{driver.lastname}}</td>
+            <td>{{driver.birthdate}}</td>
+            <td>{{driver.phone}}</td>
+            <td><span class="badge badge-success">Disponible</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
