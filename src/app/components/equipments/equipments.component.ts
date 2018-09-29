@@ -12,9 +12,7 @@ import { Equipment } from '../../models/equipment/equipment.model'
 export class EquipmentsComponent implements OnInit {
   public equipmentItems: Observable<Equipment[]>
 
-  constructor(
-    private equipmentService: EquipmentService
-  ) { }
+  constructor(private equipmentService: EquipmentService) { }
 
   ngOnInit() {
     this.equipmentItems = this.equipmentService.getAll()

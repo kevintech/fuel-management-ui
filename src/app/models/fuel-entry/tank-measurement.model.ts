@@ -1,10 +1,10 @@
 export class TankMeasurement {
   initTankFive: number
-  inittankFiveGallons: number
+  initTankFiveGallons: number
   finalTankFive: number
   finalTankFiveGallons: number
   initTankTen: number
-  inittankTenGallons: number
+  initTankTenGallons: number
   finalTankTen: number
   finalTankTenGallons: number
 }

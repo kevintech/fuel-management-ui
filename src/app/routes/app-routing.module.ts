@@ -18,6 +18,7 @@ import { SupplyStationsNewComponent } from '../components/supply-stations-new/su
 import { SupplyStationsEditComponent } from '../components/supply-stations-edit/supply-stations-edit.component'
 import { FuelEntryComponent } from '../components/fuel-entry/fuel-entry.component'
 import { FuelEntryNewComponent } from '../components/fuel-entry-new/fuel-entry-new.component'
+import { FuelEntryEditComponent } from '../components/fuel-entry-edit/fuel-entry-edit.component'
 
 /**
  * Guards
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   { path: 'settings/stations/:id', component: SupplyStationsEditComponent, canActivate: [AuthGuard] },
   { path: 'entries/fuel', component: FuelEntryComponent, canActivate: [AuthGuard] },
   { path: 'entries/fuel/new', component: FuelEntryNewComponent, canActivate: [AuthGuard] },
+  { path: 'entries/fuel/:id', component: FuelEntryEditComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'home' }
 ]
 

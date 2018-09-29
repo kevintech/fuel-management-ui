@@ -27,6 +27,7 @@ import { SupplyStationsNewComponent } from './components/supply-stations-new/sup
 import { SupplyStationsEditComponent } from './components/supply-stations-edit/supply-stations-edit.component'
 import { FuelEntryComponent } from './components/fuel-entry/fuel-entry.component'
 import { FuelEntryNewComponent } from './components/fuel-entry-new/fuel-entry-new.component'
+import { FuelEntryEditComponent } from './components/fuel-entry-edit/fuel-entry-edit.component'
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component'
 
 /**
@@ -37,6 +38,7 @@ import { DriverService } from './services/driver/driver.service'
 import { EquipmentService } from './services/equipment/equipment.service'
 import { SupplyStationService } from './services/supply-station/supply-station.service'
 import { UserService } from './services/user/user.service'
+import { FuelEntryService } from './services/fuel-entry/fuel-entry.service'
 import { ConfirmationDialogService } from './components/confirmation-dialog/confirmation-dialog.service'
 
 /**
@@ -76,7 +78,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     SupplyStationsEditComponent,
     ConfirmationDialogComponent,
     FuelEntryComponent,
-    FuelEntryNewComponent
+    FuelEntryNewComponent,
+    FuelEntryEditComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +109,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     EquipmentService,
     SupplyStationService,
     UserService,
+    FuelEntryService,
     ConfirmationDialogService,
     AuthGuard
   ],
