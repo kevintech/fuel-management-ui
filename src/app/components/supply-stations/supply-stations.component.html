@@ -6,6 +6,7 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h4>Estaciones de abastecimiento</h4>
         <div class="btn-toolbar mb-2 mb-md-0">
+          <a routerLink="/settings/drivers/load" class="btn btn-light">Cargar Excel</a>
           <a routerLink="/settings/stations/new" class="btn btn-primary">Agregar</a>
         </div>
       </div>
@@ -27,7 +28,10 @@
             <td>{{station.description}}</td>
             <td>{{station.address}}</td>
             <td>{{station.phone}}</td>
-            <td><span class="badge badge-success">Disponible</span></td>
+            <td>
+              <span class="badge badge-success" *ngIf="station.status == 1">Activa</span>
+              <span class="badge badge-danger" *ngIf="station.status == 2">Inactiva</span>
+            </td>
           </tr>
         </tbody>
       </table>

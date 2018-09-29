@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { SupplyStation } from '../../models/supply-station/supply-station.model';
-import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core'
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore'
+import { SupplyStation } from '../../models/supply-station/supply-station.model'
+import { map } from 'rxjs/operators'
+import { AppConfig } from '../../config/app.config'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class SupplyStationService {
   private itemDocument: AngularFirestoreDocument<SupplyStation>;
 
   constructor(private afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<SupplyStation>('stations');
+    this.itemsCollection = afs.collection<SupplyStation>(`${AppConfig.collections.supplyStations}`);
   }
 
   public getAll() {
@@ -25,7 +26,7 @@ export class SupplyStationService {
   }
 
   public get(key: string) {
-    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    this.itemDocument = this.afs.doc<SupplyStation>(`${AppConfig.collections.supplyStations}/${key}`);
     return this.itemDocument.valueChanges();
   }
 
@@ -34,12 +35,12 @@ export class SupplyStationService {
   }
 
   public update(key: string, station: SupplyStation) {
-    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    this.itemDocument = this.afs.doc<SupplyStation>(`${AppConfig.collections.supplyStations}/${key}`);
     return this.itemDocument.update(station);
   }
 
   public delete(key: string) {
-    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    this.itemDocument = this.afs.doc<SupplyStation>(`${AppConfig.collections.supplyStations}/${key}`);
     return this.itemDocument.delete();
   }
 }
