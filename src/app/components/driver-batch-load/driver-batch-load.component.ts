@@ -46,24 +46,18 @@ export class DriverBatchLoadComponent implements OnInit {
       return true;
     }
 
-    Promise.all(this.driverService.deleteAll())
+    this.driverService.deleteAll()
       .then(
         () => {
-          console.log("lets save all...");
           return this.driverService.saveAll(this.data)
         },
-        (e) => console.error(e)
+        (error) => this.showAlert('error', error)
       )
       .then(() => {
         this.showAlert('success', 'Pilotos cargados con éxito');
         this.router.navigate(['settings/drivers']);
-      }, (error) => {
-        console.error(error);
-        this.showAlert('error', error);
-      })
-      .then(() => {
-        this.spinner.hide();
-      });
+      }, (error) => this.showAlert('error', error))
+      .then(() => this.spinner.hide());
   }
 
   onFileChange(evt: any) {

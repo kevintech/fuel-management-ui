@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Driver } from '../../models/driver/driver.model';
-import { map } from 'rxjs/operators';
+import { map, takeWhile } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,7 @@ export class DriverService {
         }
         catch (ex) {
           console.error(ex);
-          throw new Error("El proceso fue interrumpido");
+          throw new Error('El proceso de guarado fue interrumpido');
         }
       });
       resolve();
@@ -59,40 +59,36 @@ export class DriverService {
   }
 
   public deleteAll(): Promise<void> {
-    console.log("start deleteAll");
-    // let test = this.itemsCollection.snapshotChanges().pipe(
-    //   map(actions => actions.map(a => {
-    //     console.log("action", a);
-    //     return a.payload.doc.ref;
-    //     //batchProcess.push(action.payload.doc.ref.delete());
-    //   }))
-    // );
-    // test.forEach(x => {
-    //   x.forEach(y => {
-    //     console.log(y);
-    //   })
-    // })
-
     return new Promise((resolve, reject) => {
-      this.getAllKeys()
-        .then(deleted => {
-          console.log("list of promises", deleted);
-          Promise.all(deleted).then(() => {
-            console.log("all deleted");
-            resolve();
-          });
+      this.getAllKeys().then(listOfKeys => {
+        if (listOfKeys.length === 0) resolve();
+        let batchProcess = [];
+        listOfKeys.forEach(x => {
+          batchProcess.push(this.delete(x));
         });
+        Promise.all(batchProcess)
+          .then(() => {
+            resolve();
+          }, (error) => {
+            console.error(error);
+            throw new Error('El proceso de eliminación fue interrumpido');
+          });
+      });
     });
   }
 
-  private getAllKeys(): Promise<Array<Promise<void>>> {
+  private getAllKeys(): Promise<Array<string>> {
+    var allKeysReturned = false;
     return new Promise((resolve, reject) => {
-      let batchProcess = [];
-      this.getAll().forEach(drivers => drivers.forEach(d => {
-        console.log(d.id);
-        batchProcess.push(this.delete(d.id));
-      }));
-      resolve(batchProcess);
+      let rowsToDelete = this.getAll().pipe(takeWhile(() => !allKeysReturned));
+      rowsToDelete.subscribe(rowsToDelete => {
+        let listOfKeys = [];
+        rowsToDelete.forEach(x => {
+          listOfKeys.push(x.id);
+        })
+        allKeysReturned = true;
+        resolve(listOfKeys);
+      });
     });
   }
 }
