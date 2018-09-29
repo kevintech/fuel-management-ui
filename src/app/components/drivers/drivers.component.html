@@ -28,7 +28,10 @@
             <td>{{driver.name}} {{driver.lastname}}</td>
             <td>{{driver.birthdate}}</td>
             <td>{{driver.phone}}</td>
-            <td><span class="badge badge-success">Disponible</span></td>
+            <td>
+              <span class="badge badge-success" *ngIf="driver.status == 1">Activo</span>
+              <span class="badge badge-danger" *ngIf="driver.status == 2">Inactivo</span>
+            </td>
           </tr>
         </tbody>
       </table>

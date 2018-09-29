@@ -32,15 +32,32 @@ export class EquipmentEditComponent implements OnInit {
 
   ngOnInit() {
     this.equipmentForm = this.formBuilder.group({
-      code: ['', [Validators.required]],
-      plate: ['', [Validators.required]],
-      brand: ['', [Validators.required]],
-      model: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      serial: ['', [Validators.required]],
+      code: ['', [Validators.required]],
+      brand: ['', [Validators.required]],
       year: ['', [Validators.required]],
+      model: ['', [Validators.required]],
+      serial: ['', [Validators.required]],
+      plate: ['', [Validators.required]],
+      registrationCert: ['', [Validators.required]],
+      idCard: ['', [Validators.required]],
+      purchaseValue: ['', [Validators.required]],
+      receptionDate: ['', [Validators.required]],
+      declarationNumber: ['', [Validators.required]],
+      bl: ['', [Validators.required]],
+      freight: ['', [Validators.required]],
+      protectionDevice: ['', [Validators.required]],
+      protectionDeviceDateExpiration: ['', [Validators.required]],
       company: ['', [Validators.required]],
-      status: ['', [Validators.required]]
+      status: ['', [Validators.required]],
+      engineBrand: ['', [Validators.required]],
+      engineModel: ['', [Validators.required]],
+      engineSerial: ['', [Validators.required]],
+      insurancePolicy: ['', [Validators.required]],
+      insuranceExpirationDate: ['', [Validators.required]],
+      importationDate: ['', [Validators.required]],
+      importationVat: ['', [Validators.required]],
+      importationDai: ['', [Validators.required]]
     })
 
     this.route.params.subscribe(params => {
@@ -70,15 +87,32 @@ export class EquipmentEditComponent implements OnInit {
     this.spinner.show()
 
     const equipmentData: Equipment = {
-      code: this.f.code.value,
-      plate: this.f.plate.value,
-      brand: this.f.brand.value,
-      model: this.f.model.value,
       description: this.f.description.value,
-      serial: this.f.serial.value,
+      code: this.f.code.value,
+      brand: this.f.brand.value,
       year: this.f.year.value,
+      model: this.f.model.value,
+      serial: this.f.serial.value,
+      plate: this.f.plate.value,
+      registrationCert: this.f.registrationCert.value,
+      idCard: this.f.idCard.value,
+      purchaseValue: this.f.purchaseValue.value,
+      receptionDate: this.f.receptionDate.value,
+      declarationNumber: this.f.declarationNumber.value,
+      bl: this.f.bl.value,
+      freight: this.f.freight.value,
+      protectionDevice: this.f.protectionDevice.value,
+      protectionDeviceDateExpiration: this.f.protectionDeviceDateExpiration.value,
       company: this.f.company.value,
       status: this.f.status.value,
+      engineBrand: this.f.engineBrand.value,
+      engineModel: this.f.engineModel.value,
+      engineSerial: this.f.engineSerial.value,
+      insurancePolicy: this.f.insurancePolicy.value,
+      insuranceExpirationDate: this.f.insuranceExpirationDate.value,
+      importationDate: this.f.importationDate.value,
+      importationVat: this.f.importationVat.value,
+      importationDai: this.f.importationDai.value
     }
 
     this.equipmentService.update(this.id, equipmentData)

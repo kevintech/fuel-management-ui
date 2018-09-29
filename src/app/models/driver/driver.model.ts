@@ -4,5 +4,5 @@ export interface Driver {
     lastname: string;
     birthdate: string;
     phone: string;
-    status: boolean;
+    status: number;
 }
