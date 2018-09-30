@@ -34,6 +34,7 @@ import { EquipmentService } from './services/equipment/equipment.service'
 import { SupplyStationService } from './services/supply-station/supply-station.service'
 import { UserService } from './services/user/user.service'
 import { ConfirmationDialogService } from './components/confirmation-dialog/confirmation-dialog.service'
+import { ExcelDataReaderService } from './services/excel-data-reader/excel-data-reader.service'
 
 /**
  * Guards
@@ -54,7 +55,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
 import { NotifierModule } from 'angular-notifier'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DriversEditComponent } from './components/drivers-edit/drivers-edit.component';
-import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-batch-load.component'
+import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-batch-load.component';
+import { EquipmentBatchLoadComponent } from './components/equipment-batch-load/equipment-batch-load.component';
+import { SupplyStationBatchLoadComponent } from './components/supply-station-batch-load/supply-station-batch-load.component'
 
 @NgModule({
   declarations: [
@@ -72,7 +75,9 @@ import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-
     SupplyStationsEditComponent,
     ConfirmationDialogComponent,
     DriversEditComponent,
-    DriverBatchLoadComponent
+    DriverBatchLoadComponent,
+    EquipmentBatchLoadComponent,
+    SupplyStationBatchLoadComponent
   ],
   imports: [
     BrowserModule,
@@ -103,6 +108,7 @@ import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-
     SupplyStationService,
     UserService,
     ConfirmationDialogService,
+    ExcelDataReaderService,
     AuthGuard
   ],
   entryComponents: [
