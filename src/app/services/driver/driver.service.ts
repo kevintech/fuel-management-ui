@@ -61,7 +61,7 @@ export class DriverService {
   public deleteAll(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.getAllKeys().then(listOfKeys => {
-        if (listOfKeys.length === 0) resolve();
+        if (listOfKeys.length === 0) { resolve(); }
         let batchProcess = [];
         listOfKeys.forEach(x => {
           batchProcess.push(this.delete(x));
@@ -78,14 +78,14 @@ export class DriverService {
   }
 
   private getAllKeys(): Promise<Array<string>> {
-    var allKeysReturned = false;
+    let allKeysReturned = false;
     return new Promise((resolve, reject) => {
-      let rowsToDelete = this.getAll().pipe(takeWhile(() => !allKeysReturned));
-      rowsToDelete.subscribe(rowsToDelete => {
+      const rowsToDelete = this.getAll().pipe(takeWhile(() => !allKeysReturned));
+      rowsToDelete.subscribe(rows => {
         let listOfKeys = [];
-        rowsToDelete.forEach(x => {
+        rows.forEach(x => {
           listOfKeys.push(x.id);
-        })
+        });
         allKeysReturned = true;
         resolve(listOfKeys);
       });

@@ -14,7 +14,7 @@ import { ExcelDataReaderService } from '../../services/excel-data-reader/excel-d
   styleUrls: ['./driver-batch-load.component.css']
 })
 export class DriverBatchLoadComponent implements OnInit {
-  driverForm: FormGroup
+  batchLoadForm: FormGroup
   error = false;
   submitted = false;
   loaded = false;
@@ -30,18 +30,18 @@ export class DriverBatchLoadComponent implements OnInit {
   ) { }
 
   get f() {
-    return this.driverForm.controls
+    return this.batchLoadForm.controls
   }
 
   ngOnInit() {
-    this.driverForm = this.formBuilder.group({
+    this.batchLoadForm = this.formBuilder.group({
       fileXlsx: ['', [Validators.required]]
     });
   }
 
   onSubmit() {
     this.spinner.show();
-    if (this.driverForm.invalid || !this.data) {
+    if (this.batchLoadForm.invalid || !this.data) {
       this.submitted = true;
       this.error = true;
       return true;

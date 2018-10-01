@@ -1,8 +1,8 @@
 export const DriverFileHeaders = [
-    "license",
-    "name",
-    "lastname",
-    "birthdate",
-    "phone",
-    "status",
-]
+    'license',
+    'name',
+    'lastname',
+    'birthdate',
+    'phone',
+    'status',
+];
