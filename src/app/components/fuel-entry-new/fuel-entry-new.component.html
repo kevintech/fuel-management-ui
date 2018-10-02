@@ -10,6 +10,19 @@
         </div>
       </div>
       <form class="needs-validation" [formGroup]="fuelForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="supplyStation">Estación de servicio</label>
+            <select class="custom-select d-block w-100" id="supplyStation" formControlName="supplyStation" [ngClass]="{ 'is-invalid': submitted && f.supplyStation.errors }">
+              <option *ngFor="let station of supplyStationItems index as i" value="{{ i }}">
+                {{ station.description }} - {{ station.address }}
+              </option>
+            </select>
+            <div class="invalid-feedback">
+              Por favor, seleccione una estación válida
+            </div>
+          </div>
+        </div>
         <!-- Medida de tanques -->
         <div>
           <h5>Medida de tanques</h5>
