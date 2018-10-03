@@ -6,12 +6,13 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DriverService {
   private itemsCollection: AngularFirestoreCollection<Driver>;
   private itemDocument: AngularFirestoreDocument<Driver>;
 
   constructor(private afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<Driver>('driver');
+    this.itemsCollection = afs.collection<Driver>('driver')
   }
 
   public getAll() {

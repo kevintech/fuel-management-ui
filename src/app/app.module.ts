@@ -12,17 +12,22 @@ import { AppRoutingModule } from './routes/app-routing.module'
  * Components
  */
 import { AppComponent } from './components/main/app.component'
+import { LoginComponent } from './components/login/login.component'
+import { HeaderComponent } from './components/header/header.component'
+import { HomeComponent } from './components/home/home.component'
 import { DriversComponent } from './components/drivers/drivers.component'
 import { DriversNewComponent } from './components/drivers-new/drivers-new.component'
+import { DriversEditComponent } from './components/drivers-edit/drivers-edit.component'
+import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-batch-load.component'
 import { EquipmentsComponent } from './components/equipments/equipments.component'
 import { EquipmentNewComponent } from './components/equipment-new/equipment-new.component'
 import { EquipmentEditComponent } from './components/equipment-edit/equipment-edit.component'
-import { HeaderComponent } from './components/header/header.component'
-import { HomeComponent } from './components/home/home.component'
-import { LoginComponent } from './components/login/login.component'
 import { SupplyStationsComponent } from './components/supply-stations/supply-stations.component'
 import { SupplyStationsNewComponent } from './components/supply-stations-new/supply-stations-new.component'
 import { SupplyStationsEditComponent } from './components/supply-stations-edit/supply-stations-edit.component'
+import { FuelEntryComponent } from './components/fuel-entry/fuel-entry.component'
+import { FuelEntryNewComponent } from './components/fuel-entry-new/fuel-entry-new.component'
+import { FuelEntryEditComponent } from './components/fuel-entry-edit/fuel-entry-edit.component'
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component'
 
 /**
@@ -33,6 +38,7 @@ import { DriverService } from './services/driver/driver.service'
 import { EquipmentService } from './services/equipment/equipment.service'
 import { SupplyStationService } from './services/supply-station/supply-station.service'
 import { UserService } from './services/user/user.service'
+import { FuelEntryService } from './services/fuel-entry/fuel-entry.service'
 import { ConfirmationDialogService } from './components/confirmation-dialog/confirmation-dialog.service'
 
 /**
@@ -53,26 +59,27 @@ import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { NotifierModule } from 'angular-notifier'
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { DriversEditComponent } from './components/drivers-edit/drivers-edit.component';
-import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-batch-load.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     HeaderComponent,
-    SupplyStationsComponent,
-    EquipmentsComponent,
+    HomeComponent,
     DriversComponent,
+    DriversNewComponent,
+    DriversEditComponent,
+    DriverBatchLoadComponent,
+    EquipmentsComponent,
     EquipmentNewComponent,
     EquipmentEditComponent,
+    SupplyStationsComponent,
     SupplyStationsNewComponent,
-    DriversNewComponent,
     SupplyStationsEditComponent,
     ConfirmationDialogComponent,
-    DriversEditComponent,
-    DriverBatchLoadComponent
+    FuelEntryComponent,
+    FuelEntryNewComponent,
+    FuelEntryEditComponent
   ],
   imports: [
     BrowserModule,
@@ -102,6 +109,7 @@ import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-
     EquipmentService,
     SupplyStationService,
     UserService,
+    FuelEntryService,
     ConfirmationDialogService,
     AuthGuard
   ],
