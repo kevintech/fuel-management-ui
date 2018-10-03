@@ -6,5 +6,12 @@ export const AppConfig = {
     projectId: "oeccgt-92f8d",
     storageBucket: "oeccgt-92f8d.appspot.com",
     messagingSenderId: "661430317351"
+  },
+  collections: {
+    equipment: 'equipment',
+    drivers: 'driver',
+    users: 'user',
+    supplyStations: 'station',
+    fuelEntry: 'fuelEntry'
   }
 }

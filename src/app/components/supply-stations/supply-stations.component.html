@@ -4,9 +4,10 @@
   <div class="row">
     <div class="col-md-12">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h4>Estaciones de Abastecimiento</h4>
+        <h4>Estaciones de abastecimiento</h4>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <a href="/settings/stations/new" class="btn btn-primary">Agregar</a>
+          <a routerLink="/settings/stations/load" class="btn btn-light">Cargar Excel</a>
+          <a routerLink="/settings/stations/new" class="btn btn-primary">Agregar</a>
         </div>
       </div>
       <table class="table table-hover table-sm">
@@ -21,58 +22,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>C-043BQG</td>
-            <td>Estación A</td>
-            <td>Km 15.4</td>
-            <td>55543212</td>
-            <td><span class="badge badge-success">Disponible</span></td>
-          </tr>
-
-          <tr>
-            <th scope="row">2</th>
-            <td>C-044BQG</td>
-            <td>Estación B</td>
-            <td>Km 23</td>
-            <td>55543212</td>
-            <td><span class="badge badge-success">Disponible</span></td>
-          </tr>
-
-          <tr>
-            <th scope="row">3</th>
-            <td>C-045BQG</td>
-            <td>Estación C</td>
-            <td>Km 40</td>
-            <td>55543212</td>
-            <td><span class="badge badge-success">Disponible</span></td>
-          </tr>
-
-          <tr>
-            <th scope="row">4</th>
-            <td>C-046BQG</td>
-            <td>Estación D</td>
-            <td>Km 57</td>
-            <td>55543212</td>
-            <td><span class="badge badge-success">Disponible</span></td>
-          </tr>
-
-          <tr>
-            <th scope="row">5</th>
-            <td>C-047BQG</td>
-            <td>Estación E</td>
-            <td>Km 82</td>
-            <td>55543212</td>
-            <td><span class="badge badge-success">Disponible</span></td>
-          </tr>
-
-          <tr>
-            <th scope="row">6</th>
-            <td>C-049BQG</td>
-            <td>Estación F</td>
-            <td>Km 112.3</td>
-            <td>55543212</td>
-            <td><span class="badge badge-success">Disponible</span></td>
+          <tr *ngFor="let station of stationItems | async; index as i" [routerLink]="['/settings/stations/',station.id]">
+            <th scope="row">{{i+1}}</th>
+            <td>{{station.code}}</td>
+            <td>{{station.description}}</td>
+            <td>{{station.address}}</td>
+            <td>{{station.phone}}</td>
+            <td>
+              <span class="badge badge-success" *ngIf="station.status == 1">Activa</span>
+              <span class="badge badge-danger" *ngIf="station.status == 2">Inactiva</span>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -1,0 +1,246 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h4>Editar equipo</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <a routerLink="/settings/equipments" class="btn btn-outline-danger">Cancelar</a>
+        </div>
+      </div>
+      <form class="needs-validation" [formGroup]="equipmentForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <p>Información general</p>
+        </div>
+        <div class="mb-3">
+          <label for="description">Descripción</label>
+          <input type="text" class="form-control" id="description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="id">Código</label>
+            <input type="text" class="form-control" id="id" formControlName="code" [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
+            <div class="invalid-feedback">
+              Ingrese el código del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="brand">Marca</label>
+            <input type="text" class="form-control" id="brand" formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f.brand.errors }">
+            <div class="invalid-feedback">
+              Ingrese la marca del equipo
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="year">Año</label>
+            <input type="number" class="form-control" id="year" min="0" formControlName="year" [ngClass]="{ 'is-invalid': submitted && f.year.errors }">
+            <div class="invalid-feedback">
+              Ingrese el año del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="model">Modelo</label>
+            <input type="text" class="form-control" id="model" formControlName="model" [ngClass]="{ 'is-invalid': submitted && f.model.errors }">
+            <div class=" invalid-feedback">
+              Ingrese el modelo del equipo
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="serial">Número de serie</label>
+            <input type="text" class="form-control" id="serial" formControlName="serial" [ngClass]="{ 'is-invalid': submitted && f.serial.errors }">
+            <div class="invalid-feedback">
+              Ingrese un número de serie del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="plate">Placa</label>
+            <input type="text" class="form-control" id="plate" formControlName="plate" [ngClass]="{ 'is-invalid': submitted && f.plate.errors }">
+            <div class="invalid-feedback">
+              Ingrese el número de placa
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="registrationCert">Certificado de registro</label>
+            <input type="text" class="form-control" id="registrationCert" formControlName="registrationCert" [ngClass]="{ 'is-invalid': submitted && f.registrationCert.errors }">
+            <div class="invalid-feedback">
+              Ingrese el certificado de registro del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="idCard">Tarjeta de circulación</label>
+            <input type="text" class="form-control" id="idCard" formControlName="idCard" [ngClass]="{ 'is-invalid': submitted && f.idCard.errors }">
+            <div class="invalid-feedback">
+              Ingrese el número de tarjeta de circulación
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="purchaseValue">Valor de compra</label>
+            <input type="number" class="form-control" id="purchaseValue" formControlName="purchaseValue" [ngClass]="{ 'is-invalid': submitted && f.purchaseValue.errors }">
+            <div class="invalid-feedback">
+              Ingrese el valor de compra del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="receptionDate">Fecha de recepción</label>
+            <input type="date" class="form-control" id="receptionDate" formControlName="receptionDate" [ngClass]="{ 'is-invalid': submitted && f.receptionDate.errors }">
+            <div class="invalid-feedback">
+              Ingrese la fecha de recepción del equipo
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="declarationNumber">Número de declaración</label>
+            <input type="text" class="form-control" id="declarationNumber" formControlName="declarationNumber" [ngClass]="{ 'is-invalid': submitted && f.declarationNumber.errors }">
+            <div class="invalid-feedback">
+              Ingrese el número de declaración del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="bl">BL</label>
+            <input type="text" class="form-control" id="bl" formControlName="bl" [ngClass]="{ 'is-invalid': submitted && f.bl.errors }">
+            <div class="invalid-feedback">
+              Ingrese el BL del equipo
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="freight">Carga</label>
+            <input type="text" class="form-control" id="freight" formControlName="freight" [ngClass]="{ 'is-invalid': submitted && f.freight.errors }">
+            <div class="invalid-feedback">
+              Ingrese la carga del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="protectionDevice">Dispositivo de protección</label>
+            <input type="text" class="form-control" id="protectionDevice" formControlName="protectionDevice" [ngClass]="{ 'is-invalid': submitted && f.protectionDevice.errors }">
+            <div class="invalid-feedback">
+              Ingrese el número del dispositivo de protección del equipo
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="protectionDeviceDateExpiration">Fecha de expiración de dispositivo de protección</label>
+            <input type="date" class="form-control" id="protectionDeviceDateExpiration" formControlName="protectionDeviceDateExpiration" [ngClass]="{ 'is-invalid': submitted && f.protectionDeviceDateExpiration.errors }">
+            <div class="invalid-feedback">
+              Ingrese la fecha de expiración del dispositivo de protección
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="company">Empresa</label>
+            <input type="text" class="form-control" id="company" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }">
+            <div class="invalid-feedback">
+              Ingrese el nombre de la empresa a la cual pertenece el equipo
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="status">Estado</label>
+            <select class="custom-select d-block w-100" id="status" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+              <option>Activo</option>
+              <option>Inactivo</option>
+            </select>
+            <div class="invalid-feedback">
+              Por favor, seleccione un estado válido
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <p>Motor</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="engineBrand">Marca</label>
+            <input type="text" class="form-control" id="engineBrand" formControlName="engineBrand" [ngClass]="{ 'is-invalid': submitted && f.engineBrand.errors }">
+            <div class="invalid-feedback">
+              Ingrese la marca del motor
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="engineModel">Modelo</label>
+            <input type="text" class="form-control" id="engineModel" formControlName="engineModel" [ngClass]="{ 'is-invalid': submitted && f.engineModel.errors }">
+            <div class="invalid-feedback">
+              Ingrese el modelo del motor
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="engineSerial">Número de serie</label>
+            <input type="text" class="form-control" id="engineSerial" formControlName="engineSerial" [ngClass]="{ 'is-invalid': submitted && f.engineSerial.errors }">
+            <div class="invalid-feedback">
+              Ingrese el número de serie del motor
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <p>Seguro</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="insurancePolicy">Póliza</label>
+            <input type="text" class="form-control" id="insurancePolicy" formControlName="insurancePolicy" [ngClass]="{ 'is-invalid': submitted && f.insurancePolicy.errors }">
+            <div class="invalid-feedback">
+              Ingrese el número de póliza del seguro
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="insuranceExpirationDate">Fecha de expiración</label>
+            <input type="date" class="form-control" id="insuranceExpirationDate" formControlName="insuranceExpirationDate" [ngClass]="{ 'is-invalid': submitted && f.insuranceExpirationDate.errors }">
+            <div class="invalid-feedback">
+              Ingrese la fecha de expiración del seguro
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <p>Importación de maquinaria nueva</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="importationDate">Fecha de importación</label>
+            <input type="date" class="form-control" id="importationDate" formControlName="importationDate" [ngClass]="{ 'is-invalid': submitted && f.importationDate.errors }">
+            <div class="invalid-feedback">
+              Ingrese la fecha de importación del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="importationVat">VAT 12%</label>
+            <input type="number" class="form-control" id="importationVat" formControlName="importationVat" [ngClass]="{ 'is-invalid': submitted && f.importationVat.errors }">
+            <div class="invalid-feedback">
+              Ingrese el VAT del equipop
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="importationDai">DAI 5%</label>
+            <input type="number" class="form-control" id="importationDai" formControlName="importationDai" [ngClass]="{ 'is-invalid': submitted && f.importationDai.errors }">
+            <div class="invalid-feedback">
+              Ingrese el DAI del equipo
+            </div>
+          </div>
+        </div>
+
+        <hr class="mb-4">
+        <button class="btn btn-success btn-lg btn-block mb-4" type="submit">Guardar</button>
+        <button class="btn btn-danger btn-lg btn-block mb-4" type="button" (click)="onDelete()">Eliminar</button>
+      </form>
+    </div>
+  </div>
+</div>
