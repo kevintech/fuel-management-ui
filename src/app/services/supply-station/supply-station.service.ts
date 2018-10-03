@@ -11,7 +11,7 @@ export class SupplyStationService {
   private itemDocument: AngularFirestoreDocument<SupplyStation>;
 
   constructor(private afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<SupplyStation>('stations');
+    this.itemsCollection = afs.collection<SupplyStation>('station');
   }
 
   public getAll() {
@@ -25,7 +25,7 @@ export class SupplyStationService {
   }
 
   public get(key: string) {
-    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    this.itemDocument = this.afs.doc<SupplyStation>(`station/${key}`);
     return this.itemDocument.valueChanges();
   }
 
@@ -34,12 +34,12 @@ export class SupplyStationService {
   }
 
   public update(key: string, station: SupplyStation) {
-    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    this.itemDocument = this.afs.doc<SupplyStation>(`station/${key}`);
     return this.itemDocument.update(station);
   }
 
   public delete(key: string) {
-    this.itemDocument = this.afs.doc<SupplyStation>(`stations/${key}`);
+    this.itemDocument = this.afs.doc<SupplyStation>(`station/${key}`);
     return this.itemDocument.delete();
   }
 }
