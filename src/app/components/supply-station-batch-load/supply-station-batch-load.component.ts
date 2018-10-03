@@ -56,7 +56,7 @@ export class SupplyStationBatchLoadComponent implements OnInit {
       )
       .then(() => {
         this.showAlert('success', 'Pilotos cargados con éxito');
-        this.router.navigate(['settings/drivers']);
+        this.router.navigate(['settings/stations']);
       }, (error) => this.showAlert('error', error))
       .then(() => this.spinner.hide());
   }

@@ -56,7 +56,7 @@ export class EquipmentBatchLoadComponent implements OnInit {
       )
       .then(() => {
         this.showAlert('success', 'Pilotos cargados con éxito');
-        this.router.navigate(['settings/drivers']);
+        this.router.navigate(['settings/equipments']);
       }, (error) => this.showAlert('error', error))
       .then(() => this.spinner.hide());
   }
