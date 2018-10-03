@@ -169,4 +169,41 @@
       </form>
     </div>
   </div>
+
+  <!-- Contador de bombas -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h4>Despachos de combustible</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <a routerLink="/entries/fuel/new" class="btn btn-primary">Agregar</a>
+        </div>
+      </div>
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Kilometraje</th>
+            <th scope="col">Placas de Vehículo</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Galones</th>
+            <th scope="col">Piloto</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr app-fuel-entry-detail></tr>
+          <tr app-fuel-entry-detail></tr>
+          <tr app-fuel-entry-detail></tr>
+          <tr app-fuel-entry-detail></tr>
+          <!-- <tr *ngFor="let entry of fuelEntryItems index as i" [routerLink]="['/entries/fuel/', entry.id]">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.supplyStation.description }}</td>
+            <td></td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

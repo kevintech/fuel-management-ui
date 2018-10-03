@@ -62,6 +62,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { NotifierModule } from 'angular-notifier'
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { FuelEntryDetailComponent } from './components/fuel-entry-detail/fuel-entry-detail.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     SupplyStationBatchLoadComponent,
     FuelEntryComponent,
     FuelEntryNewComponent,
-    FuelEntryEditComponent
+    FuelEntryEditComponent,
+    FuelEntryDetailComponent
   ],
   imports: [
     BrowserModule,
