@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Driver } from '../../models/driver/driver.model';
-import { DriverFileHeaders } from './driver-file-headers';
-import { DriverService } from '../../services/driver/driver.service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Equipment } from '../../models/equipment/equipment.model';
+import { EquipmentFileHeaders } from './equipment-file-headers';
+import { EquipmentService } from '../../services/equipment/equipment.service';
 import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ExcelDataReaderService } from '../../services/excel-data-reader/excel-data-reader.service';
 
 @Component({
-  selector: 'app-driver-batch-load',
-  templateUrl: './driver-batch-load.component.html',
-  styleUrls: ['./driver-batch-load.component.css']
+  selector: 'app-equipment-batch-load',
+  templateUrl: './equipment-batch-load.component.html',
+  styleUrls: ['./equipment-batch-load.component.css']
 })
-export class DriverBatchLoadComponent implements OnInit {
-  batchLoadForm: FormGroup
+export class EquipmentBatchLoadComponent implements OnInit {
+  batchLoadForm: FormGroup;
   error = false;
   submitted = false;
   loaded = false;
-  data: Array<Driver>;
+  data: Array<Equipment>;
 
   constructor(
-    private driverService: DriverService,
+    private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
     private router: Router,
     private notifierService: NotifierService,
@@ -30,7 +30,7 @@ export class DriverBatchLoadComponent implements OnInit {
   ) { }
 
   get f() {
-    return this.batchLoadForm.controls
+    return this.batchLoadForm.controls;
   }
 
   ngOnInit() {
@@ -47,29 +47,30 @@ export class DriverBatchLoadComponent implements OnInit {
       return true;
     }
 
-    this.driverService.deleteAll()
+    this.equipmentService.deleteAll()
       .then(
         () => {
-          return this.driverService.saveAll(this.data)
+          return this.equipmentService.saveAll(this.data);
         },
         (error) => this.showAlert('error', error)
       )
       .then(() => {
         this.showAlert('success', 'Pilotos cargados con éxito');
-        this.router.navigate(['settings/drivers']);
+        this.router.navigate(['settings/equipments']);
       }, (error) => this.showAlert('error', error))
       .then(() => this.spinner.hide());
   }
 
   onFileChange(evt: any) {
-    this.excelDataReader.read<Driver>(evt.target, DriverFileHeaders, (data)=> {
+    this.excelDataReader.read<Equipment>(evt.target, EquipmentFileHeaders, (data)=> {
       this.data = data;
       this.loaded = true;
     });
   }
 
   showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
+    this.notifierService.hideAll();
+    this.notifierService.notify(type, message);
   }
+
 }

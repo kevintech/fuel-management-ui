@@ -16,12 +16,14 @@ import { LoginComponent } from './components/login/login.component'
 import { HeaderComponent } from './components/header/header.component'
 import { HomeComponent } from './components/home/home.component'
 import { DriversComponent } from './components/drivers/drivers.component'
+import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-batch-load.component'
 import { DriversNewComponent } from './components/drivers-new/drivers-new.component'
 import { DriversEditComponent } from './components/drivers-edit/drivers-edit.component'
-import { DriverBatchLoadComponent } from './components/driver-batch-load/driver-batch-load.component'
 import { EquipmentsComponent } from './components/equipments/equipments.component'
+import { EquipmentBatchLoadComponent } from './components/equipment-batch-load/equipment-batch-load.component';
 import { EquipmentNewComponent } from './components/equipment-new/equipment-new.component'
 import { EquipmentEditComponent } from './components/equipment-edit/equipment-edit.component'
+import { SupplyStationBatchLoadComponent } from './components/supply-station-batch-load/supply-station-batch-load.component'
 import { SupplyStationsComponent } from './components/supply-stations/supply-stations.component'
 import { SupplyStationsNewComponent } from './components/supply-stations-new/supply-stations-new.component'
 import { SupplyStationsEditComponent } from './components/supply-stations-edit/supply-stations-edit.component'
@@ -40,6 +42,7 @@ import { SupplyStationService } from './services/supply-station/supply-station.s
 import { UserService } from './services/user/user.service'
 import { FuelEntryService } from './services/fuel-entry/fuel-entry.service'
 import { ConfirmationDialogService } from './components/confirmation-dialog/confirmation-dialog.service'
+import { ExcelDataReaderService } from './services/excel-data-reader/excel-data-reader.service'
 
 /**
  * Guards
@@ -77,6 +80,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     SupplyStationsNewComponent,
     SupplyStationsEditComponent,
     ConfirmationDialogComponent,
+    DriversEditComponent,
+    DriverBatchLoadComponent,
+    EquipmentBatchLoadComponent,
+    SupplyStationBatchLoadComponent,
     FuelEntryComponent,
     FuelEntryNewComponent,
     FuelEntryEditComponent
@@ -111,6 +118,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     UserService,
     FuelEntryService,
     ConfirmationDialogService,
+    ExcelDataReaderService,
     AuthGuard
   ],
   entryComponents: [

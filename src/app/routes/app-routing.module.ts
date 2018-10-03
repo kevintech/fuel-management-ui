@@ -11,9 +11,11 @@ import { DriversNewComponent } from '../components/drivers-new/drivers-new.compo
 import { DriversEditComponent } from '../components/drivers-edit/drivers-edit.component'
 import { DriverBatchLoadComponent } from '../components/driver-batch-load/driver-batch-load.component'
 import { EquipmentsComponent } from '../components/equipments/equipments.component'
+import { EquipmentBatchLoadComponent } from '../components/equipment-batch-load/equipment-batch-load.component'
 import { EquipmentNewComponent } from '../components/equipment-new/equipment-new.component'
 import { EquipmentEditComponent } from '../components/equipment-edit/equipment-edit.component'
 import { SupplyStationsComponent } from '../components/supply-stations/supply-stations.component'
+import { SupplyStationBatchLoadComponent } from '../components/supply-station-batch-load/supply-station-batch-load.component'
 import { SupplyStationsNewComponent } from '../components/supply-stations-new/supply-stations-new.component'
 import { SupplyStationsEditComponent } from '../components/supply-stations-edit/supply-stations-edit.component'
 import { FuelEntryComponent } from '../components/fuel-entry/fuel-entry.component'
@@ -34,9 +36,11 @@ const appRoutes: Routes = [
   { path: 'settings/drivers/load', component: DriverBatchLoadComponent, canActivate: [AuthGuard] },
   { path: 'settings/equipments', component: EquipmentsComponent, canActivate: [AuthGuard] },
   { path: 'settings/equipment/new', component: EquipmentNewComponent, canActivate: [AuthGuard] },
+  { path: 'settings/equipment/load', component: EquipmentBatchLoadComponent, canActivate: [AuthGuard] },
   { path: 'settings/equipment/:id', component: EquipmentEditComponent, canActivate: [AuthGuard] },
   { path: 'settings/stations', component: SupplyStationsComponent, canActivate: [AuthGuard] },
   { path: 'settings/stations/new', component: SupplyStationsNewComponent, canActivate: [AuthGuard] },
+  { path: 'settings/stations/load', component: SupplyStationBatchLoadComponent, canActivate: [AuthGuard] },
   { path: 'settings/stations/:id', component: SupplyStationsEditComponent, canActivate: [AuthGuard] },
   { path: 'entries/fuel', component: FuelEntryComponent, canActivate: [AuthGuard] },
   { path: 'entries/fuel/new', component: FuelEntryNewComponent, canActivate: [AuthGuard] },
