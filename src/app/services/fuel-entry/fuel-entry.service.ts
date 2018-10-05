@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { map } from 'rxjs/operators'
 import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model'
 import { AppConfig } from '../../config/app.config'
+import { FuelEntryDetail } from '../../models/fuel-entry/fuel-entry-detail.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,12 @@ export class FuelEntryService {
   public delete(id: String) {
     this.itemDocument = this.afs.doc<FuelEntry>(`${AppConfig.collections.fuelEntry}/${id}`)
     return this.itemDocument.delete()
+  }
+
+  public addDetail(entry: FuelEntry, detail: FuelEntryDetail, id: string) {
+    console.log(entry);
+    entry.detail.push(detail);
+    this.itemDocument = this.afs.doc<FuelEntry>(`${AppConfig.collections.fuelEntry}/${id}`);
+    return this.itemDocument.update(entry);
   }
 }
