@@ -89,7 +89,8 @@ export class FuelEntryNewComponent implements OnInit {
       date: this.getCurrentDate(),
       measureTanks: tankMeasureData,
       bombMeter: bombMeterData,
-      supplyStation: this.supplyStationItems[this.f.supplyStation.value]
+      supplyStation: this.supplyStationItems[this.f.supplyStation.value],
+      detail: null
     }
 
     this.fuelEntryService.save(fuelEntryData)

@@ -7,9 +7,9 @@ import { SupplyStation } from '../../models/supply-station/supply-station.model'
 import { SupplyStationService } from '../../services/supply-station/supply-station.service'
 import { TankMeasurement } from '../../models/fuel-entry/tank-measurement.model'
 import { BombMeter } from '../../models/fuel-entry/bomb-meter.model'
-import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service'
-import { NotifierService } from 'angular-notifier'
-import { NgxSpinnerService } from 'ngx-spinner'
+import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
+import { NotifierService } from 'angular-notifier';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-fuel-entry-edit',
@@ -17,12 +17,12 @@ import { NgxSpinnerService } from 'ngx-spinner'
   styleUrls: ['./fuel-entry-edit.component.css']
 })
 export class FuelEntryEditComponent implements OnInit {
-  fuelForm: FormGroup
-  error = false
-  submitted = false
-  id: string
-  entry: Observable<FuelEntry>
-  supplyStationItems: SupplyStation[]
+  fuelForm: FormGroup;
+  error = false;
+  submitted = false;
+  id: string;
+  entry: Observable<FuelEntry>;
+  supplyStationItems: SupplyStation[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,31 +55,32 @@ export class FuelEntryEditComponent implements OnInit {
         initBombMeterThree: ['', [Validators.required]],
         finalBombMeterThree: ['', [Validators.required]]
       }),
+      detail: [null],
       date: ['']
-    })
+    });
 
-    this.getSupplyStations()
+    this.getSupplyStations();
 
     this.route.params.subscribe(params => {
-      this.id = params['id']
-      this.loadData()
-    })
+      this.id = params['id'];
+      this.loadData();
+    });
   }
 
   getSupplyStations(): void {
     this.supplyStationService.getAll().subscribe(data => {
-      this.supplyStationItems = data
-    })
+      this.supplyStationItems = data;
+    });
   }
 
   private loadData(): void {
-    this.entry = this.fuelEntryService.getOne(this.id)
+    this.entry = this.fuelEntryService.getOne(this.id);
     this.entry.subscribe(data => {
-      this.fuelForm.setValue({ ...data })
-    })
+      this.fuelForm.setValue({ ...data });
+    });
   }
 
   get f() {
-    return this.fuelForm.controls
+    return this.fuelForm.controls;
   }
 }
