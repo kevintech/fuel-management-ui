@@ -30,6 +30,8 @@ import { SupplyStationsEditComponent } from './components/supply-stations-edit/s
 import { FuelEntryComponent } from './components/fuel-entry/fuel-entry.component'
 import { FuelEntryNewComponent } from './components/fuel-entry-new/fuel-entry-new.component'
 import { FuelEntryEditComponent } from './components/fuel-entry-edit/fuel-entry-edit.component'
+import { FuelEntryDetailComponent } from './components/fuel-entry-detail/fuel-entry-detail.component';
+import { FuelEntryDetailNewComponent } from './components/fuel-entry-detail-new/fuel-entry-detail-new.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component'
 
 /**
@@ -86,7 +88,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     SupplyStationBatchLoadComponent,
     FuelEntryComponent,
     FuelEntryNewComponent,
-    FuelEntryEditComponent
+    FuelEntryEditComponent,
+    FuelEntryDetailComponent,
+    FuelEntryDetailNewComponent
   ],
   imports: [
     BrowserModule,
