@@ -12,6 +12,7 @@ export const AppConfig = {
     drivers: 'driver',
     users: 'user',
     supplyStations: 'station',
-    fuelEntry: 'fuelEntry'
+    fuelEntry: 'fuelEntry',
+    oilEntry: 'oilEntry'
   }
 }
