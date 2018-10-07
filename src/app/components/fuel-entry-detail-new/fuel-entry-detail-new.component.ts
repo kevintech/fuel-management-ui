@@ -5,7 +5,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FuelEntryDetail } from '../../models/fuel-entry/fuel-entry-detail.model';
 import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
 import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model';
+import { Department } from '../../config/department.enum';
 import { Observable } from 'rxjs';
+import { DriverService } from '../../services/driver/driver.service';
+import { Driver } from '../../models/driver/driver.model';
 
 @Component({
   selector: 'app-fuel-entry-detail-new',
@@ -17,11 +20,14 @@ export class FuelEntryDetailNewComponent implements OnInit {
   entryData: FuelEntry;
   error = false;
   submitted = false;
+  departmentType = Department;
+  public driverItems: Observable<Driver[]>;
   @Input() entry: Observable<FuelEntry>;
   @Input() id;
 
   constructor(
     private service: FuelEntryService,
+    private driverService: DriverService,
     private formBuilder: FormBuilder,
     private notifierService: NotifierService,
     private spinner: NgxSpinnerService
@@ -37,10 +43,19 @@ export class FuelEntryDetailNewComponent implements OnInit {
     });
 
     this.entry.subscribe(data => this.entryData = data);
+    this.loadDrivers();
   }
 
   get f() {
     return this.form.controls;
+  }
+
+  get departments() {
+    return Object.keys(Department);
+  }
+
+  private loadDrivers() {
+    this.driverItems = this.driverService.getAll();
   }
 
   onSubmit() {
