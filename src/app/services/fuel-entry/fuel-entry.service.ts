@@ -50,7 +50,6 @@ export class FuelEntryService {
   }
 
   public addDetail(entry: FuelEntry, detail: FuelEntryDetail, id: string) {
-    console.log(entry);
     entry.detail.push(detail);
     this.itemDocument = this.afs.doc<FuelEntry>(`${AppConfig.collections.fuelEntry}/${id}`);
     return this.itemDocument.update(entry);
