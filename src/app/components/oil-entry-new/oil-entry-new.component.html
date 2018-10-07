@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h4>Registrar despacho de lubricante</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <a routerLink="/entries/oil" class="btn btn-outline-danger">Cancelar</a>
+        </div>
+      </div>
+      <form class="needs-validation" [formGroup]="oilEntryForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="plate">Placa</label>
+            <input type="text" class="form-control" id="plate" formControlName="plate" placeholder="" value="" required
+              [ngClass]="{ 'is-invalid': submitted && f.plate.errors }">
+            <div class="invalid-feedback">
+              Ingrese el número de placa del equipo
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="kilometers">Kilometraje</label>
+            <input type="number" class="form-control" id="kilometers" formControlName="kilometers" placeholder="" value=""
+              required [ngClass]="{ 'is-invalid': submitted && f.kilometers.errors }">
+            <div class="invalid-feedback">
+              Ingrese el kilometraje del equipo
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="oil15W40">Aceite 15W-40</label>
+            <input type="number" class="form-control" id="oil15W40" formControlName="oil15W40">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="oilW30Cat">Aceite W30 CAT</label>
+            <input type="number" class="form-control" id="oilW30Cat" formControlName="oilW30Cat">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="oil15W40Cat">Aceite 15W-40 CAT</label>
+            <input type="number" class="form-control" id="oil15W40Cat" formControlName="oil15W40Cat">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="oil20W50">Aceite 20W-50</label>
+            <input type="number" class="form-control" id="oil20W50" formControlName="oil20W50">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="oil85W140">Aceite 85W-140</label>
+            <input type="number" class="form-control" id="oil85W140" formControlName="oil85W140">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="oil80W90">Aceite 80W-90</label>
+            <input type="number" class="form-control" id="oil80W90" formControlName="oil80W90">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="oil30">Aceite 30</label>
+            <input type="number" class="form-control" id="oil30" formControlName="oil30">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="atf">ATF</label>
+            <input type="number" class="form-control" id="atf" formControlName="atf">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="cooling">Refrigerante</label>
+            <input type="number" class="form-control" id="cooling" formControlName="cooling">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="grease">Grasa</label>
+            <input type="number" class="form-control" id="grease" formControlName="grease">
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block mb-4" type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>

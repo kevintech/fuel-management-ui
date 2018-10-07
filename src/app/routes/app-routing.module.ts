@@ -21,6 +21,9 @@ import { SupplyStationsEditComponent } from '../components/supply-stations-edit/
 import { FuelEntryComponent } from '../components/fuel-entry/fuel-entry.component'
 import { FuelEntryNewComponent } from '../components/fuel-entry-new/fuel-entry-new.component'
 import { FuelEntryEditComponent } from '../components/fuel-entry-edit/fuel-entry-edit.component'
+import { OilEntryComponent } from '../components/oil-entry/oil-entry.component';
+import { OilEntryNewComponent } from '../components/oil-entry-new/oil-entry-new.component';
+import { OilEntryEditComponent } from '../components/oil-entry-edit/oil-entry-edit.component';
 
 /**
  * Guards
@@ -45,6 +48,9 @@ const appRoutes: Routes = [
   { path: 'entries/fuel', component: FuelEntryComponent, canActivate: [AuthGuard] },
   { path: 'entries/fuel/new', component: FuelEntryNewComponent, canActivate: [AuthGuard] },
   { path: 'entries/fuel/:id', component: FuelEntryEditComponent, canActivate: [AuthGuard] },
+  { path: 'entries/oil', component: OilEntryComponent, canActivate: [AuthGuard] },
+  { path: 'entries/oil/new', component: OilEntryNewComponent, canActivate: [AuthGuard] },
+  { path: 'entries/oil/:id', component: OilEntryEditComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'home' }
 ]
 

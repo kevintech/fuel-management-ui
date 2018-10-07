@@ -48,12 +48,11 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label for="phone">Número de teléfono</label>
-          <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
-        </div>
-
         <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="phone">Número de teléfono</label>
+            <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+          </div>
           <div class="col-md-6 mb-3">
             <label for="status">Estado</label>
             <select class="custom-select d-block w-100" id="status" formControlName="status" required [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
