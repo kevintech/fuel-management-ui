@@ -33,6 +33,9 @@ import { FuelEntryEditComponent } from './components/fuel-entry-edit/fuel-entry-
 import { FuelEntryDetailComponent } from './components/fuel-entry-detail/fuel-entry-detail.component';
 import { FuelEntryDetailNewComponent } from './components/fuel-entry-detail-new/fuel-entry-detail-new.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component'
+import { OilEntryComponent } from './components/oil-entry/oil-entry.component';
+import { OilEntryNewComponent } from './components/oil-entry-new/oil-entry-new.component';
+import { OilEntryEditComponent } from './components/oil-entry-edit/oil-entry-edit.component';
 
 /**
  * Services
@@ -45,6 +48,7 @@ import { UserService } from './services/user/user.service'
 import { FuelEntryService } from './services/fuel-entry/fuel-entry.service'
 import { ConfirmationDialogService } from './components/confirmation-dialog/confirmation-dialog.service'
 import { ExcelDataReaderService } from './services/excel-data-reader/excel-data-reader.service'
+import { OilEntryService } from './services/oil-entry/oil-service.service'
 
 /**
  * Guards
@@ -64,7 +68,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { NotifierModule } from 'angular-notifier'
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { OilEntryComponent } from './components/oil-entry/oil-entry.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +95,9 @@ import { OilEntryComponent } from './components/oil-entry/oil-entry.component';
     FuelEntryEditComponent,
     FuelEntryDetailComponent,
     FuelEntryDetailNewComponent,
-    OilEntryComponent
+    OilEntryComponent,
+    OilEntryNewComponent,
+    OilEntryEditComponent
   ],
   imports: [
     BrowserModule,
@@ -125,6 +130,7 @@ import { OilEntryComponent } from './components/oil-entry/oil-entry.component';
     FuelEntryService,
     ConfirmationDialogService,
     ExcelDataReaderService,
+    OilEntryService,
     AuthGuard
   ],
   entryComponents: [

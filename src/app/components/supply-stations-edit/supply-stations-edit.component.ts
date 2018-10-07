@@ -14,11 +14,11 @@ import { NgxSpinnerService } from 'ngx-spinner'
   styleUrls: ['./supply-stations-edit.component.css']
 })
 export class SupplyStationsEditComponent implements OnInit {
-  private stationForm: FormGroup
-  private error = false
-  private submitted = false
-  private id: string
-  private station: Observable<SupplyStation>
+  stationForm: FormGroup
+  error = false
+  submitted = false
+  id: string
+  station: Observable<SupplyStation>
 
   constructor(
     private stationService: SupplyStationService,

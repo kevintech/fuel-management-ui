@@ -1,3 +1,50 @@
-<p>
-  oil-entry works!
-</p>
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h4>Ingreso de lubricantes</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <a routerLink="/entries/oil/new" class="btn btn-primary">Agregar</a>
+        </div>
+      </div>
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Kilómetros</th>
+            <th scope="col">15W-40</th>
+            <th scope="col">W-30 CAT</th>
+            <th scope="col">15W-40 CAT</th>
+            <th scope="col">20W-50</th>
+            <th scope="col">85W-140</th>
+            <th scope="col">80W-90</th>
+            <th scope="col">30</th>
+            <th scope="col">ATF</th>
+            <th scope="col">Refrigerante</th>
+            <th scope="col">Grasa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of entries | async; index as i" [routerLink]="['/entries/oil/', entry.id]">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ entry.plate }}</td>
+            <td>{{ entry.kilometers }}</td>
+            <td>{{ entry.oil15W40 }}</td>
+            <td>{{ entry.oilW30Cat }}</td>
+            <td>{{ entry.oil15W40Cat }}</td>
+            <td>{{ entry.oil20W50 }}</td>
+            <td>{{ entry.oil85W140 }}</td>
+            <td>{{ entry.oil80W90 }}</td>
+            <td>{{ entry.oil30 }}</td>
+            <td>{{ entry.atf }}</td>
+            <td>{{ entry.cooling }}</td>
+            <td>{{ entry.grease }} lb.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
