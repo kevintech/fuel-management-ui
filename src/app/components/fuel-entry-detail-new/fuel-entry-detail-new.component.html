@@ -22,7 +22,7 @@
       <label class="my-1 mr-2" for="driver">Piloto</label>
       <select class="custom-select my-1 mr-sm-2" id="driver" formControlName="driver"
         [ngClass]="{ 'is-invalid': submitted && f.driver.errors }">
-        <option *ngFor="let driver of driverItems | async" value="{{driver.id}}">{{driver.name}} {{driver.lastname}}</option>
+        <option *ngFor="let driver of driverItems" value="{{driver.id}}">{{driver.name}} {{driver.lastname}}</option>
       </select>
 
       <button type="submit" class="btn btn-primary mb-2">Agregar</button>

@@ -21,7 +21,7 @@ export class FuelEntryDetailNewComponent implements OnInit {
   error = false;
   submitted = false;
   departmentType = Department;
-  public driverItems: Observable<Driver[]>;
+  public driverItems: Driver[];
   @Input() entry: Observable<FuelEntry>;
   @Input() id;
 
@@ -55,7 +55,9 @@ export class FuelEntryDetailNewComponent implements OnInit {
   }
 
   private loadDrivers() {
-    this.driverItems = this.driverService.getAll();
+    this.driverService.getAll().subscribe(data => {
+      this.driverItems = data;
+    });
   }
 
   onSubmit() {
@@ -72,7 +74,7 @@ export class FuelEntryDetailNewComponent implements OnInit {
       plate: this.f.plate.value,
       department: this.f.department.value,
       amount: this.f.amount.value,
-      driver: this.f.driver.value,
+      driver: this.driverSelected(),
       signedBy: ''
     };
 
@@ -85,6 +87,13 @@ export class FuelEntryDetailNewComponent implements OnInit {
         this.spinner.show();
         this.showAlert('error', error);
       });
+  }
+
+  private driverSelected() {
+    let driverId = this.f.driver.value;
+    return this.driverItems.find(x => {
+      return x.id == driverId
+    });
   }
 
   showAlert(type: string, message: string): void {
