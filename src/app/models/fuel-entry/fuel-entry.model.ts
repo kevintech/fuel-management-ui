@@ -8,5 +8,5 @@ export class FuelEntry {
   measureTanks: TankMeasurement
   bombMeter: BombMeter
   supplyStation: SupplyStation
-  detail?: Array<FuelEntryDetail>
+  detail: Array<FuelEntryDetail>
 }
