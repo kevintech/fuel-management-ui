@@ -15,7 +15,7 @@
           <div class="col-md-12 mb-3">
             <label for="supplyStation">Estación de servicio</label>
             <select class="custom-select d-block w-100" id="supplyStation" formControlName="supplyStation" [ngClass]="{ 'is-invalid': submitted && f.supplyStation.errors }">
-              <option *ngFor="let station of supplyStationItems index as i" value="{{ i }}">
+              <option *ngFor="let station of supplyStationItems index as i" value="{{station.id}}">
                 {{ station.description }}
               </option>
             </select>
@@ -118,8 +118,8 @@
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="finalTankFive">Total despachado (bomba 1)</label>
-            <input type="number" class="form-control" id="finalTankFive" min="0" disabled>
+            <label for="totalBombMeterOne">Total despachado (bomba 1)</label>
+            <input type="number" class="form-control" id="totalBombMeterOne" [value]="totalBombMeterOne" min="0" disabled>
           </div>
         </div>
         <div class="row" formGroupName="bombMeter">
@@ -140,8 +140,8 @@
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="finalTankTen">Total despachado (bomba 2)</label>
-            <input type="number" class="form-control" id="finalTankTen" min="0" disabled>
+            <label for="totalBombMeterTwo">Total despachado (bomba 2)</label>
+            <input type="number" class="form-control" id="totalBombMeterTwo" [value]="totalBombMeterTwo" min="0" disabled>
           </div>
         </div>
         <div class="row" formGroupName="bombMeter">
@@ -162,11 +162,40 @@
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="finalTankTen">Total despachado (bomba 3)</label>
-            <input type="number" class="form-control" id="finalTankTen" min="0" disabled>
+            <label for="totalBombMeterThree">Total despachado (bomba 3)</label>
+            <input type="number" class="form-control" id="totalBombMeterThree" [value]="totalBombMeterThree"  min="0" disabled>
           </div>
         </div>
+        <hr class="mb-4">
+        <button class="btn btn-success btn-lg btn-block mb-4" type="submit">Guardar</button>
+        <button class="btn btn-danger btn-lg btn-block mb-4" type="button" (click)="onDelete()">Eliminar</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Despachos de combustible -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h4>Despachos de combustible</h4>
+      </div>
+      <app-fuel-entry-detail-new [entry]="entry" [id]="id"></app-fuel-entry-detail-new>
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Kilometraje</th>
+            <th scope="col">Placas de Vehículo</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Galones</th>
+            <th scope="col">Piloto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr app-fuel-entry-detail *ngFor="let detail of (entry|async)?.detail index as i" 
+            [index]="i" [detail]="detail"></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

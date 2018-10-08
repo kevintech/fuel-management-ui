@@ -78,18 +78,19 @@ export class FuelEntryNewComponent implements OnInit {
 
     const bombMeterData: BombMeter = {
       initBombMeterOne: this.f.initBombMeterOne.value,
-      finalBombMeterOne: 0,
+      finalBombMeterOne: this.f.initBombMeterOne.value,
       initBombMeterTwo: this.f.initBombMeterTwo.value,
-      finalBombMeterTwo: 0,
+      finalBombMeterTwo: this.f.initBombMeterTwo.value,
       initBombMeterThree: this.f.initBombMeterThree.value,
-      finalBombMeterThree: 0
+      finalBombMeterThree: this.f.initBombMeterThree.value
     }
 
     const fuelEntryData: FuelEntry = {
       date: this.getCurrentDate(),
       measureTanks: tankMeasureData,
       bombMeter: bombMeterData,
-      supplyStation: this.supplyStationItems[this.f.supplyStation.value]
+      supplyStation: this.supplyStationItems[this.f.supplyStation.value],
+      detail: []
     }
 
     this.fuelEntryService.save(fuelEntryData)
