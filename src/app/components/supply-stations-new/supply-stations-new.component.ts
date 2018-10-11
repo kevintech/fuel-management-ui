@@ -12,9 +12,9 @@ import { NgxSpinnerService } from 'ngx-spinner'
   styleUrls: ['./supply-stations-new.component.css']
 })
 export class SupplyStationsNewComponent implements OnInit {
-  private stationForm: FormGroup
-  private error = false
-  private submitted = false
+  stationForm: FormGroup
+  error = false
+  submitted = false
 
   constructor(
     private stationService: SupplyStationService,

@@ -108,7 +108,7 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(AppConfig.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     NgxSpinnerModule,
     NotifierModule.withConfig({
