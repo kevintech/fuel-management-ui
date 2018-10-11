@@ -106,7 +106,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(AppConfig.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     NgxSpinnerModule,
     NotifierModule.withConfig({
