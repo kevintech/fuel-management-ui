@@ -7,21 +7,29 @@
 
       <label class="sr-only" for="plate">Placas de Vehiculo</label>
       <input type="text" class="form-control mb-2 mr-sm-2" id="plate" formControlName="plate"
-        placeholder="Placas de Vehiculo" [ngClass]="{ 'is-invalid': submitted && f.plate.errors }">
+        placeholder="Placas de Vehiculo" [ngClass]="{ 'is-invalid': submitted && f.plate.errors }"
+        [ngbTypeahead]="searchEquipmentByPlate">
+
+        <label class="sr-only" for="code">Código de Vehiculo</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="code" formControlName="code"
+        placeholder="Código de Vehiculo" [ngClass]="{ 'is-invalid': submitted && f.code.errors }"
+        [ngbTypeahead]="searchEquipmentByCode">
 
       <label class="sr-only" for="amount">Galones</label>
       <input type="number" class="form-control mb-2 mr-sm-2" id="amount" formControlName="amount"
         placeholder="Galones" min="0" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }">
 
-      <label class="my-1 mr-2" for="department">Departamento</label>
+      <!-- <label class="my-1 mr-2" for="department">Departamento</label> -->
       <select class="custom-select my-1 mr-sm-2" id="department" formControlName="department"
         [ngClass]="{ 'is-invalid': submitted && f.department.errors }">
+        <option value="0" disabled selected>Departamento</option>
         <option *ngFor="let department of departments" value="{{department}}">{{departmentType[department]}}</option>
       </select>
 
-      <label class="my-1 mr-2" for="driver">Piloto</label>
+      <!-- <label class="my-1 mr-2" for="driver">Piloto</label> -->
       <select class="custom-select my-1 mr-sm-2" id="driver" formControlName="driver"
         [ngClass]="{ 'is-invalid': submitted && f.driver.errors }">
+        <option value="0" disabled selected>Piloto</option>
         <option *ngFor="let driver of driverItems" value="{{driver.id}}">{{driver.name}} {{driver.lastname}}</option>
       </select>
 
@@ -29,3 +37,4 @@
     </form>
   </div>
 </div>
+<hr class="mb-4">

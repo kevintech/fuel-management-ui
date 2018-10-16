@@ -6,196 +6,209 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h4>Editar despacho</h4>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <a routerLink="/entries/fuel" class="btn btn-outline-danger">Cancelar</a>
+          <a routerLink="/entries/fuel" class="btn btn-outline-danger">Volver</a>
         </div>
       </div>
-      <form class="needs-validation" [formGroup]="fuelForm" (ngSubmit)="onSubmit()">
-        <input type="text" class="form-control" id="date" min="0" disabled hidden>
-        <div class="row">
-          <div class="col-md-12 mb-3">
-            <label for="supplyStation">Estación de servicio</label>
-            <select class="custom-select d-block w-100" id="supplyStation" formControlName="supplyStation" [ngClass]="{ 'is-invalid': submitted && f.supplyStation.errors }">
-              <option *ngFor="let station of supplyStationItems index as i" value="{{station.id}}">
-                {{ station.description }}
-              </option>
-            </select>
-            <div class="invalid-feedback">
-              Por favor, seleccione una estación válida
-            </div>
-          </div>
-        </div>
-        <!-- Medida de tanques -->
-        <div>
-          <h5>Medida de tanques</h5>
-        </div>
-        <div class="row" formGroupName="measureTanks">
-          <div class="col-md-3 mb-3">
-            <label for="initTankFive">Medida inicial (Tanque 5K)</label>
-            <input type="number" class="form-control" id="initTankFive" formControlName="initTankFive" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.initTankFive.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor inicial del tanque de 5K
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="initTankFiveGallons">Galones iniciales (Tanque 5K)</label>
-            <input type="number" class="form-control" id="initTankFiveGallons" formControlName="initTankFiveGallons"
-              min="0" [ngClass]="{ 'is-invalid': submitted && f.initTankFiveGallons.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor inicial en galones del tanque de 5K
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="finalTankFive">Medida final (Tanque 5K)</label>
-            <input type="number" class="form-control" id="finalTankFive" formControlName="finalTankFive" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.finalTankFive.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor final del tanque de 5K
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="finalTankFiveGallons">Galones finales (Tanque 5K)</label>
-            <input type="number" class="form-control" id="finalTankFiveGallons" formControlName="finalTankFiveGallons"
-              min="0" [ngClass]="{ 'is-invalid': submitted && f.finalTankFiveGallons.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor final en galones del tanque de 5K
-            </div>
-          </div>
-        </div>
-        <div class="row" formGroupName="measureTanks">
-          <div class="col-md-3 mb-3">
-            <label for="initTankTen">Medida inicial (Tanque 10K)</label>
-            <input type="number" class="form-control" id="initTankTen" formControlName="initTankTen" min="0" [ngClass]="{ 'is-invalid': submitted && f.initTankTen.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor inicial del tanque de 10K
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="initTankTenGallons">Galones iniciales (Tanque 10K)</label>
-            <input type="number" class="form-control" id="initTankTenGallons" formControlName="initTankTenGallons" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.initTankTenGallons.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor inicial en galones del tanque de 10K
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="finalTankTen">Medida final (Tanque 10K)</label>
-            <input type="number" class="form-control" id="finalTankTen" formControlName="finalTankTen" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.finalTankTen.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor final del tanque de 10K
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="finalTankTenGallons">Galones finales (Tanque 10K)</label>
-            <input type="number" class="form-control" id="finalTankTenGallons" formControlName="finalTankTenGallons"
-              min="0" [ngClass]="{ 'is-invalid': submitted && f.finalTankTenGallons.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor final en galones del tanque de 10K
-            </div>
-          </div>
-        </div>
-
-        <!-- Contador de bombas -->
-        <div>
-          <h5>Contador de bombas</h5>
-        </div>
-        <div class="row" formGroupName="bombMeter">
-          <div class="col-md-4 mb-3">
-            <label for="initBombMeterOne">Contador inicial (bomba 1)</label>
-            <input type="number" class="form-control" id="initBombMeterOne" formControlName="initBombMeterOne" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.initBombMeterOne.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor inicial de la bomba 1
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="finalBombMeterOne">Contador final (bomba 1)</label>
-            <input type="number" class="form-control" id="finalBombMeterOne" formControlName="finalBombMeterOne" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.finalBombMeterOne.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor final de la bomba 1
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="totalBombMeterOne">Total despachado (bomba 1)</label>
-            <input type="number" class="form-control" id="totalBombMeterOne" [value]="totalBombMeterOne" min="0" disabled>
-          </div>
-        </div>
-        <div class="row" formGroupName="bombMeter">
-          <div class="col-md-4 mb-3">
-            <label for="initBombMeterTwo">Contador inicial (bomba 2)</label>
-            <input type="number" class="form-control" id="initBombMeterTwo" formControlName="initBombMeterTwo" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.initBombMeterTwo.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor inicial de la bomba 2
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="finalBombMeterTwo">Contador final (bomba 2)</label>
-            <input type="number" class="form-control" id="finalBombMeterTwo" formControlName="finalBombMeterTwo" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.finalBombMeterTwo.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor final de la bomba 2
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="totalBombMeterTwo">Total despachado (bomba 2)</label>
-            <input type="number" class="form-control" id="totalBombMeterTwo" [value]="totalBombMeterTwo" min="0" disabled>
-          </div>
-        </div>
-        <div class="row" formGroupName="bombMeter">
-          <div class="col-md-4 mb-3">
-            <label for="initBombMeterThree">Contador inicial (bomba 3)</label>
-            <input type="number" class="form-control" id="initBombMeterThree" formControlName="initBombMeterThree" min="0"
-              [ngClass]="{ 'is-invalid': submitted && f.initBombMeterThree.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor inicial de la bomba 3
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="finalBombMeterThree">Contador final (bomba 3)</label>
-            <input type="number" class="form-control" id="finalBombMeterThree" formControlName="finalBombMeterThree"
-              min="0" [ngClass]="{ 'is-invalid': submitted && f.finalBombMeterThree.errors }">
-            <div class="invalid-feedback">
-              Ingrese el valor final de la bomba 3
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="totalBombMeterThree">Total despachado (bomba 3)</label>
-            <input type="number" class="form-control" id="totalBombMeterThree" [value]="totalBombMeterThree"  min="0" disabled>
-          </div>
-        </div>
-        <hr class="mb-4">
-        <button class="btn btn-success btn-lg btn-block mb-4" type="submit">Guardar</button>
-        <button class="btn btn-danger btn-lg btn-block mb-4" type="button" (click)="onDelete()">Eliminar</button>
-      </form>
     </div>
-  </div>
+    <ngb-tabset>
+      <ngb-tab title="Editar Información">
+        <ng-template ngbTabContent>
+          <div class="col-md-12">
+            <form class="needs-validation" [formGroup]="fuelForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <input type="text" class="form-control" id="date" min="0" disabled hidden>
+                  <label for="supplyStation">Estación de servicio</label>
+                  <select class="custom-select d-block w-100" id="supplyStation" formControlName="supplyStation"
+                    [ngClass]="{ 'is-invalid': submitted && f.supplyStation.errors }">
+                    <option *ngFor="let station of supplyStationItems index as i" value="{{station.id}}">
+                      {{ station.description }}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Por favor, seleccione una estación válida
+                  </div>
+                </div>
+              </div>
+              <!-- Medida de tanques -->
+              <div>
+                <h5>Medida de tanques</h5>
+              </div>
+              <div class="row" formGroupName="measureTanks">
+                <div class="col-md-3 mb-3">
+                  <label for="initTankFive">Medida inicial (Tanque 5K)</label>
+                  <input type="number" class="form-control" id="initTankFive" formControlName="initTankFive" min="0"
+                    [ngClass]="{ 'is-invalid': submitted && f.initTankFive.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor inicial del tanque de 5K
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="initTankFiveGallons">Galones iniciales (Tanque 5K)</label>
+                  <input type="number" class="form-control" id="initTankFiveGallons" formControlName="initTankFiveGallons"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.initTankFiveGallons.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor inicial en galones del tanque de 5K
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="finalTankFive">Medida final (Tanque 5K)</label>
+                  <input type="number" class="form-control" id="finalTankFive" formControlName="finalTankFive" min="0"
+                    [ngClass]="{ 'is-invalid': submitted && f.finalTankFive.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor final del tanque de 5K
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="finalTankFiveGallons">Galones finales (Tanque 5K)</label>
+                  <input type="number" class="form-control" id="finalTankFiveGallons" formControlName="finalTankFiveGallons"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.finalTankFiveGallons.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor final en galones del tanque de 5K
+                  </div>
+                </div>
+              </div>
+              <div class="row" formGroupName="measureTanks">
+                <div class="col-md-3 mb-3">
+                  <label for="initTankTen">Medida inicial (Tanque 10K)</label>
+                  <input type="number" class="form-control" id="initTankTen" formControlName="initTankTen" min="0"
+                    [ngClass]="{ 'is-invalid': submitted && f.initTankTen.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor inicial del tanque de 10K
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="initTankTenGallons">Galones iniciales (Tanque 10K)</label>
+                  <input type="number" class="form-control" id="initTankTenGallons" formControlName="initTankTenGallons"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.initTankTenGallons.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor inicial en galones del tanque de 10K
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="finalTankTen">Medida final (Tanque 10K)</label>
+                  <input type="number" class="form-control" id="finalTankTen" formControlName="finalTankTen" min="0"
+                    [ngClass]="{ 'is-invalid': submitted && f.finalTankTen.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor final del tanque de 10K
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="finalTankTenGallons">Galones finales (Tanque 10K)</label>
+                  <input type="number" class="form-control" id="finalTankTenGallons" formControlName="finalTankTenGallons"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.finalTankTenGallons.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor final en galones del tanque de 10K
+                  </div>
+                </div>
+              </div>
 
-  <!-- Despachos de combustible -->
-  <div class="row">
-    <div class="col-md-12">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h4>Despachos de combustible</h4>
-      </div>
-      <app-fuel-entry-detail-new [entry]="entry" [id]="id"></app-fuel-entry-detail-new>
-      <table class="table table-hover table-sm">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Kilometraje</th>
-            <th scope="col">Placas de Vehículo</th>
-            <th scope="col">Departamento</th>
-            <th scope="col">Galones</th>
-            <th scope="col">Piloto</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr app-fuel-entry-detail *ngFor="let detail of (entry|async)?.detail index as i" 
-            [index]="i" [detail]="detail"></tr>
-        </tbody>
-      </table>
-    </div>
+              <!-- Contador de bombas -->
+              <div>
+                <h5>Contador de bombas</h5>
+              </div>
+              <div class="row" formGroupName="bombMeter">
+                <div class="col-md-4 mb-3">
+                  <label for="initBombMeterOne">Contador inicial (bomba 1)</label>
+                  <input type="number" class="form-control" id="initBombMeterOne" formControlName="initBombMeterOne"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.initBombMeterOne.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor inicial de la bomba 1
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="finalBombMeterOne">Contador final (bomba 1)</label>
+                  <input type="number" class="form-control" id="finalBombMeterOne" formControlName="finalBombMeterOne"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.finalBombMeterOne.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor final de la bomba 1
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="totalBombMeterOne">Total despachado (bomba 1)</label>
+                  <input type="number" class="form-control" id="totalBombMeterOne" [value]="totalBombMeterOne" min="0"
+                    disabled>
+                </div>
+              </div>
+              <div class="row" formGroupName="bombMeter">
+                <div class="col-md-4 mb-3">
+                  <label for="initBombMeterTwo">Contador inicial (bomba 2)</label>
+                  <input type="number" class="form-control" id="initBombMeterTwo" formControlName="initBombMeterTwo"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.initBombMeterTwo.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor inicial de la bomba 2
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="finalBombMeterTwo">Contador final (bomba 2)</label>
+                  <input type="number" class="form-control" id="finalBombMeterTwo" formControlName="finalBombMeterTwo"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.finalBombMeterTwo.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor final de la bomba 2
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="totalBombMeterTwo">Total despachado (bomba 2)</label>
+                  <input type="number" class="form-control" id="totalBombMeterTwo" [value]="totalBombMeterTwo" min="0"
+                    disabled>
+                </div>
+              </div>
+              <div class="row" formGroupName="bombMeter">
+                <div class="col-md-4 mb-3">
+                  <label for="initBombMeterThree">Contador inicial (bomba 3)</label>
+                  <input type="number" class="form-control" id="initBombMeterThree" formControlName="initBombMeterThree"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.initBombMeterThree.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor inicial de la bomba 3
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="finalBombMeterThree">Contador final (bomba 3)</label>
+                  <input type="number" class="form-control" id="finalBombMeterThree" formControlName="finalBombMeterThree"
+                    min="0" [ngClass]="{ 'is-invalid': submitted && f.finalBombMeterThree.errors }">
+                  <div class="invalid-feedback">
+                    Ingrese el valor final de la bomba 3
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="totalBombMeterThree">Total despachado (bomba 3)</label>
+                  <input type="number" class="form-control" id="totalBombMeterThree" [value]="totalBombMeterThree" min="0"
+                    disabled>
+                </div>
+              </div>
+              <hr class="mb-4">
+              <button class="btn btn-success btn-lg btn-block mb-4" type="submit">Guardar</button>
+              <button class="btn btn-danger btn-lg btn-block mb-4" type="button" (click)="onDelete()">Eliminar</button>
+            </form>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Despachos">
+        <ng-template ngbTabContent>
+          <!-- Despachos de combustible -->
+          <div class="col-md-12">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+              <h4>Despachos de combustible</h4>
+            </div>
+            <app-fuel-entry-detail-new [entry]="entry" [id]="id"></app-fuel-entry-detail-new>
+            <table class="table table-hover table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Kilometraje</th>
+                  <th scope="col">Placas de Vehículo</th>
+                  <th scope="col">Departamento</th>
+                  <th scope="col">Galones</th>
+                  <th scope="col">Piloto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr app-fuel-entry-detail *ngFor="let detail of (entry|async)?.detail index as i" [index]="i" [detail]="detail"></tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
   </div>
 </div>
