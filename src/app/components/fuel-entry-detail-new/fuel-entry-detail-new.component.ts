@@ -6,7 +6,7 @@ import { FuelEntryDetail } from '../../models/fuel-entry/fuel-entry-detail.model
 import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
 import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model';
 import { Department } from '../../config/department.enum';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DriverService } from '../../services/driver/driver.service';
 import { Driver } from '../../models/driver/driver.model';
 import { EquipmentService } from 'src/app/services/equipment/equipment.service';
@@ -25,6 +25,7 @@ export class FuelEntryDetailNewComponent implements OnInit {
   submitted = false;
   departmentType = Department;
   equipmentItems: Equipment[];
+  entrySubscription : Subscription;
   public driverItems: Driver[];
   @Input() entry: Observable<FuelEntry>;
   @Input() id;
@@ -48,10 +49,14 @@ export class FuelEntryDetailNewComponent implements OnInit {
       driver: ['0', []],
     });
 
-    this.entry.subscribe(data => this.entryData = data);
+    this.entrySubscription = this.entry.subscribe(data => this.entryData = data);
     this.loadDrivers();
     this.loadEquipments();
     this.formControlValueChanged();
+  }
+
+  ngOnDestroy() {
+    this.entrySubscription.unsubscribe();
   }
 
   get f() {
@@ -98,10 +103,11 @@ export class FuelEntryDetailNewComponent implements OnInit {
 
     const data: FuelEntryDetail = {
       kilometers: this.f.kilometers.value,
-      plate: this.f.plate.value,
+      plate: this.f.plate.value || '',
+      code: this.f.code.value || '',
       department: this.f.department.value,
       amount: this.f.amount.value,
-      driver: this.driverSelected(),
+      driver: this.driverSelected() || null,
       signedBy: ''
     };
 
@@ -143,5 +149,4 @@ export class FuelEntryDetailNewComponent implements OnInit {
     this.notifierService.hideAll();
     this.notifierService.notify(type, message);
   }
-
 }

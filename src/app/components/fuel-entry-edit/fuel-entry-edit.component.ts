@@ -11,6 +11,7 @@ import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
 import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-fuel-entry-edit',
@@ -23,11 +24,11 @@ export class FuelEntryEditComponent implements OnInit {
   submitted = false;
   id: string;
   fuelEntryData: FuelEntry;
-  entry: Observable<FuelEntry>;
   supplyStationItems: SupplyStation[];
   totalBombMeterOne: number;
   totalBombMeterTwo: number;
   totalBombMeterThree: number;
+  public entry: Observable<FuelEntry>;
 
   constructor(
     private formBuilder: FormBuilder,

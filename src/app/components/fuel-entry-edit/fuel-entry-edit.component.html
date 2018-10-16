@@ -10,7 +10,33 @@
         </div>
       </div>
     </div>
-    <ngb-tabset>
+    <ngb-tabset [destroyOnHide]="false" justify="center" type="pills">
+      <ngb-tab title="Despachos">
+        <ng-template ngbTabContent>
+          <!-- Despachos de combustible -->
+          <div class="col-md-12">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+              <h4>Despachos de combustible</h4>
+            </div>
+            <app-fuel-entry-detail-new [entry]="entry" [id]="id"></app-fuel-entry-detail-new>
+            <table class="table table-hover table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Kilometraje</th>
+                  <th scope="col">Placas de Vehículo</th>
+                  <th scope="col">Departamento</th>
+                  <th scope="col">Galones</th>
+                  <th scope="col">Piloto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr app-fuel-entry-detail *ngFor="let detail of (entry|async)?.detail index as i" [index]="i" [detail]="detail"></tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-template>
+      </ngb-tab>
       <ngb-tab title="Editar Información">
         <ng-template ngbTabContent>
           <div class="col-md-12">
@@ -180,32 +206,6 @@
               <button class="btn btn-success btn-lg btn-block mb-4" type="submit">Guardar</button>
               <button class="btn btn-danger btn-lg btn-block mb-4" type="button" (click)="onDelete()">Eliminar</button>
             </form>
-          </div>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Despachos">
-        <ng-template ngbTabContent>
-          <!-- Despachos de combustible -->
-          <div class="col-md-12">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-              <h4>Despachos de combustible</h4>
-            </div>
-            <app-fuel-entry-detail-new [entry]="entry" [id]="id"></app-fuel-entry-detail-new>
-            <table class="table table-hover table-sm">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Kilometraje</th>
-                  <th scope="col">Placas de Vehículo</th>
-                  <th scope="col">Departamento</th>
-                  <th scope="col">Galones</th>
-                  <th scope="col">Piloto</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr app-fuel-entry-detail *ngFor="let detail of (entry|async)?.detail index as i" [index]="i" [detail]="detail"></tr>
-              </tbody>
-            </table>
           </div>
         </ng-template>
       </ngb-tab>
