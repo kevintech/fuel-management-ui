@@ -166,7 +166,7 @@ export class FuelEntryEditComponent implements OnInit {
       .then(confirmed => {
         if (confirmed) {
           this.spinner.show();
-          this.supplyStationService.delete(this.id)
+          this.fuelEntryService.delete(this.id)
             .then(response => {
               this.spinner.hide();
               this.showAlert('success', 'Estación de servicio eliminada con éxito');
