@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
-import { Observable } from 'rxjs'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model'
-import { SupplyStation } from '../../models/supply-station/supply-station.model'
-import { SupplyStationService } from '../../services/supply-station/supply-station.service'
-import { TankMeasurement } from '../../models/fuel-entry/tank-measurement.model'
-import { BombMeter } from '../../models/fuel-entry/bomb-meter.model'
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model';
+import { SupplyStation } from '../../models/supply-station/supply-station.model';
+import { SupplyStationService } from '../../services/supply-station/supply-station.service';
+import { TankMeasurement } from '../../models/fuel-entry/tank-measurement.model';
+import { BombMeter } from '../../models/fuel-entry/bomb-meter.model';
 import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
 import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
-import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-fuel-entry-edit',
@@ -72,28 +71,33 @@ export class FuelEntryEditComponent implements OnInit {
       this.id = params['id'];
       this.loadData();
     });
-    
+
     (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterOne.valueChanges.subscribe(() => this.updateTotalBombMeterOne());
     (<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterOne.valueChanges.subscribe(() => this.updateTotalBombMeterOne());
     (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterTwo.valueChanges.subscribe(() => this.updateTotalBombMeterTwo());
     (<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterTwo.valueChanges.subscribe(() => this.updateTotalBombMeterTwo());
-    (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterThree.valueChanges.subscribe(() => this.updateTotalBombMeterThree());
-    (<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterThree.valueChanges.subscribe(() => this.updateTotalBombMeterThree());
+    (<FormGroup>this.fuelForm.controls.bombMeter)
+      .controls.initBombMeterThree.valueChanges.subscribe(() => this.updateTotalBombMeterThree());
+    (<FormGroup>this.fuelForm.controls.bombMeter)
+      .controls.finalBombMeterThree.valueChanges.subscribe(() => this.updateTotalBombMeterThree());
   }
 
   private updateTotalBombMeterOne() {
-    if (!(<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterOne.value) return;
-    this.totalBombMeterOne = (<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterOne.value - (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterOne.value
+    if (!(<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterOne.value) { return; }
+    this.totalBombMeterOne = (<FormGroup>this.fuelForm.controls.bombMeter)
+      .controls.finalBombMeterOne.value - (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterOne.value;
   }
 
   private updateTotalBombMeterTwo() {
-    if (!(<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterTwo.value) return;
-    this.totalBombMeterTwo = (<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterTwo.value - (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterTwo.value
+    if (!(<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterTwo.value) { return; }
+    this.totalBombMeterTwo = (<FormGroup>this.fuelForm.controls.bombMeter)
+      .controls.finalBombMeterTwo.value - (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterTwo.value;
   }
 
   private updateTotalBombMeterThree() {
-    if (!(<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterThree.value) return;
-    this.totalBombMeterThree = (<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterThree.value - (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterThree.value
+    if (!(<FormGroup>this.fuelForm.controls.bombMeter).controls.finalBombMeterThree.value) { return; }
+    this.totalBombMeterThree = (<FormGroup>this.fuelForm.controls.bombMeter)
+      .controls.finalBombMeterThree.value - (<FormGroup>this.fuelForm.controls.bombMeter).controls.initBombMeterThree.value;
   }
 
   getSupplyStations(): void {
@@ -118,7 +122,7 @@ export class FuelEntryEditComponent implements OnInit {
       return true;
     }
 
-    this.spinner.show()
+    this.spinner.show();
     const measureTanksData: TankMeasurement = {
       initTankFive: (<FormGroup>this.f.measureTanks).controls.initTankFive.value,
       initTankFiveGallons: (<FormGroup>this.f.measureTanks).controls.initTankFiveGallons.value,
@@ -128,7 +132,7 @@ export class FuelEntryEditComponent implements OnInit {
       initTankTenGallons: (<FormGroup>this.f.measureTanks).controls.initTankTenGallons.value,
       finalTankTen: (<FormGroup>this.f.measureTanks).controls.finalTankTen.value,
       finalTankTenGallons: (<FormGroup>this.f.measureTanks).controls.finalTankTenGallons.value,
-    }
+    };
 
     const bombMeterData: BombMeter = {
       initBombMeterOne: (<FormGroup>this.f.bombMeter).controls.initBombMeterOne.value,
@@ -137,7 +141,7 @@ export class FuelEntryEditComponent implements OnInit {
       finalBombMeterTwo: (<FormGroup>this.f.bombMeter).controls.finalBombMeterTwo.value,
       initBombMeterThree: (<FormGroup>this.f.bombMeter).controls.initBombMeterThree.value,
       finalBombMeterThree: (<FormGroup>this.f.bombMeter).controls.finalBombMeterThree.value,
-    }
+    };
 
     const fuelEntryData: FuelEntry = {
       timestamp: this.fuelEntryData.timestamp,
@@ -146,44 +150,44 @@ export class FuelEntryEditComponent implements OnInit {
       bombMeter: bombMeterData,
       supplyStation: this.supplyStationSelected(),
       detail: this.fuelEntryData.detail
-    }
+    };
 
     this.fuelEntryService.update(this.id, fuelEntryData)
       .then(response => {
-        this.spinner.hide()
+        this.spinner.hide();
         this.showAlert('success', 'Estación de servicio actualizada con éxito');
       })
       .catch(error => {
         this.spinner.show();
         this.showAlert('error', error);
-      })
+      });
   }
 
   onDelete() {
     this.confirmationDialogService.confirm('Confirmación', '¿Estas seguro que deseas eliminarlo?', 'Sí, eliminar')
       .then(confirmed => {
         if (confirmed) {
-          this.spinner.show()
+          this.spinner.show();
           this.supplyStationService.delete(this.id)
             .then(response => {
-              this.spinner.hide()
-              this.showAlert('success', 'Estación de servicio eliminada con éxito')
-              this.router.navigate(['entries/fuel'])
+              this.spinner.hide();
+              this.showAlert('success', 'Estación de servicio eliminada con éxito');
+              this.router.navigate(['entries/fuel']);
             })
             .catch(error => {
-              this.spinner.hide()
-              this.showAlert('error', error)
-            })
+              this.spinner.hide();
+              this.showAlert('error', error);
+            });
         }
       })
       .catch(error => {
-        console.log('Error in dialog: ', error)
-      })
+        console.log('Error in dialog: ', error);
+      });
   }
 
   showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
+    this.notifierService.hideAll();
+    this.notifierService.notify(type, message);
   }
 
   get f() {
@@ -191,9 +195,9 @@ export class FuelEntryEditComponent implements OnInit {
   }
 
   private supplyStationSelected() {
-    let supplyStationId = this.f.supplyStation.value;
+    const supplyStationId = this.f.supplyStation.value;
     return this.supplyStationItems.find(x => {
-      return x.id == supplyStationId
+      return x.id === supplyStationId;
     });
   }
 }
