@@ -6,9 +6,12 @@ import { FuelEntryDetail } from '../../models/fuel-entry/fuel-entry-detail.model
 import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
 import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model';
 import { Department } from '../../config/department.enum';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DriverService } from '../../services/driver/driver.service';
 import { Driver } from '../../models/driver/driver.model';
+import { EquipmentService } from 'src/app/services/equipment/equipment.service';
+import { Equipment } from 'src/app/models/equipment/equipment.model';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-fuel-entry-detail-new',
@@ -21,6 +24,8 @@ export class FuelEntryDetailNewComponent implements OnInit {
   error = false;
   submitted = false;
   departmentType = Department;
+  equipmentItems: Equipment[];
+  entrySubscription : Subscription;
   public driverItems: Driver[];
   @Input() entry: Observable<FuelEntry>;
   @Input() id;
@@ -28,6 +33,7 @@ export class FuelEntryDetailNewComponent implements OnInit {
   constructor(
     private service: FuelEntryService,
     private driverService: DriverService,
+    private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
     private notifierService: NotifierService,
     private spinner: NgxSpinnerService
@@ -36,14 +42,21 @@ export class FuelEntryDetailNewComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       kilometers: ['', [Validators.required]],
-      plate: ['', [Validators.required]],
-      department: ['', [Validators.required]],
+      plate: ['', []],
+      code: ['', [Validators.required]],
+      department: ['0', [Validators.required]],
       amount: ['', [Validators.required]],
-      driver: ['', [Validators.required]],
+      driver: ['0', []],
     });
 
-    this.entry.subscribe(data => this.entryData = data);
+    this.entrySubscription = this.entry.subscribe(data => this.entryData = data);
     this.loadDrivers();
+    this.loadEquipments();
+    this.formControlValueChanged();
+  }
+
+  ngOnDestroy() {
+    this.entrySubscription.unsubscribe();
   }
 
   get f() {
@@ -60,6 +73,25 @@ export class FuelEntryDetailNewComponent implements OnInit {
     });
   }
 
+  private loadEquipments() {
+    this.equipmentService.getAll().subscribe(data => {
+      this.equipmentItems = data;
+    });
+  }
+
+  private formControlValueChanged() {
+    const plateControl = this.form.get('plate');
+    const codeControl = this.form.get('code');
+    plateControl.valueChanges.subscribe((value: string) => {
+      if (value && value.length > 0) {
+        codeControl.clearValidators();
+      } else {
+        codeControl.setValidators([Validators.required]);
+      }
+      codeControl.updateValueAndValidity();
+    });
+  }
+
   onSubmit() {
     if (this.form.invalid) {
       this.submitted = true;
@@ -71,10 +103,11 @@ export class FuelEntryDetailNewComponent implements OnInit {
 
     const data: FuelEntryDetail = {
       kilometers: this.f.kilometers.value,
-      plate: this.f.plate.value,
+      plate: this.f.plate.value || '',
+      code: this.f.code.value || '',
       department: this.f.department.value,
       amount: this.f.amount.value,
-      driver: this.driverSelected(),
+      driver: this.driverSelected() || null,
       signedBy: ''
     };
 
@@ -89,10 +122,26 @@ export class FuelEntryDetailNewComponent implements OnInit {
       });
   }
 
+  searchEquipmentByPlate = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : this.equipmentItems.filter(x => x.plate.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(x => x.plate))
+    )
+
+  searchEquipmentByCode = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : this.equipmentItems.filter(x => x.code.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(x => x.code))
+    )
+
   private driverSelected() {
-    let driverId = this.f.driver.value;
+    const driverId = this.f.driver.value;
     return this.driverItems.find(x => {
-      return x.id == driverId
+      return x.id === driverId;
     });
   }
 
@@ -100,5 +149,4 @@ export class FuelEntryDetailNewComponent implements OnInit {
     this.notifierService.hideAll();
     this.notifierService.notify(type, message);
   }
-
 }

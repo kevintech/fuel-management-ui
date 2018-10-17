@@ -4,8 +4,9 @@ import { Department } from '../../config/department.enum';
 export class FuelEntryDetail {
     kilometers: number;
     plate: string;
+    code: string;
     department: Department;
     amount: number;
-    driver: Driver;
+    driver?: Driver;
     signedBy: string;
 }

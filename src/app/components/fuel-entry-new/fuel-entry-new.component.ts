@@ -86,6 +86,7 @@ export class FuelEntryNewComponent implements OnInit {
     }
 
     const fuelEntryData: FuelEntry = {
+      timestamp: new Date(this.getCurrentDate()).getTime(),
       date: this.getCurrentDate(),
       measureTanks: tankMeasureData,
       bombMeter: bombMeterData,
