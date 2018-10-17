@@ -40,11 +40,15 @@ export class FuelEntryReportComponent implements OnInit {
       return true;
     }
 
+    this.spinner.show()
+
     let parseDate = new Date(this.f.date.value).getTime();
     this.fuelEntryService.getByDate(parseDate).onSnapshot({ includeMetadataChanges: true }, snapshot => {
       snapshot.docChanges().forEach(item => {
         console.log(item.doc.data())
       })
+
+      this.spinner.hide()
     })
   }
 

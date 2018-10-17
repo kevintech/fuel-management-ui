@@ -6,17 +6,17 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h4>Cargar información de equipos</h4>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <a routerLink="/settings/drivers" class="btn btn-outline-danger">Cancelar</a>
+          <a href="https://firebasestorage.googleapis.com/v0/b/oeccgt-92f8d.appspot.com/o/equipment%20model%202.xlsx?alt=media&token=25ed7d63-32e2-4574-81ae-594ab7ed7c7f"
+            class="btn btn-outline-success">Descargar modelo</a>
+          <a style="margin-left: 5px;" routerLink="/settings/drivers" class="btn btn-outline-danger">Cancelar</a>
         </div>
       </div>
       <form class="needs-validation" [formGroup]="batchLoadForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-12">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="fileXlsx"
-                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                formControlName="fileXlsx" (change)="onFileChange($event)"
-                multiple="false" [ngClass]="{ 'is-invalid': submitted && f.fileXlsx.errors }" />
+              <input type="file" class="custom-file-input" id="fileXlsx" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                formControlName="fileXlsx" (change)="onFileChange($event)" multiple="false" [ngClass]="{ 'is-invalid': submitted && f.fileXlsx.errors }" />
               <label class="custom-file-label" for="fileXlsx">Elije un archivo...</label>
               <div class="invalid-feedback">
                 Debe seleccionar un archivo de Excel válido para cargar
@@ -28,7 +28,8 @@
         <ngb-alert *ngIf="!error && data && data.length" type="success" [dismissible]="false">
           <strong>Archivo válido</strong> La lectura del archivo fue correcta, presione cargar para continuar.
         </ngb-alert>
-        <button [disabled]="!loaded" class="btn btn-primary btn-lg btn-block mb-4" type="submit">Cargar {{(data && data.length) || 0}} registros</button>
+        <button [disabled]="!loaded" class="btn btn-primary btn-lg btn-block mb-4" type="submit">Cargar {{(data &&
+          data.length) || 0}} registros</button>
       </form>
     </div>
   </div>
