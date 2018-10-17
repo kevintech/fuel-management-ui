@@ -62,7 +62,8 @@ export class FuelEntryEditComponent implements OnInit {
         finalBombMeterThree: ['', [Validators.required]]
       }),
       detail: [null],
-      date: ['']
+      date: [''],
+      timestamp: ['']
     });
 
     this.getSupplyStations();
@@ -143,6 +144,7 @@ export class FuelEntryEditComponent implements OnInit {
     };
 
     const fuelEntryData: FuelEntry = {
+      timestamp: this.fuelEntryData.timestamp,
       date: this.fuelEntryData.date,
       measureTanks: measureTanksData,
       bombMeter: bombMeterData,
