@@ -9,24 +9,26 @@
           <a routerLink="/entries/fuel/new" class="btn btn-primary">Agregar</a>
         </div>
       </div>
-      <table class="table table-hover table-sm">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Fecha de despacho</th>
-            <th scope="col">Estación de servicio</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div class="table-responsive-sm">
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Fecha de despacho</th>
+              <th scope="col">Estación de servicio</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
             <tr *ngFor="let entry of fuelEntryItems index as i" [routerLink]="['/entries/fuel/', entry.id]">
               <th scope="row">{{ i+1 }}</th>
               <td>{{ entry.date }}</td>
               <td>{{ entry.supplyStation.description }}</td>
               <td></td>
             </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
