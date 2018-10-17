@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service'
 import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model'
 import { NgxSpinnerService } from 'ngx-spinner'
-import { parse } from 'cfb/types';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -22,16 +21,6 @@ export class FuelEntryComponent implements OnInit {
   ngOnInit() {
     this.spinner.show()
     this.getFuelEntryItems()
-    // this.getByDate('2018-10-16')
-  }
-
-  getByDate(date: string): void {
-    let parseDate = new Date(date).getTime();
-    this.fuelEntryService.getByDate(parseDate).onSnapshot({ includeMetadataChanges: true }, snapshot => {
-      snapshot.docChanges().forEach(item => {
-        console.log(item.doc.data())
-      })
-    })
   }
 
   getFuelEntryItems(): void {

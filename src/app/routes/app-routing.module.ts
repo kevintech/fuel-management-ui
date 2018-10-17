@@ -24,6 +24,7 @@ import { FuelEntryEditComponent } from '../components/fuel-entry-edit/fuel-entry
 import { OilEntryComponent } from '../components/oil-entry/oil-entry.component';
 import { OilEntryNewComponent } from '../components/oil-entry-new/oil-entry-new.component';
 import { OilEntryEditComponent } from '../components/oil-entry-edit/oil-entry-edit.component';
+import { FuelEntryReportComponent } from '../components/fuel-entry-report/fuel-entry-report.component';
 
 /**
  * Guards
@@ -51,6 +52,7 @@ const appRoutes: Routes = [
   { path: 'entries/oil', component: OilEntryComponent, canActivate: [AuthGuard] },
   { path: 'entries/oil/new', component: OilEntryNewComponent, canActivate: [AuthGuard] },
   { path: 'entries/oil/:id', component: OilEntryEditComponent, canActivate: [AuthGuard] },
+  { path: 'reports/fuel', component: FuelEntryReportComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'home' }
 ]
 
