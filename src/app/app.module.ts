@@ -90,7 +90,6 @@ import { environment } from '../environments/environment';
     SupplyStationsEditComponent,
     ConfirmationDialogComponent,
     DriversEditComponent,
-    DriverBatchLoadComponent,
     EquipmentBatchLoadComponent,
     SupplyStationBatchLoadComponent,
     FuelEntryComponent,
