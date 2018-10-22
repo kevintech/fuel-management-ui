@@ -13,11 +13,14 @@
         <div class="row">
           <p>Información general</p>
         </div>
-        <div class="mb-3">
-          <label for="description">Descripción</label>
-          <input type="text" class="form-control" id="description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
-        </div>
         <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="description">Descripción</label>
+            <input type="text" class="form-control" id="description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+            <div class="invalid-feedback">
+              Ingrese la descripción del equipo
+            </div>
+          </div>
           <div class="col-md-6 mb-3">
             <label for="code">Código</label>
             <input type="text" class="form-control" id="code" formControlName="code" [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
@@ -25,6 +28,8 @@
               Ingrese el código del equipo
             </div>
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-6 mb-3">
             <label for="brand">Marca</label>
             <input type="text" class="form-control" id="brand" formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f.brand.errors }">
@@ -32,8 +37,6 @@
               Ingrese la marca del equipo
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-6 mb-3">
             <label for="year">Año</label>
             <input type="number" class="form-control" id="year" min="0" formControlName="year" [ngClass]="{ 'is-invalid': submitted && f.year.errors }">
@@ -41,6 +44,8 @@
               Ingrese el año del equipo
             </div>
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-6 mb-3">
             <label for="model">Modelo</label>
             <input type="text" class="form-control" id="model" formControlName="model" [ngClass]="{ 'is-invalid': submitted && f.model.errors }">
@@ -48,13 +53,20 @@
               Ingrese el modelo del equipo
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-6 mb-3">
             <label for="serial">Número de serie</label>
             <input type="text" class="form-control" id="serial" formControlName="serial" [ngClass]="{ 'is-invalid': submitted && f.serial.errors }">
             <div class="invalid-feedback">
               Ingrese un número de serie del equipo
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="type">Tipo</label>
+            <input type="text" class="form-control" id="type" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+            <div class="invalid-feedback">
+              Ingrese el tipo de equipo
             </div>
           </div>
           <div class="col-md-6 mb-3">
@@ -100,7 +112,8 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="declarationNumber">Número de declaración</label>
-            <input type="text" class="form-control" id="declarationNumber" formControlName="declarationNumber" [ngClass]="{ 'is-invalid': submitted && f.declarationNumber.errors }">
+            <input type="text" class="form-control" id="declarationNumber" formControlName="declarationNumber"
+              [ngClass]="{ 'is-invalid': submitted && f.declarationNumber.errors }">
             <div class="invalid-feedback">
               Ingrese el número de declaración del equipo
             </div>
@@ -132,7 +145,8 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="protectionDeviceDateExpiration">Fecha de expiración de dispositivo de protección</label>
-            <input type="date" class="form-control" id="protectionDeviceDateExpiration" formControlName="protectionDeviceDateExpiration" [ngClass]="{ 'is-invalid': submitted && f.protectionDeviceDateExpiration.errors }">
+            <input type="date" class="form-control" id="protectionDeviceDateExpiration" formControlName="protectionDeviceDateExpiration"
+              [ngClass]="{ 'is-invalid': submitted && f.protectionDeviceDateExpiration.errors }">
             <div class="invalid-feedback">
               Ingrese la fecha de expiración del dispositivo de protección
             </div>
@@ -200,7 +214,8 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="insuranceExpirationDate">Fecha de expiración</label>
-            <input type="date" class="form-control" id="insuranceExpirationDate" formControlName="insuranceExpirationDate" [ngClass]="{ 'is-invalid': submitted && f.insuranceExpirationDate.errors }">
+            <input type="date" class="form-control" id="insuranceExpirationDate" formControlName="insuranceExpirationDate"
+              [ngClass]="{ 'is-invalid': submitted && f.insuranceExpirationDate.errors }">
             <div class="invalid-feedback">
               Ingrese la fecha de expiración del seguro
             </div>
