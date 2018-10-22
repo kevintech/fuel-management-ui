@@ -72,5 +72,4 @@ export class EquipmentBatchLoadComponent implements OnInit {
     this.notifierService.hideAll();
     this.notifierService.notify(type, message);
   }
-
 }
