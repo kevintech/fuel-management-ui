@@ -12,4 +12,6 @@ export interface OilEntry {
   atf: string;
   cooling: string;
   grease: number;
+  date: string;
+  timestamp: number;
 }

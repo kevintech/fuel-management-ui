@@ -66,7 +66,9 @@ export class OilEntryNewComponent implements OnInit {
       oil30: this.f.oil30.value,
       atf: this.f.atf.value,
       cooling: this.f.cooling.value,
-      grease: this.f.grease.value
+      grease: this.f.grease.value,
+      timestamp: new Date(this.getCurrentDate()).getTime(),
+      date: this.getCurrentDate(),
     }
 
     this.oilEntryService.save(oilEntryData)
@@ -84,5 +86,19 @@ export class OilEntryNewComponent implements OnInit {
   showAlert(type: string, message: string): void {
     this.notifierService.hideAll()
     this.notifierService.notify(type, message)
+  }
+
+  getCurrentDate(): string {
+    const typeDate = new Date()
+    let month: number = typeDate.getMonth() + 1
+    let parseMonth: string = ''
+
+    if (month < 10) {
+      parseMonth = '0' + month
+    } else {
+      parseMonth = '' + month
+    }
+
+    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
   }
 }
