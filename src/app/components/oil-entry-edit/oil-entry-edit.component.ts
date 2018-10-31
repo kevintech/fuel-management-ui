@@ -34,6 +34,7 @@ export class OilEntryEditComponent implements OnInit {
   ngOnInit() {
     this.oilEntryForm = this.formBuilder.group({
       plate: ['', [Validators.required]],
+      code: ['', [Validators.required]],
       kilometers: ['', [Validators.required]],
       oil15W40: ['', []],
       oilW30Cat: ['', []],
@@ -44,7 +45,9 @@ export class OilEntryEditComponent implements OnInit {
       oil30: ['', []],
       atf: ['', []],
       cooling: ['', []],
-      grease: ['', []]
+      grease: ['', []],
+      date: [''],
+      timestamp: ['']
     })
 
     this.route.params.subscribe(params => {
@@ -76,6 +79,7 @@ export class OilEntryEditComponent implements OnInit {
 
     const stationData: OilEntry = {
       plate: this.f.plate.value,
+      code: this.f.code.value,
       kilometers: this.f.kilometers.value,
       oil15W40: this.f.oil15W40.value,
       oilW30Cat: this.f.oilW30Cat.value,

@@ -1,6 +1,7 @@
 
 export interface OilEntry {
   plate: string;
+  code: string;
   kilometers: number;
   oil15W40: number;
   oilW30Cat: number;
