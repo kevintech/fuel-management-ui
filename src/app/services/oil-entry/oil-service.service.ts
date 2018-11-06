@@ -43,4 +43,8 @@ export class OilEntryService {
     this.itemDocument = this.afs.doc<OilEntry>(`${AppConfig.collections.oilEntry}/${key}`);
     return this.itemDocument.delete();
   }
+
+  getByDate(date: string) {
+    return this.itemsCollection.ref.where('date', '==', date);
+  }
 }
