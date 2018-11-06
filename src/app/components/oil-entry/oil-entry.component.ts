@@ -32,14 +32,10 @@ export class OilEntryComponent implements OnInit {
   getCurrentDate(): string {
     const typeDate = new Date()
     let month: number = typeDate.getMonth() + 1
-    let parseMonth: string = ''
-    
-    if (month < 10) {
-      parseMonth = '0' + month
-    } else {
-      parseMonth = '' + month
-    }
+    let day: number = typeDate.getDate()
+    let parseMonth: string = month < 10 ? '0' + month : '' + month
+    let parseDay: string = day < 10 ? '0' + day : '' + day
 
-    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
+    return typeDate.getFullYear() + '-' + parseMonth + '-' + parseDay
   }
 }
