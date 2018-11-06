@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SupplyStation } from '../../models/supply-station/supply-station.model';
 import { SupplyStationFileHeaders } from './supply-station-file-headers';
 import { SupplyStationService } from '../../services/supply-station/supply-station.service';
-import { NotifierService } from 'angular-notifier';
+import { AlertService } from '../../services/alert/alert-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ExcelDataReaderService } from '../../services/excel-data-reader/excel-data-reader.service';
 
@@ -24,7 +24,7 @@ export class SupplyStationBatchLoadComponent implements OnInit {
     private stationService: SupplyStationService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService,
     private excelDataReader: ExcelDataReaderService,
   ) { }
@@ -52,12 +52,12 @@ export class SupplyStationBatchLoadComponent implements OnInit {
         () => {
           return this.stationService.saveAll(this.data);
         },
-        (error) => this.showAlert('error', error)
+        (error) => this.alertService.alert('error', error)
       )
       .then(() => {
-        this.showAlert('success', 'Pilotos cargados con éxito');
+        this.alertService.alert('success', 'Pilotos cargados con éxito');
         this.router.navigate(['settings/stations']);
-      }, (error) => this.showAlert('error', error))
+      }, (error) => this.alertService.alert('error', error))
       .then(() => this.spinner.hide());
   }
 
@@ -67,10 +67,4 @@ export class SupplyStationBatchLoadComponent implements OnInit {
       this.loaded = true;
     });
   }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll();
-    this.notifierService.notify(type, message);
-  }
-
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core'
-import { EquipmentService } from '../../services/equipment/equipment.service'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { Equipment } from '../../models/equipment/equipment.model'
-import { NotifierService } from 'angular-notifier'
-import { NgxSpinnerService } from 'ngx-spinner'
+import { Component, OnInit } from '@angular/core';
+import { EquipmentService } from '../../services/equipment/equipment.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Equipment } from '../../models/equipment/equipment.model';
+import { AlertService } from '../../services/alert/alert-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-equipments-new',
@@ -20,7 +20,7 @@ export class EquipmentNewComponent implements OnInit {
     private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -102,17 +102,12 @@ export class EquipmentNewComponent implements OnInit {
     this.equipmentService.save(equipmentData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Equipo registrado con éxito')
+        this.alertService.alert('success', 'Equipo registrado con éxito')
         this.router.navigate(['settings/equipments'])
       })
       .catch(error => {
         this.spinner.hide()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

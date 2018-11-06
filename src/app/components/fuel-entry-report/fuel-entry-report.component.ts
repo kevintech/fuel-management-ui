@@ -5,7 +5,7 @@ import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
 import { OilEntry } from 'src/app/models/oil-entryl/oil-entry.model';
 import { OilEntryService } from '../../services/oil-entry/oil-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { NotifierService } from 'angular-notifier';
+import { AlertService } from '../../services/alert/alert-service.service';
 import * as XLSX from 'xlsx';
 import { FuelEntryReportRow } from './fuel-entry-report-row.model';
 import { FuelEntryReportHeaders } from './fuel-entry-report-headers';
@@ -26,7 +26,7 @@ export class FuelEntryReportComponent implements OnInit {
     private formBuilder: FormBuilder,
     private fuelEntryService: FuelEntryService,
     private oilEntryService: OilEntryService,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -70,7 +70,6 @@ export class FuelEntryReportComponent implements OnInit {
 
   private downloadReport() {
     if (++this.spinnerState < 2) return;
-    console.log(FuelEntryReportHeaders)
     const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([
       FuelEntryReportHeaders
     ].concat(this.getReportData()));
@@ -143,10 +142,5 @@ export class FuelEntryReportComponent implements OnInit {
       cooling: null,
       grease: null,
     };
-  }
-
-  private showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

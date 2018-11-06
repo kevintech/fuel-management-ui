@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Observable } from 'rxjs'
-import { SupplyStationService } from '../../services/supply-station/supply-station.service'
-import { SupplyStation } from '../../models/supply-station/supply-station.model'
-import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service'
-import { NotifierService } from 'angular-notifier'
-import { NgxSpinnerService } from 'ngx-spinner'
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { SupplyStationService } from '../../services/supply-station/supply-station.service';
+import { SupplyStation } from '../../models/supply-station/supply-station.model';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { AlertService } from '../../services/alert/alert-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-supply-stations-edit',
@@ -26,7 +26,7 @@ export class SupplyStationsEditComponent implements OnInit {
     private confirmationDialogService: ConfirmationDialogService,
     private route: ActivatedRoute,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -76,12 +76,12 @@ export class SupplyStationsEditComponent implements OnInit {
     this.stationService.update(this.id, stationData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Estación de servicio actualizada con éxito')
+        this.alertService.alert('success', 'Estación de servicio actualizada con éxito')
         this.router.navigate(['settings/stations'])
       })
       .catch(error => {
         this.spinner.hide()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
   }
 
@@ -93,22 +93,17 @@ export class SupplyStationsEditComponent implements OnInit {
           this.stationService.delete(this.id)
             .then(response => {
               this.spinner.hide()
-              this.showAlert('success', 'Estación de servicio eliminada con éxito')
+              this.alertService.alert('success', 'Estación de servicio eliminada con éxito')
               this.router.navigate(['settings/stations'])
             })
             .catch(error => {
               this.spinner.hide()
-              this.showAlert('error', error)
+              this.alertService.alert('error', error)
             })
         }
       })
       .catch(error => {
         console.log('Error in dialog: ', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

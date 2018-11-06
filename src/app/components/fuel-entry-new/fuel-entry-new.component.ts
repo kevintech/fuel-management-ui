@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model'
-import { SupplyStation } from '../../models/supply-station/supply-station.model'
-import { TankMeasurement } from '../../models/fuel-entry/tank-measurement.model'
-import { BombMeter } from '../../models/fuel-entry/bomb-meter.model'
-import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service'
-import { SupplyStationService } from '../../services/supply-station/supply-station.service'
-import { NotifierService } from 'angular-notifier'
-import { NgxSpinnerService } from 'ngx-spinner'
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FuelEntry } from '../../models/fuel-entry/fuel-entry.model';
+import { SupplyStation } from '../../models/supply-station/supply-station.model';
+import { TankMeasurement } from '../../models/fuel-entry/tank-measurement.model';
+import { BombMeter } from '../../models/fuel-entry/bomb-meter.model';
+import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
+import { SupplyStationService } from '../../services/supply-station/supply-station.service';
+import { AlertService } from '../../services/alert/alert-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DateUtilsService } from '../../services/date-utils/date-utils.service';
 
 @Component({
@@ -29,7 +29,7 @@ export class FuelEntryNewComponent implements OnInit {
     private fuelEntryService: FuelEntryService,
     private supplyStationService: SupplyStationService,
     private dateUtilsService: DateUtilsService,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -99,17 +99,12 @@ export class FuelEntryNewComponent implements OnInit {
     this.fuelEntryService.save(fuelEntryData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Estación de servicio iniciada con éxito')
+        this.alertService.alert('success', 'Estación de servicio iniciada con éxito')
         this.router.navigate(['entries/fuel'])
       })
       .catch(error => {
         this.spinner.show()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

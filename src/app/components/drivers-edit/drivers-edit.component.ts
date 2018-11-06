@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core'
-import { Observable } from 'rxjs'
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Driver } from '../../models/driver/driver.model'
-import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service'
-import { ActivatedRoute, Router } from '@angular/router'
-import { DriverService } from '../../services/driver/driver.service'
-import { NotifierService } from 'angular-notifier'
-import { NgxSpinnerService } from 'ngx-spinner'
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Driver } from '../../models/driver/driver.model';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DriverService } from '../../services/driver/driver.service';
+import { AlertService } from '../../services/alert/alert-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-drivers-edit',
@@ -26,7 +26,7 @@ export class DriversEditComponent implements OnInit {
     private confirmationDialogService: ConfirmationDialogService,
     private route: ActivatedRoute,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -78,12 +78,12 @@ export class DriversEditComponent implements OnInit {
     this.driverService.update(this.id, driverData)
       .then(() => {
         this.spinner.hide()
-        this.showAlert('success', 'Piloto actualizado con éxito')
+        this.alertService.alert('success', 'Piloto actualizado con éxito')
         this.router.navigate(['settings/drivers'])
       })
       .catch(error => {
         this.spinner.hide()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
   }
 
@@ -95,22 +95,17 @@ export class DriversEditComponent implements OnInit {
           this.driverService.delete(this.id)
             .then(response => {
               this.spinner.hide()
-              this.showAlert('success', 'Piloto eliminado con éxito')
+              this.alertService.alert('success', 'Piloto eliminado con éxito')
               this.router.navigate(['settings/drivers'])
             })
             .catch(error => {
               this.spinner.hide()
-              this.showAlert('error', error)
+              this.alertService.alert('error', error)
             })
         }
       })
       .catch(error => {
         console.log('Error in dialog: ', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

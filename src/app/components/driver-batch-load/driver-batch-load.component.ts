@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Driver } from '../../models/driver/driver.model';
 import { DriverFileHeaders } from './driver-file-headers';
 import { DriverService } from '../../services/driver/driver.service';
-import { NotifierService } from 'angular-notifier';
+import { AlertService } from '../../services/alert/alert-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ExcelDataReaderService } from '../../services/excel-data-reader/excel-data-reader.service';
 
@@ -24,7 +24,7 @@ export class DriverBatchLoadComponent implements OnInit {
     private driverService: DriverService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService,
     private excelDataReader: ExcelDataReaderService,
   ) { }
@@ -52,12 +52,12 @@ export class DriverBatchLoadComponent implements OnInit {
         () => {
           return this.driverService.saveAll(this.data)
         },
-        (error) => this.showAlert('error', error)
+        (error) => this.alertService.alert('error', error)
       )
       .then(() => {
-        this.showAlert('success', 'Pilotos cargados con éxito');
+        this.alertService.alert('success', 'Pilotos cargados con éxito');
         this.router.navigate(['settings/drivers']);
-      }, (error) => this.showAlert('error', error))
+      }, (error) => this.alertService.alert('error', error))
       .then(() => this.spinner.hide());
   }
 
@@ -66,10 +66,5 @@ export class DriverBatchLoadComponent implements OnInit {
       this.data = data;
       this.loaded = true;
     });
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

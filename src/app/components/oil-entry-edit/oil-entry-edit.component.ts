@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { OilEntryService } from '../../services/oil-entry/oil-service.service';
 import { OilEntry } from '../../models/oil-entryl/oil-entry.model';
 import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
-import { NotifierService } from 'angular-notifier';
+import { AlertService } from '../../services/alert/alert-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -27,7 +27,7 @@ export class OilEntryEditComponent implements OnInit {
     private confirmationDialogService: ConfirmationDialogService,
     private route: ActivatedRoute,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -98,12 +98,12 @@ export class OilEntryEditComponent implements OnInit {
     this.oilEntryService.update(this.id, stationData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Despacho de lubricante actualizado con éxito')
+        this.alertService.alert('success', 'Despacho de lubricante actualizado con éxito')
         this.router.navigate(['entries/oil'])
       })
       .catch(error => {
         this.spinner.hide()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
   }
 
@@ -115,22 +115,17 @@ export class OilEntryEditComponent implements OnInit {
           this.oilEntryService.delete(this.id)
             .then(response => {
               this.spinner.hide()
-              this.showAlert('success', 'Despacho de lubricante eliminado con éxito')
+              this.alertService.alert('success', 'Despacho de lubricante eliminado con éxito')
               this.router.navigate(['entries/oil'])
             })
             .catch(error => {
               this.spinner.hide()
-              this.showAlert('error', error)
+              this.alertService.alert('error', error)
             })
         }
       })
       .catch(error => {
         console.log('Error in dialog: ', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

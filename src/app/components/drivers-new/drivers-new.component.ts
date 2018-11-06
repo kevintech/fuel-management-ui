@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { DriverService } from '../../services/driver/driver.service'
-import { Driver } from '../../models/driver/driver.model'
-import { NotifierService } from 'angular-notifier'
-import { NgxSpinnerService } from 'ngx-spinner'
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DriverService } from '../../services/driver/driver.service';
+import { Driver } from '../../models/driver/driver.model';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AlertService } from '../../services/alert/alert-service.service';
 
 @Component({
   selector: 'app-drivers-new',
@@ -20,7 +20,7 @@ export class DriversNewComponent implements OnInit {
     private driverService: DriverService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -60,17 +60,12 @@ export class DriversNewComponent implements OnInit {
     this.driverService.save(driverData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Piloto registrado con éxito')
+        this.alertService.alert('success', 'Piloto registrado con éxito')
         this.router.navigate(['settings/drivers'])
       })
       .catch(error => {
         this.spinner.show()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

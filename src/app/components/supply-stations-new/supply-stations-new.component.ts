@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { SupplyStationService } from '../../services/supply-station/supply-station.service'
-import { SupplyStation } from '../../models/supply-station/supply-station.model'
-import { NotifierService } from 'angular-notifier'
-import { NgxSpinnerService } from 'ngx-spinner'
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SupplyStationService } from '../../services/supply-station/supply-station.service';
+import { SupplyStation } from '../../models/supply-station/supply-station.model';
+import { AlertService } from '../../services/alert/alert-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-supply-stations-new',
@@ -20,7 +20,7 @@ export class SupplyStationsNewComponent implements OnInit {
     private stationService: SupplyStationService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -58,17 +58,12 @@ export class SupplyStationsNewComponent implements OnInit {
     this.stationService.save(stationData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Estación de servicio registrada con éxito')
+        this.alertService.alert('success', 'Estación de servicio registrada con éxito')
         this.router.navigate(['settings/stations'])
       })
       .catch(error => {
         this.spinner.hide()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

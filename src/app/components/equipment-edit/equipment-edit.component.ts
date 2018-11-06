@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core'
-import { Observable } from 'rxjs'
-import { EquipmentService } from '../../services/equipment/equipment.service'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router, ActivatedRoute } from '@angular/router'
-import { Equipment } from '../../models/equipment/equipment.model'
-import { NotifierService } from 'angular-notifier'
-import { NgxSpinnerService } from 'ngx-spinner'
-import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service'
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EquipmentService } from '../../services/equipment/equipment.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Equipment } from '../../models/equipment/equipment.model';
+import { AlertService } from '../../services/alert/alert-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-equipments-edit',
@@ -26,7 +26,7 @@ export class EquipmentEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private confirmationDialogService: ConfirmationDialogService,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -120,12 +120,12 @@ export class EquipmentEditComponent implements OnInit {
     this.equipmentService.update(this.id, equipmentData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Equipo actualizado con éxito')
+        this.alertService.alert('success', 'Equipo actualizado con éxito')
         this.router.navigate(['settings/equipments'])
       })
       .catch(error => {
         this.spinner.hide()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
   }
 
@@ -137,22 +137,17 @@ export class EquipmentEditComponent implements OnInit {
           this.equipmentService.delete(this.id)
             .then(response => {
               this.spinner.hide()
-              this.showAlert('success', 'Eliminado correctamente')
+              this.alertService.alert('success', 'Eliminado correctamente')
               this.router.navigate(['settings/equipments'])
             })
             .catch(error => {
               this.spinner.hide()
-              this.showAlert('error', error)
+              this.alertService.alert('error', error)
             })
         }
       })
       .catch(error => {
         console.log('Error in dialog: ', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 }

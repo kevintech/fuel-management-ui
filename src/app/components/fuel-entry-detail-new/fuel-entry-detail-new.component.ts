@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NotifierService } from 'angular-notifier';
+import { AlertService } from '../../services/alert/alert-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FuelEntryDetail } from '../../models/fuel-entry/fuel-entry-detail.model';
 import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
@@ -35,7 +35,7 @@ export class FuelEntryDetailNewComponent implements OnInit {
     private driverService: DriverService,
     private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -114,11 +114,11 @@ export class FuelEntryDetailNewComponent implements OnInit {
     this.service.addDetail(this.entryData, data, this.id)
       .then(response => {
         this.spinner.hide();
-        this.showAlert('success', 'Detalle agregado con éxito');
+        this.alertService.alert('success', 'Detalle agregado con éxito');
       })
       .catch(error => {
         this.spinner.show();
-        this.showAlert('error', error);
+        this.alertService.alert('error', error);
       });
   }
 
@@ -143,10 +143,5 @@ export class FuelEntryDetailNewComponent implements OnInit {
     return this.driverItems.find(x => {
       return x.id === driverId;
     });
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll();
-    this.notifierService.notify(type, message);
   }
 }

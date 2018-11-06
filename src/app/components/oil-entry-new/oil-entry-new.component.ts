@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OilEntryService } from '../../services/oil-entry/oil-service.service';
 import { OilEntry } from '../../models/oil-entryl/oil-entry.model';
-import { NotifierService } from 'angular-notifier';
+import { AlertService } from '../../services/alert/alert-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -28,7 +28,7 @@ export class OilEntryNewComponent implements OnInit {
     private dateUtilsService: DateUtilsService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private notifierService: NotifierService,
+    private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -92,18 +92,13 @@ export class OilEntryNewComponent implements OnInit {
     this.oilEntryService.save(oilEntryData)
       .then(response => {
         this.spinner.hide()
-        this.showAlert('success', 'Despacho de lubricante registrado con éxito')
+        this.alertService.alert('success', 'Despacho de lubricante registrado con éxito')
         this.router.navigate(['entries/oil'])
       })
       .catch(error => {
         this.spinner.hide()
-        this.showAlert('error', error)
+        this.alertService.alert('error', error)
       })
-  }
-
-  showAlert(type: string, message: string): void {
-    this.notifierService.hideAll()
-    this.notifierService.notify(type, message)
   }
 
   searchEquipmentByPlate = (text$: Observable<string>) =>
