@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EquipmentService } from '../../services/equipment/equipment.service';
 import { OilEntryService } from '../../services/oil-entry/oil-service.service';
 import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service';
+import { DateUtilsService } from '../../services/date-utils/date-utils.service';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +15,13 @@ export class HomeComponent implements OnInit {
   equipments: number = 0;
   activeEquipments: number = 0;
   inactiveEquipments: number = 0;
+  timestamp: number = new Date(this.dateUtilsService.getCurrentDate()).getTime();
 
   constructor(
     private equipmentService: EquipmentService,
     private oilEntryService: OilEntryService,
-    private fuelEntryService: FuelEntryService
+    private fuelEntryService: FuelEntryService,
+    private dateUtilsService: DateUtilsService
   ) { }
 
   ngOnInit() {
@@ -28,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadFuelEntries(): void {
-    this.fuelEntryService.getByDate(this.getCurrentDate()).pipe().subscribe(data => {
+    this.fuelEntryService.getByDate(this.timestamp).pipe().subscribe(data => {
       data.forEach(item => {
         this.fuelEntries += item.detail.length;
       });
@@ -38,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadOilEntries(): void {
-    this.oilEntryService.getByDate(this.getCurrentDate()).pipe().subscribe(data => {
+    this.oilEntryService.getByDate(this.timestamp).pipe().subscribe(data => {
       this.oilEntries = data.length;
     }, error => {
       console.log('Load oil entry error => ', error);
@@ -53,15 +56,5 @@ export class HomeComponent implements OnInit {
     }, error => {
       console.log('Load equipments error => ', error);
     });
-  }
-
-  getCurrentDate(): string {
-    const typeDate = new Date()
-    const month: number = typeDate.getMonth() + 1
-    const day: number = typeDate.getDate()
-    const parseMonth: string = month < 10 ? '0' + month : '' + month
-    const parseDay: string = day < 10 ? '0' + day : '' + day
-
-    return typeDate.getFullYear() + '-' + parseMonth + '-' + parseDay
   }
 }

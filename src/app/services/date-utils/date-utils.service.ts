@@ -3,19 +3,18 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DateUtilsService {
 
   constructor() { }
 
   public getCurrentDate(): string {
     const typeDate = new Date()
-    let parseMonth: string = this.parseDate(typeDate.getMonth() + 1);
-    let parseDay: string = this.parseDate(typeDate.getDate());
-    return typeDate.getFullYear() + '-' + parseMonth + '-' + parseDay
-  }
+    const month: number = typeDate.getMonth() + 1
+    const day: number = typeDate.getDate()
+    const parseMonth: string = month < 10 ? '0' + month : '' + month
+    const parseDay: string = day < 10 ? '0' + day : '' + day
 
-  private parseDate(date) {
-    if (date<10) return '0' + date;
-    return date.toString();
+    return typeDate.getFullYear() + '-' + parseMonth + '-' + parseDay
   }
 }
