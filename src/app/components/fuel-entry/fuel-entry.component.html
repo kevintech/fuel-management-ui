@@ -20,7 +20,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let entry of fuelEntryItems index as i" [routerLink]="['/entries/fuel/', entry.id]">
+            <tr *ngFor="let entry of entries | async; index as i" [routerLink]="['/entries/fuel/', entry.id]">
               <th scope="row">{{ i+1 }}</th>
               <td>{{ entry.date }}</td>
               <td>{{ entry.supplyStation.description }}</td>

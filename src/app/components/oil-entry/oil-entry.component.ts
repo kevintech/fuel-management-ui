@@ -10,36 +10,23 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./oil-entry.component.css']
 })
 export class OilEntryComponent implements OnInit {
-  public entries: Observable<OilEntry[]>;
-  oilEntryItems: OilEntry[]
-  data: Observable<OilEntry[]>
+  entries: Observable<OilEntry[]>;
 
-  constructor(private oilEntryService: OilEntryService,
+  constructor(
+    private oilEntryService: OilEntryService,
     private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.oilEntryService.getAll()
-    .subscribe(
-      data => {
-        this.oilEntryItems = data.filter(item => item.date === this.getCurrentDate())
-        this.spinner.hide()
-      }, error => {
-        console.log(error)
-        this.spinner.hide()
-      })
+    this.entries = this.oilEntryService.getByDate(this.getCurrentDate());
   }
 
   getCurrentDate(): string {
     const typeDate = new Date()
-    let month: number = typeDate.getMonth() + 1
-    let parseMonth: string = ''
-    
-    if (month < 10) {
-      parseMonth = '0' + month
-    } else {
-      parseMonth = '' + month
-    }
+    const month: number = typeDate.getMonth() + 1
+    const day: number = typeDate.getDate()
+    const parseMonth: string = month < 10 ? '0' + month : '' + month
+    const parseDay: string = day < 10 ? '0' + day : '' + day
 
-    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
+    return typeDate.getFullYear() + '-' + parseMonth + '-' + parseDay
   }
 }

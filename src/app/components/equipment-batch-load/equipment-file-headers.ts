@@ -5,6 +5,7 @@ export const EquipmentFileHeaders = [
     'year',
     'model',
     'serial',
+    'type',
     'plate',
     'registrationCert',
     'idCard',

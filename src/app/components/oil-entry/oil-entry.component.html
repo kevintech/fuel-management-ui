@@ -29,7 +29,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let entry of oilEntryItems index as i" [routerLink]="['/entries/oil/', entry.id]">
+            <tr *ngFor="let entry of entries | async; index as i" [routerLink]="['/entries/oil/', entry.id]">
               <th scope="row">{{ i+1 }}</th>
               <td>{{ entry.plate }}</td>
               <td>{{ entry.kilometers }}</td>

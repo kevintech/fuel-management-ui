@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'
-import { Observable } from 'rxjs'
-import { EquipmentService } from '../../services/equipment/equipment.service'
-import { Equipment } from '../../models/equipment/equipment.model'
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EquipmentService } from '../../services/equipment/equipment.service';
+import { Equipment } from '../../models/equipment/equipment.model';
 
 @Component({
   selector: 'app-equipments',
