@@ -29,22 +29,21 @@ export class HomeComponent implements OnInit {
 
   loadFuelEntries(): void {
     let date = new Date(this.getCurrentDate()).getTime()
-    this.fuelEntryService.getByDate(date).onSnapshot({ includeMetadataChanges: false }, snapshot => {
-      snapshot.docChanges().forEach(item => {
-        this.fuelEntries += item.doc.data().detail.length;
-      })
+    this.fuelEntryService.getByDate(date).pipe().subscribe(data => {
+      data.forEach(item => {
+        this.fuelEntries += item.detail.length;
+      });
+    }, error  => {
+      console.log('Load fuel entry error => ', error);
     });
   }
 
   loadOilEntries(): void {
-    this.oilEntryService.getByDate(this.getCurrentDate())
-      .get()
-      .then(data => {
-        this.oilEntries = data.size;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.oilEntryService.getByDate(this.getCurrentDate()).pipe().subscribe(data => {
+      this.oilEntries = data.length;
+    }, error => {
+      console.log('Load oil entry error => ', error);
+    });
   }
 
   loadEquipments(): void {

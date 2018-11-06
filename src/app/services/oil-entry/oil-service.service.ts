@@ -44,7 +44,7 @@ export class OilEntryService {
     return this.itemDocument.delete();
   }
 
-  getByDate(date: string) {
-    return this.itemsCollection.ref.where('date', '==', date);
+  public getByDate(date: string) {
+    return this.afs.collection<OilEntry>(`${AppConfig.collections.oilEntry}`, ref => ref.where('date', '==', date)).valueChanges();
   }
 }
