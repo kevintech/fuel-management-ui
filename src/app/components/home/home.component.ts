@@ -28,8 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadFuelEntries(): void {
-    let date = new Date(this.getCurrentDate()).getTime()
-    this.fuelEntryService.getByDate(date).pipe().subscribe(data => {
+    this.fuelEntryService.getByDate(this.getCurrentDate()).pipe().subscribe(data => {
       data.forEach(item => {
         this.fuelEntries += item.detail.length;
       });
@@ -58,10 +57,10 @@ export class HomeComponent implements OnInit {
 
   getCurrentDate(): string {
     const typeDate = new Date()
-    let month: number = typeDate.getMonth() + 1
-    let day: number = typeDate.getDate()
-    let parseMonth: string = month < 10 ? '0' + month : '' + month
-    let parseDay: string = day < 10 ? '0' + day : '' + day
+    const month: number = typeDate.getMonth() + 1
+    const day: number = typeDate.getDate()
+    const parseMonth: string = month < 10 ? '0' + month : '' + month
+    const parseDay: string = day < 10 ? '0' + day : '' + day
 
     return typeDate.getFullYear() + '-' + parseMonth + '-' + parseDay
   }
