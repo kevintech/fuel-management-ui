@@ -10,15 +10,23 @@
       </div>
       <form class="needs-validation" [formGroup]="oilEntryForm" (ngSubmit)="onSubmit()">
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class="col-md-4 mb-3">
             <label for="plate">Placa</label>
             <input type="text" class="form-control" id="plate" formControlName="plate" placeholder="" value="" required
-              [ngClass]="{ 'is-invalid': submitted && f.plate.errors }">
+              [ngClass]="{ 'is-invalid': submitted && f.plate.errors }" [ngbTypeahead]="searchEquipmentByPlate">
             <div class="invalid-feedback">
               Ingrese el número de placa del equipo
             </div>
           </div>
-          <div class="col-md-6 mb-3">
+          <div class="col-md-4 mb-3">
+            <label for="code">Codigo</label>
+            <input type="text" class="form-control" id="code" formControlName="code" placeholder="" value="" required
+              [ngClass]="{ 'is-invalid': submitted && f.code.errors }" [ngbTypeahead]="searchEquipmentByCode">
+            <div class="invalid-feedback">
+              Ingrese el codigo del equipo
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
             <label for="kilometers">Kilometraje</label>
             <input type="number" class="form-control" id="kilometers" formControlName="kilometers" placeholder="" value=""
               required [ngClass]="{ 'is-invalid': submitted && f.kilometers.errors }">

@@ -1,6 +1,7 @@
 
 export interface OilEntry {
   plate: string;
+  code: string;
   kilometers: number;
   oil15W40: number;
   oilW30Cat: number;
@@ -12,4 +13,6 @@ export interface OilEntry {
   atf: string;
   cooling: string;
   grease: number;
+  date: string;
+  timestamp: number;
 }

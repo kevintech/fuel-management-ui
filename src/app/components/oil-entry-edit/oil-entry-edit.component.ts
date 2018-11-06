@@ -19,6 +19,7 @@ export class OilEntryEditComponent implements OnInit {
   submitted = false
   id: string
   entry: Observable<OilEntry>
+  oilEntryData: OilEntry
 
   constructor(
     private oilEntryService: OilEntryService,
@@ -33,6 +34,7 @@ export class OilEntryEditComponent implements OnInit {
   ngOnInit() {
     this.oilEntryForm = this.formBuilder.group({
       plate: ['', [Validators.required]],
+      code: ['', [Validators.required]],
       kilometers: ['', [Validators.required]],
       oil15W40: ['', []],
       oilW30Cat: ['', []],
@@ -43,7 +45,9 @@ export class OilEntryEditComponent implements OnInit {
       oil30: ['', []],
       atf: ['', []],
       cooling: ['', []],
-      grease: ['', []]
+      grease: ['', []],
+      date: [''],
+      timestamp: ['']
     })
 
     this.route.params.subscribe(params => {
@@ -60,6 +64,7 @@ export class OilEntryEditComponent implements OnInit {
     this.entry = this.oilEntryService.getOne(this.id)
     this.entry.subscribe(data => {
       this.oilEntryForm.setValue({ ...data })
+      this.oilEntryData = { ...data };
     })
   }
 
@@ -74,6 +79,7 @@ export class OilEntryEditComponent implements OnInit {
 
     const stationData: OilEntry = {
       plate: this.f.plate.value,
+      code: this.f.code.value,
       kilometers: this.f.kilometers.value,
       oil15W40: this.f.oil15W40.value,
       oilW30Cat: this.f.oilW30Cat.value,
@@ -84,7 +90,9 @@ export class OilEntryEditComponent implements OnInit {
       oil30: this.f.oil30.value,
       atf: this.f.atf.value,
       cooling: this.f.cooling.value,
-      grease: this.f.grease.value
+      grease: this.f.grease.value,
+      timestamp: this.oilEntryData.timestamp,
+      date: this.oilEntryData.date,
     }
 
     this.oilEntryService.update(this.id, stationData)

@@ -5,6 +5,10 @@ import { OilEntryService } from '../../services/oil-entry/oil-service.service';
 import { OilEntry } from '../../models/oil-entryl/oil-entry.model';
 import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { Equipment } from 'src/app/models/equipment/equipment.model';
+import { EquipmentService } from 'src/app/services/equipment/equipment.service';
 
 @Component({
   selector: 'app-oil-entry-new',
@@ -15,9 +19,11 @@ export class OilEntryNewComponent implements OnInit {
   oilEntryForm: FormGroup
   error = false
   submitted = false
+  equipmentItems: Equipment[];
 
   constructor(
     private oilEntryService: OilEntryService,
+    private equipmentService: EquipmentService,
     private formBuilder: FormBuilder,
     private router: Router,
     private notifierService: NotifierService,
@@ -27,6 +33,7 @@ export class OilEntryNewComponent implements OnInit {
   ngOnInit() {
     this.oilEntryForm = this.formBuilder.group({
       plate: ['', [Validators.required]],
+      code: ['', [Validators.required]],
       kilometers: ['', [Validators.required]],
       oil15W40: ['', []],
       oilW30Cat: ['', []],
@@ -38,7 +45,15 @@ export class OilEntryNewComponent implements OnInit {
       atf: ['', []],
       cooling: ['', []],
       grease: ['', []]
-    })
+    });
+
+    this.loadEquipments();
+  }
+
+  private loadEquipments() {
+    this.equipmentService.getAll().subscribe(data => {
+      this.equipmentItems = data;
+    });
   }
 
   get f() {
@@ -56,6 +71,7 @@ export class OilEntryNewComponent implements OnInit {
 
     const oilEntryData: OilEntry = {
       plate: this.f.plate.value,
+      code: this.f.code.value,
       kilometers: this.f.kilometers.value,
       oil15W40: this.f.oil15W40.value,
       oilW30Cat: this.f.oilW30Cat.value,
@@ -66,7 +82,9 @@ export class OilEntryNewComponent implements OnInit {
       oil30: this.f.oil30.value,
       atf: this.f.atf.value,
       cooling: this.f.cooling.value,
-      grease: this.f.grease.value
+      grease: this.f.grease.value,
+      timestamp: new Date(this.getCurrentDate()).getTime(),
+      date: this.getCurrentDate(),
     }
 
     this.oilEntryService.save(oilEntryData)
@@ -84,5 +102,35 @@ export class OilEntryNewComponent implements OnInit {
   showAlert(type: string, message: string): void {
     this.notifierService.hideAll()
     this.notifierService.notify(type, message)
+  }
+
+  searchEquipmentByPlate = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : this.equipmentItems.filter(x => x.plate.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(x => x.plate))
+    )
+
+  searchEquipmentByCode = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : this.equipmentItems.filter(x => x.code.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(x => x.code))
+    )
+
+  getCurrentDate(): string {
+    const typeDate = new Date()
+    let month: number = typeDate.getMonth() + 1
+    let parseMonth: string = ''
+
+    if (month < 10) {
+      parseMonth = '0' + month
+    } else {
+      parseMonth = '' + month
+    }
+
+    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
   }
 }
