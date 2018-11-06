@@ -43,4 +43,8 @@ export class OilEntryService {
     this.itemDocument = this.afs.doc<OilEntry>(`${AppConfig.collections.oilEntry}/${key}`);
     return this.itemDocument.delete();
   }
+
+  public getByDate(date: number) {
+    return this.afs.collection<OilEntry>(`${AppConfig.collections.oilEntry}`, ref => ref.where('timestamp', '==', date)).valueChanges();
+  }
 }

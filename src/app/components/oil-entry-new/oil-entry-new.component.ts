@@ -7,8 +7,9 @@ import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { Equipment } from 'src/app/models/equipment/equipment.model';
-import { EquipmentService } from 'src/app/services/equipment/equipment.service';
+import { Equipment } from '../../models/equipment/equipment.model';
+import { EquipmentService } from '../../services/equipment/equipment.service';
+import { DateUtilsService } from '../../services/date-utils/date-utils.service';
 
 @Component({
   selector: 'app-oil-entry-new',
@@ -24,6 +25,7 @@ export class OilEntryNewComponent implements OnInit {
   constructor(
     private oilEntryService: OilEntryService,
     private equipmentService: EquipmentService,
+    private dateUtilsService: DateUtilsService,
     private formBuilder: FormBuilder,
     private router: Router,
     private notifierService: NotifierService,
@@ -83,8 +85,8 @@ export class OilEntryNewComponent implements OnInit {
       atf: this.f.atf.value,
       cooling: this.f.cooling.value,
       grease: this.f.grease.value,
-      timestamp: new Date(this.getCurrentDate()).getTime(),
-      date: this.getCurrentDate(),
+      timestamp: new Date(this.dateUtilsService.getCurrentDate()).getTime(),
+      date: this.dateUtilsService.getCurrentDate(),
     }
 
     this.oilEntryService.save(oilEntryData)
@@ -119,18 +121,4 @@ export class OilEntryNewComponent implements OnInit {
       map(term => term.length < 2 ? []
         : this.equipmentItems.filter(x => x.code.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(x => x.code))
     )
-
-  getCurrentDate(): string {
-    const typeDate = new Date()
-    let month: number = typeDate.getMonth() + 1
-    let parseMonth: string = ''
-
-    if (month < 10) {
-      parseMonth = '0' + month
-    } else {
-      parseMonth = '' + month
-    }
-
-    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
-  }
 }

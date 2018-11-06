@@ -9,6 +9,7 @@ import { FuelEntryService } from '../../services/fuel-entry/fuel-entry.service'
 import { SupplyStationService } from '../../services/supply-station/supply-station.service'
 import { NotifierService } from 'angular-notifier'
 import { NgxSpinnerService } from 'ngx-spinner'
+import { DateUtilsService } from '../../services/date-utils/date-utils.service';
 
 @Component({
   selector: 'app-fuel-entry-new',
@@ -27,6 +28,7 @@ export class FuelEntryNewComponent implements OnInit {
     private router: Router,
     private fuelEntryService: FuelEntryService,
     private supplyStationService: SupplyStationService,
+    private dateUtilsService: DateUtilsService,
     private notifierService: NotifierService,
     private spinner: NgxSpinnerService
   ) { }
@@ -86,8 +88,8 @@ export class FuelEntryNewComponent implements OnInit {
     }
 
     const fuelEntryData: FuelEntry = {
-      timestamp: new Date(this.getCurrentDate()).getTime(),
-      date: this.getCurrentDate(),
+      timestamp: new Date(this.dateUtilsService.getCurrentDate()).getTime(),
+      date: this.dateUtilsService.getCurrentDate(),
       measureTanks: tankMeasureData,
       bombMeter: bombMeterData,
       supplyStation: this.supplyStationItems[this.f.supplyStation.value],
@@ -104,20 +106,6 @@ export class FuelEntryNewComponent implements OnInit {
         this.spinner.show()
         this.showAlert('error', error)
       })
-  }
-
-  getCurrentDate(): string {
-    const typeDate = new Date()
-    let month: number = typeDate.getMonth() + 1
-    let parseMonth: string = ''
-
-    if (month < 10) {
-      parseMonth = '0' + month
-    } else {
-      parseMonth = '' + month
-    }
-
-    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
   }
 
   showAlert(type: string, message: string): void {

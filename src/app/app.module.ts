@@ -50,6 +50,7 @@ import { FuelEntryService } from './services/fuel-entry/fuel-entry.service';
 import { ConfirmationDialogService } from './components/confirmation-dialog/confirmation-dialog.service';
 import { ExcelDataReaderService } from './services/excel-data-reader/excel-data-reader.service';
 import { OilEntryService } from './services/oil-entry/oil-service.service';
+import { DateUtilsService } from './services/date-utils/date-utils.service';
 
 /**
  * Guards
@@ -135,6 +136,7 @@ import { environment } from '../environments/environment';
     ConfirmationDialogService,
     ExcelDataReaderService,
     OilEntryService,
+    DateUtilsService,
     AuthGuard
   ],
   entryComponents: [

@@ -56,7 +56,7 @@ export class FuelEntryService {
     return this.itemDocument.update(entry);
   }
 
-  getByDate(date: number) {
-    return this.itemsCollection.ref.where('timestamp', '==', date);
+  public getByDate(date: number) {
+    return this.afs.collection<FuelEntry>(`${AppConfig.collections.fuelEntry}`, ref => ref.where('timestamp', '==', date)).valueChanges();
   }
 }
