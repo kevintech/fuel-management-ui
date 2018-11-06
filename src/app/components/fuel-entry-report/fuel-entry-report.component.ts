@@ -34,6 +34,7 @@ export class FuelEntryReportComponent implements OnInit {
     this.exportForm = this.formBuilder.group({
       date: ['', [Validators.required]]
     });
+    
     this.reportData = new Array();
   }
 
